@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/database-driver/database-driver.iml" filepath="$PROJECT_DIR$/database-driver/database-driver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-ecosystem-project.iml" filepath="$PROJECT_DIR$/java-ecosystem-project.iml" />
+    </modules>
+  </component>
+</project>
