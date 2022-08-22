@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/database-driver/database-driver.iml" filepath="$PROJECT_DIR$/database-driver/database-driver.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-ecosystem-project.iml" filepath="$PROJECT_DIR$/java-ecosystem-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webapi/webapi.iml" filepath="$PROJECT_DIR$/webapi/webapi.iml" />
     </modules>
   </component>
 </project>
