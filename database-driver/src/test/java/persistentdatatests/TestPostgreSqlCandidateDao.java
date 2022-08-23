@@ -1,9 +1,9 @@
-package PersistentDataTests;
+package persistentdatatests;
 
-import Data.Candidate.Candidate;
-import Data.Candidate.Exceptions.NonExistentCandidateException;
-import Data.Postgresql.Dao;
-import Data.Postgresql.PostgreSqlCandidateDao;
+import data.candidate.Candidate;
+import data.candidate.exceptions.NonExistentCandidateException;
+import data.postgresql.Dao;
+import data.postgresql.PostgreSqlCandidateDaoService;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class TestPostgreSqlCandidateDao {
     public static Candidate savedCandidate = null;
     public static Candidate updatedCandidate = null;
 
-    private static final Dao<Candidate, Long> candidateDAO = new PostgreSqlCandidateDao();
+    private static final Dao<Candidate, Long> candidateDAO = new PostgreSqlCandidateDaoService();
 
     @Test
     @Order(1)

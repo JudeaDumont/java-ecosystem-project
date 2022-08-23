@@ -1,6 +1,6 @@
-package Data.Candidate;
+package data.candidate;
 
-import Data.EnforcedClassExtension.ID;
+import data.enforcedclassextension.ID;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,6 +25,9 @@ public class Candidate implements ID {
         this.name = name;
     }
 
+    //todo: make a model/class where a GUID is used for the id column
+    //todo: make a model/class where a UUID is used for the id column
+    // is that even possible? google "UUID/GUID as primary key postgresql"
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")

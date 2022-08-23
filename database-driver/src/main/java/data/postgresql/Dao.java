@@ -1,4 +1,4 @@
-package Data.Postgresql;
+package data.postgresql;
 
 import java.util.Collection;
 
@@ -6,7 +6,7 @@ import java.util.Collection;
 // Would be unnecessary if there was an object mapper
 // This is essentially the standardization by which an object mapper is implemented
 public interface Dao<T, I> {
-    T get(Long id);
+    T get(I id);
 
     Collection<T> getAll();
 

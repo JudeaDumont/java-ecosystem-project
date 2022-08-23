@@ -1,6 +1,7 @@
-package Data.Postgresql;
+package data.postgresql;
 
-import Data.Candidate.Candidate;
+import data.candidate.Candidate;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,13 +10,14 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PostgreSqlCandidateDao implements Dao<Candidate, Long> {
+@Repository("postgres")
+public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long> {
 
     private static final Logger LOGGER =
-            Logger.getLogger(PostgreSqlCandidateDao.class.getName());
+            Logger.getLogger(PostgreSqlCandidateDaoService.class.getName());
     private final Connection connection;
 
-    public PostgreSqlCandidateDao() {
+    public PostgreSqlCandidateDaoService() {
         this.connection = JdbcConnection.getConnection();
     }
 

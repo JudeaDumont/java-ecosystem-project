@@ -1,6 +1,6 @@
-package PersistentDataTests;
+package persistentdatatests;
 
-import Data.Main;
+import data.Main;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;

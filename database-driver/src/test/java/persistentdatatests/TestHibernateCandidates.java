@@ -1,7 +1,7 @@
-package PersistentDataTests;
+package persistentdatatests;
 
-import Data.Candidate.Candidate;
-import Data.HibernateInMemory.HibernateInMemorySessionFactory;
+import data.candidate.Candidate;
+import data.hibernateinmemory.HibernateInMemorySessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.MethodOrderer;
