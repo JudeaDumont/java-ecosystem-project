@@ -3,7 +3,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/database-driver/pom.xml" />
         <option value="$PROJECT_DIR$/webapi/webapi/pom.xml" />
         <option value="$PROJECT_DIR$/webapi/pom.xml" />
       </list>

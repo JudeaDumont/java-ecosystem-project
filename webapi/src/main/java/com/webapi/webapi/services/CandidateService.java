@@ -1,12 +1,12 @@
 package com.webapi.webapi.services;
 
-import data.candidate.Candidate;
-import data.postgresql.Dao;
+import com.webapi.webapi.model.Candidate;
+import com.webapi.webapi.model.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Collection;
 
 @Service
 public class CandidateService {
@@ -18,13 +18,15 @@ public class CandidateService {
         this.candidateDao = candidateDao;
     }
 
-    @PostMapping
-    public Long save(Candidate candidate){
+    public Long save(Candidate candidate) {
         return candidateDao.save(candidate);
     }
 
-    @GetMapping
-    public Candidate get(Long id){
+    public Candidate get(Long id) {
         return candidateDao.get(id);
+    }
+
+    public Collection<Candidate> getAll() {
+        return candidateDao.getAll();
     }
 }

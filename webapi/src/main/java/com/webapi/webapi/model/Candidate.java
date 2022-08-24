@@ -1,12 +1,15 @@
-package data.candidate;
+package com.webapi.webapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import data.enforcedclassextension.ID;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Table;
 
 @Entity
-@Table
+@Table(appliesTo = "Candidate")
 public class Candidate implements ID {
     private Long id;
     private String name;

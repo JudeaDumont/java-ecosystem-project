@@ -1,28 +1,30 @@
-package com.webapi.webapi;
+package com.webapi.webapi.unittests;
 
+import com.webapi.webapi.model.Candidate;
+import com.webapi.webapi.model.PostgreSqlCandidateDaoService;
 import com.webapi.webapi.services.CandidateService;
-import data.candidate.Candidate;
-import data.postgresql.PostgreSqlCandidateDaoService;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Collection;
 import java.util.Objects;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class WebApiPostgresqServiceSaveTest {
+class WebApiPostgresqlServiceSaveTest {
 
     static private Long candidateId = null;
+
+    static private final CandidateService candidateService =
+            new CandidateService(
+                    new PostgreSqlCandidateDaoService());
 
     @Test
     @Order(1)
     void testSave() {
-        CandidateService candidateService =
-                new CandidateService(
-                        new PostgreSqlCandidateDaoService());
         candidateId = candidateService.save(new Candidate("muselk"));
         assert (candidateId != 0);
     }
@@ -30,10 +32,14 @@ class WebApiPostgresqServiceSaveTest {
     @Test
     @Order(2)
     void testGet() {
-        CandidateService candidateService =
-                new CandidateService(
-                        new PostgreSqlCandidateDaoService());
         Candidate candidate = candidateService.get(candidateId);
         assert (Objects.equals(candidate.getName(), "muselk"));
+    }
+
+    @Test
+    @Order(3)
+    void testGetAll() {
+        Collection<Candidate> candidates = candidateService.getAll();
+        assert (candidates.size() != 0);
     }
 }
