@@ -1,7 +1,7 @@
 package com.webapi.webapi.unittests;
 
-import com.webapi.webapi.model.Candidate;
-import com.webapi.webapi.model.PostgreSqlCandidateDaoService;
+import com.webapi.webapi.databasedrivers.postgres.PostgreSqlCandidateDaoService;
+import com.webapi.webapi.model.candidate.Candidate;
 import com.webapi.webapi.services.CandidateService;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

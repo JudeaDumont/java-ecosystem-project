@@ -1,9 +1,9 @@
 package persistentdatatests;
 
-import data.candidate.Candidate;
-import data.candidate.exceptions.NonExistentCandidateException;
-import data.postgresql.Dao;
-import data.postgresql.PostgreSqlCandidateDaoService;
+import com.webapi.webapi.databasedrivers.Dao;
+import com.webapi.webapi.databasedrivers.postgres.PostgreSqlCandidateDaoService;
+import com.webapi.webapi.model.candidate.Candidate;
+import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.webapi.webapi.model;
+package com.webapi.webapi.databasedrivers;
 
 import java.util.Collection;
 

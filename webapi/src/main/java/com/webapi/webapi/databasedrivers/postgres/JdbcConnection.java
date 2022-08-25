@@ -1,4 +1,4 @@
-package com.webapi.webapi.model;
+package com.webapi.webapi.databasedrivers.postgres;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

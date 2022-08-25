@@ -1,6 +1,6 @@
-package data.hibernateinmemory;
+package com.webapi.webapi.databasedrivers.hibernateinmemory;
 
-import data.enforcedclassextension.ID;
+import com.webapi.webapi.model.ID;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

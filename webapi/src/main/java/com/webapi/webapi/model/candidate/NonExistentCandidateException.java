@@ -1,4 +1,6 @@
-package data.candidate.exceptions;
+package com.webapi.webapi.model.candidate;
+
+import com.webapi.webapi.model.NonExistentEntityException;
 
 import java.io.Serial;
 

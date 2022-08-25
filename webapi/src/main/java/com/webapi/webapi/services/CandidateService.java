@@ -1,7 +1,7 @@
 package com.webapi.webapi.services;
 
-import com.webapi.webapi.model.Candidate;
-import com.webapi.webapi.model.Dao;
+import com.webapi.webapi.databasedrivers.Dao;
+import com.webapi.webapi.model.candidate.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

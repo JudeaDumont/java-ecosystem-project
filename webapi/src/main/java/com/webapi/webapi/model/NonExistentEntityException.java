@@ -1,4 +1,4 @@
-package data.candidate.exceptions;
+package com.webapi.webapi.model;
 
 import java.io.Serial;
 

@@ -1,5 +1,7 @@
-package com.webapi.webapi.model;
+package com.webapi.webapi.databasedrivers.postgres;
 
+import com.webapi.webapi.databasedrivers.Dao;
+import com.webapi.webapi.model.candidate.Candidate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
