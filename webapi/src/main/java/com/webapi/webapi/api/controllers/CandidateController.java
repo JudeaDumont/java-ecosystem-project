@@ -25,6 +25,8 @@ public class CandidateController {
         return candidateService.save(candidate);
     }
 
+    //todo: non of these mappings are going to work besides save, they need to be annotated such that they can accept
+    // json as arguments
     @GetMapping
     public Candidate get(Long id) throws NonExistentCandidateException {
         return candidateService.get(id);
