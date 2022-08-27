@@ -1,7 +1,7 @@
 package persistentdatatests;
 
 import com.webapi.webapi.databasedrivers.Dao;
-import com.webapi.webapi.databasedrivers.postgres.PostgreSqlCandidateDaoService;
+import com.webapi.webapi.databasedrivers.postgres.services.PostgreSqlCandidateDaoService;
 import com.webapi.webapi.model.candidate.Candidate;
 import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import org.junit.jupiter.api.MethodOrderer;
@@ -18,7 +18,7 @@ public class TestPostgreSqlCandidateDao {
     public static Candidate savedCandidate = null;
     public static Candidate updatedCandidate = null;
 
-    private static final Dao<Candidate, Long> candidateDAO = new PostgreSqlCandidateDaoService();
+    private static final Dao<Candidate, Long, NonExistentCandidateException> candidateDAO = new PostgreSqlCandidateDaoService();
 
     @Test
     @Order(1)

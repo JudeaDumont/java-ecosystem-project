@@ -1,7 +1,8 @@
 package com.webapi.webapi.unittests;
 
-import com.webapi.webapi.databasedrivers.postgres.PostgreSqlCandidateDaoService;
+import com.webapi.webapi.databasedrivers.hibernateinmemory.services.HibernateCandidateDaoService;
 import com.webapi.webapi.model.candidate.Candidate;
+import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import com.webapi.webapi.services.CandidateService;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -14,13 +15,13 @@ import java.util.Objects;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class WebApiPostgresqlServiceSaveTest {
+class WebApiHibernateCandidateServiceTest {
 
     static private Long candidateId = null;
 
     static private final CandidateService candidateService =
             new CandidateService(
-                    new PostgreSqlCandidateDaoService());
+                    new HibernateCandidateDaoService());
 
     @Test
     @Order(1)
@@ -31,15 +32,32 @@ class WebApiPostgresqlServiceSaveTest {
 
     @Test
     @Order(2)
-    void testGet() {
+    void testGet() throws NonExistentCandidateException {
         Candidate candidate = candidateService.get(candidateId);
         assert (Objects.equals(candidate.getName(), "muselk"));
     }
 
     @Test
     @Order(3)
+    void testUpdate() throws NonExistentCandidateException {
+        Candidate candidate = candidateService.get(candidateId);
+        candidate.setName("shrek");
+        boolean updated = candidateService.update(candidate);
+        assert (updated);
+    }
+
+    @Test
+    @Order(4)
     void testGetAll() {
         Collection<Candidate> candidates = candidateService.getAll();
         assert (candidates.size() != 0);
+    }
+
+    @Test
+    @Order(5)
+    void testDelete() throws NonExistentCandidateException {
+        Candidate candidate = candidateService.get(candidateId);
+        boolean deleted = candidateService.delete(candidate);
+        assert (deleted);
     }
 }

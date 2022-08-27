@@ -1,7 +1,9 @@
-package com.webapi.webapi.databasedrivers.postgres;
+package com.webapi.webapi.databasedrivers.postgres.services;
 
 import com.webapi.webapi.databasedrivers.Dao;
+import com.webapi.webapi.databasedrivers.postgres.JdbcConnection;
 import com.webapi.webapi.model.candidate.Candidate;
+import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -11,11 +13,10 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Repository("postgres")
-public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long> {
+@Repository("postgresCandidate")
+public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long, NonExistentCandidateException> {
 
-    private static final Logger LOGGER =
-            Logger.getLogger(PostgreSqlCandidateDaoService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PostgreSqlCandidateDaoService.class.getName());
     private final Connection connection;
 
     public PostgreSqlCandidateDaoService() {
@@ -27,18 +28,15 @@ public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long> {
         Candidate Candidate = null;
         String sql = "SELECT * FROM Candidate WHERE id = " + id;
 
-        try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)) {
-
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
                 // todo: the reason why you can't generify this is that
                 // todo: there is nothing mapping results from queries to their
                 // todo: object type in java land (like hibernate), so you have to manually do it like this
                 // todo: add another package for postgresqlHibernate
-                Candidate = new Candidate(
-                        id,
-                        resultSet.getString("name")
-                );
+                Candidate = new Candidate(id, resultSet.getString("name"));
             }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
@@ -52,13 +50,12 @@ public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long> {
         Collection<Candidate> Candidates = new ArrayList<>();
         String sql = "SELECT * FROM Candidate";
 
-        try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                Candidate Candidate = new Candidate(
-                        resultSet.getLong("id"),
-                        resultSet.getString("name"));
+                Candidate Candidate = new Candidate(resultSet.getLong("id"), resultSet.getString("name"));
 
                 Candidates.add(Candidate);
             }
@@ -77,16 +74,12 @@ public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long> {
         String message = "The Candidate to be added should not be null";
         Objects.requireNonNull(candidate, message);
 
-        String sql = "INSERT INTO "
-                + "Candidate(name) "
-                + "VALUES(?)";
+        String sql = "INSERT INTO " + "Candidate(name) " + "VALUES(?)";
 
         Long generatedId = null;
 
-        try (PreparedStatement statement =
-                     connection.prepareStatement(
-                             sql,
-                             Statement.RETURN_GENERATED_KEYS)) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, candidate.getName());
 
             int numberOfInsertedRows = statement.executeUpdate();
@@ -114,8 +107,8 @@ public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long> {
 
         String sql = "DELETE FROM Candidate WHERE id = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, candidate.getId());
 
             return statement.executeUpdate() == 1;
@@ -131,13 +124,10 @@ public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long> {
     public boolean update(Candidate candidate) {
         String message = "The Candidate to be updated should not be null";
         Objects.requireNonNull(candidate, message);
-        String sql = "UPDATE Candidate "
-                + "SET "
-                + "name = ? "
-                + "WHERE "
-                + "id = ?";
+        String sql = "UPDATE Candidate " + "SET " + "name = ? " + "WHERE " + "id = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, candidate.getName());
             statement.setLong(2, candidate.getId());

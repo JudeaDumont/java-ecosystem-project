@@ -10,8 +10,8 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class HibernateInMemorySessionFactory {
-    private HibernateInMemorySessionFactory() {
+public class HibernateConnection {
+    private HibernateConnection() {
     }
 
     private static SessionFactory hibernateSessionFactory = null;
@@ -30,10 +30,8 @@ public class HibernateInMemorySessionFactory {
         return hibernateSessionFactory.openSession();
     }
 
-    // does not return an EnforcedClassExtension.ID of the thing you just saved
-    // you shouldn't need the id after saving the thing, you should need it before
-    public static <T> void save(T obj) {
-        Session session = HibernateInMemorySessionFactory.getSession();
+    public static <T> void genericSave(T obj) {
+        Session session = HibernateConnection.getSession();
         session.beginTransaction();
         //todo: figure out what the non-deprecated version of this is in hibernate docs
         session.save(obj);
@@ -41,9 +39,9 @@ public class HibernateInMemorySessionFactory {
         session.close();
     }
 
-    public static <T> T getByClassAndID(Class<T> classOfObj, Long id) throws ClassNotFoundException {
+    public static <T> T genericGetByClassAndID(Class<T> classOfObj, Long id) throws ClassNotFoundException {
 
-        Session session = HibernateInMemorySessionFactory.getSession();
+        Session session = HibernateConnection.getSession();
         session.beginTransaction();
         T obj = session.get(classOfObj, id);
         session.getTransaction().commit();
@@ -51,18 +49,38 @@ public class HibernateInMemorySessionFactory {
         return obj;
     }
 
-    public static <T extends ID> List<T> getByName(Class<T> classOfObject, String name) {
-        Session session = HibernateInMemorySessionFactory.getSession();
+    public static <T extends ID> List<T> genericGetByName(Class<T> classOfObject, String name) {
+        Session session = HibernateConnection.getSession();
         session.beginTransaction();
 
         Query<T> tQuery = session.createQuery(
-                "from " + getTableNameFromClass(classOfObject) + " c where c.name = '" + name + "'", classOfObject);
+                "from " + genericGetTableNameFromClass(classOfObject) + " c where c.name = '" + name + "'", classOfObject);
 
-        return tQuery.getResultList();
+        List<T> resultList = tQuery.getResultList();
+        session.close();
+        return resultList;
     }
 
-    private static <T extends ID> String getTableNameFromClass(Class<T> classOfObject) {
+    private static <T extends ID> String genericGetTableNameFromClass(Class<T> classOfObject) {
         String[] packageLocation = classOfObject.getName().split("\\.");
         return packageLocation[packageLocation.length - 1];
+    }
+
+    public static <T extends ID> void genericUpdate(T object) {
+
+        Session session = HibernateConnection.getSession();
+        session.beginTransaction();
+        session.update(object);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public static <T extends ID> void genericDelete(T object) {
+
+        Session session = HibernateConnection.getSession();
+        session.beginTransaction();
+        session.delete(object);
+        session.getTransaction().commit();
+        session.close();
     }
 }

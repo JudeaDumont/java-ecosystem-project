@@ -1,6 +1,7 @@
-package com.webapi.webapi.api;
+package com.webapi.webapi.api.controllers;
 
 import com.webapi.webapi.model.candidate.Candidate;
+import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import com.webapi.webapi.services.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class CandidateController {
     }
 
     @GetMapping
-    public Candidate get(Long id) {
+    public Candidate get(Long id) throws NonExistentCandidateException {
         return candidateService.get(id);
     }
 

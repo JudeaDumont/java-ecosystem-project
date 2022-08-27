@@ -1,8 +1,9 @@
 package com.webapi.webapi.unittests;
 
-import com.webapi.webapi.api.CandidateController;
-import com.webapi.webapi.databasedrivers.postgres.PostgreSqlCandidateDaoService;
+import com.webapi.webapi.api.controllers.CandidateController;
+import com.webapi.webapi.databasedrivers.postgres.services.PostgreSqlCandidateDaoService;
 import com.webapi.webapi.model.candidate.Candidate;
+import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import com.webapi.webapi.services.CandidateService;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -15,7 +16,7 @@ import java.util.Objects;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class WebApiPostgresqlControllerSaveTest {
+class WebApiPostgresqlControllerTest {
 
     static private Long candidateId = null;
 
@@ -32,7 +33,7 @@ class WebApiPostgresqlControllerSaveTest {
 
     @Test
     @Order(2)
-    void testGet() {
+    void testGet() throws NonExistentCandidateException {
         Candidate candidate = candidateController.get(candidateId);
         assert (Objects.equals(candidate.getName(), "muselk"));
     }
