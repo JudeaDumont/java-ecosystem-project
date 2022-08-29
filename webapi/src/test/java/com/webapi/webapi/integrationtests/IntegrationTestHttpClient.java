@@ -21,8 +21,6 @@ public class IntegrationTestHttpClient {
     }
 
     public static HttpResponse<Void> get(String url) throws IOException, InterruptedException {
-
-
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()
@@ -31,6 +29,17 @@ public class IntegrationTestHttpClient {
         HttpResponse<Void> response = getHttpClient().send(request,
                 HttpResponse.BodyHandlers.discarding());
 
+        return response;
+    }
+
+    public static HttpResponse<Void> post(String url, String postBody) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .POST(HttpRequest.BodyPublishers.ofString(postBody))
+                .setHeader("content-type", "application/json")
+                .build();
+        HttpResponse<Void> response = getHttpClient().send(request,
+                HttpResponse.BodyHandlers.discarding());
         return response;
     }
 }
