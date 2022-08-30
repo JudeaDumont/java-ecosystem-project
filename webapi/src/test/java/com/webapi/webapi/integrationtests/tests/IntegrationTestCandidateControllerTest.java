@@ -24,11 +24,6 @@ class IntegrationTestCandidateControllerTest {
     private int port;
 
     @Test
-    @Order(1)
-    void contextLoads() {
-    }
-
-    @Test
     @Order(2)
     void testSave() throws IOException, InterruptedException {
         Candidate candidate = new Candidate("Greg");
