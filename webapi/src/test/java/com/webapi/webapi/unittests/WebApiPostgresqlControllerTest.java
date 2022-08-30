@@ -40,6 +40,23 @@ class WebApiPostgresqlControllerTest {
 
     @Test
     @Order(3)
+    void testUpdate() throws NonExistentCandidateException {
+        Candidate candidate = candidateController.get(candidateId);
+        candidate.setName("shrek");
+        boolean updated = candidateController.put(candidate);
+        assert (updated);
+    }
+
+    @Test
+    @Order(4)
+    void testDelete() throws NonExistentCandidateException {
+        Candidate candidate = candidateController.get(candidateId);
+        boolean deleted = candidateController.delete(candidate.getId());
+        assert (deleted);
+    }
+
+    @Test
+    @Order(5)
     void testGetAll() {
         Collection<Candidate> candidates = candidateController.getAll();
         assert (candidates.size() != 0);

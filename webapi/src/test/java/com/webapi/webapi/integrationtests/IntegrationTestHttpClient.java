@@ -20,26 +20,49 @@ public class IntegrationTestHttpClient {
         return client;
     }
 
-    public static HttpResponse<Void> get(String url) throws IOException, InterruptedException {
+    public static HttpResponse<String> get(String url) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()
                 .build();
 
-        HttpResponse<Void> response = getHttpClient().send(request,
-                HttpResponse.BodyHandlers.discarding());
+        HttpResponse<String> response = getHttpClient().send(request,
+                HttpResponse.BodyHandlers.ofString());
 
         return response;
     }
 
-    public static HttpResponse<Void> post(String url, String postBody) throws IOException, InterruptedException {
+    public static HttpResponse<String> delete(String url) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .POST(HttpRequest.BodyPublishers.ofString(postBody))
+                .DELETE()
+                .build();
+
+        HttpResponse<String> response = getHttpClient().send(request,
+                HttpResponse.BodyHandlers.ofString());
+
+        return response;
+    }
+
+    public static HttpResponse<String> post(String url, String contentBody) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .POST(HttpRequest.BodyPublishers.ofString(contentBody))
                 .setHeader("content-type", "application/json")
                 .build();
-        HttpResponse<Void> response = getHttpClient().send(request,
-                HttpResponse.BodyHandlers.discarding());
+        HttpResponse<String> response = getHttpClient().send(request,
+                HttpResponse.BodyHandlers.ofString());
+        return response;
+    }
+
+    public static HttpResponse<String> put(String url, String contentBody) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .PUT(HttpRequest.BodyPublishers.ofString(contentBody))
+                .setHeader("content-type", "application/json")
+                .build();
+        HttpResponse<String> response = getHttpClient().send(request,
+                HttpResponse.BodyHandlers.ofString());
         return response;
     }
 }

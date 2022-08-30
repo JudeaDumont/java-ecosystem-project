@@ -25,16 +25,24 @@ public class CandidateController {
         return candidateService.save(candidate);
     }
 
-    //todo: non of these mappings are going to work besides save, they need to be annotated such that they can accept
-    // json as arguments
     @GetMapping("/{id}")
     public Candidate get(@PathVariable Long id) throws NonExistentCandidateException {
         return candidateService.get(id);
     }
 
     @GetMapping
-    @RequestMapping("api/v1/candidate/getAll")
     public Collection<Candidate> getAll() {
         return candidateService.getAll();
+    }
+
+    @PutMapping
+    public boolean put(@RequestBody Candidate candidate) throws NonExistentCandidateException {
+        return candidateService.update(candidate);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable Long id) throws NonExistentCandidateException {
+        Candidate candidateToDelete = candidateService.get(id);
+        return candidateService.delete(candidateToDelete);
     }
 }
