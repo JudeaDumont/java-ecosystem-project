@@ -12,6 +12,7 @@ public class JdbcConnection {
             Logger.getLogger(JdbcConnection.class.getName());
     private static Connection connection = null;
 
+    //todo: migrate over to flyway version of DB stuff
     public static Connection getConnection() {
         if (connection == null) { //todo:hide credentials
             String url = "jdbc:postgresql://localhost:5432/sampleDB";

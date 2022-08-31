@@ -55,6 +55,7 @@ public class PostgreSqlCandidateDaoService implements
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
+            //todo: replace iteration over resultSets with row mapper lambdas
             while (resultSet.next()) {
                 Candidate Candidate = new Candidate(resultSet.getLong("id"), resultSet.getString("name"));
 
