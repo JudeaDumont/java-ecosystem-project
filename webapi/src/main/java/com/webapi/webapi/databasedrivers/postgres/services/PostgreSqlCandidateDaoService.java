@@ -14,7 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository("postgresCandidate")
-public class PostgreSqlCandidateDaoService implements Dao<Candidate, Long, NonExistentCandidateException> {
+public class PostgreSqlCandidateDaoService implements
+        Dao<Candidate, Long, NonExistentCandidateException> {
 
     private static final Logger LOGGER = Logger.getLogger(PostgreSqlCandidateDaoService.class.getName());
     private final Connection connection;
