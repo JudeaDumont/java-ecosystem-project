@@ -23,6 +23,8 @@ class IntegrationTestCandidateControllerTest {
     @LocalServerPort
     private int port;
 
+    private static Long idOfSaved = null;
+
     @Test
     @Order(2)
     void testSave() throws IOException, InterruptedException {
@@ -38,34 +40,44 @@ class IntegrationTestCandidateControllerTest {
 
     @Test
     @Order(3)
+    void testGetAll() throws IOException, InterruptedException {
+        HttpResponse<String> voidHttpResponse = IntegrationTestHttpClient.
+                get("http://localhost:" + port + "/api/v1/candidate");
+
+        assert (voidHttpResponse.statusCode() == 200);
+
+        Gson gson = new Gson();
+        List<Candidate> candidates = gson.fromJson(
+                voidHttpResponse.body(),
+                new TypeToken<List<Candidate>>() {
+                }.getType());
+
+        assert (candidates.size() != 0);
+        idOfSaved = candidates.stream().findFirst().get().getId();
+        assert (idOfSaved != null);
+    }
+
+    @Test
+    @Order(4)
     void testGet() throws IOException, InterruptedException {
         HttpResponse<String> voidHttpResponse = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/1");
+                get("http://localhost:" + port + "/api/v1/candidate/" + idOfSaved.toString());
 
         assert (voidHttpResponse.statusCode() == 200);
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void testUpdate() throws IOException, InterruptedException {
-
-        //Create a new candidate
-        Candidate candidate = new Candidate("Jannet");
-        Gson gson = new Gson();
-        String json = gson.toJson(candidate);
-
-        HttpResponse<String> voidSaveHttpResponse = IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate", json);
-
-        assert (voidSaveHttpResponse.statusCode() == 200);
 
         //Get that same candidate (need generated ID)
         HttpResponse<String> voidHttpGetResponse = IntegrationTestHttpClient.
                 get("http://localhost:" + port + "/api/v1/candidate/" +
-                        voidSaveHttpResponse.body());
+                        idOfSaved.toString());
 
         assert (voidHttpGetResponse.statusCode() == 200);
 
+        Gson gson = new Gson();
         //Update
         Candidate candidateFromApp = gson.fromJson(
                 voidHttpGetResponse.body(),
@@ -81,36 +93,11 @@ class IntegrationTestCandidateControllerTest {
     }
 
     @Test
-    @Order(5)
-    void testGetAll() throws IOException, InterruptedException {
-        HttpResponse<String> voidHttpResponse = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate");
-
-        assert (voidHttpResponse.statusCode() == 200);
-
-        Gson gson = new Gson();
-        List<Candidate> candidates = gson.fromJson(
-                voidHttpResponse.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
-
-        assert (candidates.size() != 0);
-    }
-
-    @Test
     @Order(6)
     void testDelete() throws IOException, InterruptedException {
-        Candidate candidate = new Candidate("Greg");
-        Gson gson = new Gson();
-        String json = gson.toJson(candidate);
-
-        HttpResponse<String> voidHttpResponse = IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate", json);
-
-        assert (voidHttpResponse.statusCode() == 200);
 
         HttpResponse<String> voidDeleteHttpResponse = IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + voidHttpResponse.body());
+                delete("http://localhost:" + port + "/api/v1/candidate/" + idOfSaved.toString());
 
         assert (voidDeleteHttpResponse.statusCode() == 200);
     }

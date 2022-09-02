@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -22,43 +23,48 @@ class WebApiPostgresqlControllerTest {
 
     static private final CandidateController candidateController =
             new CandidateController(
-                    new CandidateService(new PostgreSqlCandidateDaoService()));
+                    new CandidateService(
+                            new PostgreSqlCandidateDaoService(
+                                    new JdbcTemplate(
+                                            testutil.PostgresDataSource.getDataSource()))));
 
     @Test
     @Order(1)
     void testSave() {
-        candidateId = candidateController.save(new Candidate("muselk"));
-        assert (candidateId != 0);
+        int rowsInserted = candidateController.save(new Candidate("muselk"));
+        assert (rowsInserted != 0);
     }
+
 
     @Test
     @Order(2)
-    void testGet() throws NonExistentCandidateException {
-        Candidate candidate = candidateController.get(candidateId);
-        assert (Objects.equals(candidate.getName(), "muselk"));
+    void testGetAll() {
+        Collection<Candidate> candidates = candidateController.getAll();
+        candidateId = candidates.stream().findFirst().get().getId();
+        assert (candidates.size() != 0);
     }
 
     @Test
     @Order(3)
-    void testUpdate() throws NonExistentCandidateException {
+    void testGet() throws NonExistentCandidateException {
         Candidate candidate = candidateController.get(candidateId);
-        candidate.setName("shrek");
-        boolean updated = candidateController.put(candidate);
-        assert (updated);
+        assert (Objects.nonNull(candidate.getName()));
+        assert (candidate.getId() != null);
+        assert (candidate.getId() != 0);
     }
 
     @Test
     @Order(4)
-    void testDelete() throws NonExistentCandidateException {
+    void testUpdate() throws NonExistentCandidateException {
         Candidate candidate = candidateController.get(candidateId);
-        boolean deleted = candidateController.delete(candidate.getId());
-        assert (deleted);
+        candidate.setName("shrek");
+        assert (candidateController.put(candidate) == 1);
     }
 
     @Test
     @Order(5)
-    void testGetAll() {
-        Collection<Candidate> candidates = candidateController.getAll();
-        assert (candidates.size() != 0);
+    void testDelete() throws NonExistentCandidateException {
+        Candidate candidate = candidateController.get(candidateId);
+        assert (candidateController.delete(candidate.getId()) == 1);
     }
 }

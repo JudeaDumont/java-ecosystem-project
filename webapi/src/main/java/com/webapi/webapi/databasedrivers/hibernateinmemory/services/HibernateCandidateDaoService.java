@@ -14,33 +14,33 @@ import java.util.List;
 public class HibernateCandidateDaoService implements Dao<Candidate, Long, NonExistentCandidateException> {
 
     @Override
-    public Long save(Candidate candidate) {
+    public int save(Candidate candidate) {
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
         Long saved = (Long) session.save(candidate);
         session.getTransaction().commit();
         session.close();
-        return saved;
+        return 1;
     }
 
     @Override
-    public boolean delete(Candidate candidate) {
+    public int delete(Candidate candidate) {
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
         session.delete(candidate);
         session.getTransaction().commit();
         session.close();
-        return true;
+        return 1;
     }
 
     @Override
-    public boolean update(Candidate candidate) {
+    public int update(Candidate candidate) {
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
         session.update(candidate);
         session.getTransaction().commit();
         session.close();
-        return true;
+        return 1;
     }
 
     public Candidate get(Long id) throws NonExistentCandidateException {

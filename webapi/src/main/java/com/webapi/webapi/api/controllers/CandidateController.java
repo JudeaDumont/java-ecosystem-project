@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-//todo: test the controller via integration tests and a "TestHttpClient"
 @RequestMapping("api/v1/candidate")
 @RestController
 public class CandidateController {
@@ -21,7 +20,7 @@ public class CandidateController {
     }
 
     @PostMapping
-    public Long save(@RequestBody Candidate candidate) {
+    public int save(@RequestBody Candidate candidate) {
         return candidateService.save(candidate);
     }
 
@@ -36,12 +35,12 @@ public class CandidateController {
     }
 
     @PutMapping
-    public boolean put(@RequestBody Candidate candidate) throws NonExistentCandidateException {
+    public int put(@RequestBody Candidate candidate) throws NonExistentCandidateException {
         return candidateService.update(candidate);
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) throws NonExistentCandidateException {
+    public int delete(@PathVariable Long id) throws NonExistentCandidateException {
         Candidate candidateToDelete = candidateService.get(id);
         return candidateService.delete(candidateToDelete);
     }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Objects;
 
@@ -15,10 +16,12 @@ import java.util.Objects;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestPostgreSqlCandidateDao {
 
-    public static Candidate savedCandidate = null;
-    public static Candidate updatedCandidate = null;
+    public static Long candidateId = null;
 
-    private static final Dao<Candidate, Long, NonExistentCandidateException> candidateDAO = new PostgreSqlCandidateDaoService();
+    private static final Dao<Candidate, Long, NonExistentCandidateException> candidateDAO =
+            new PostgreSqlCandidateDaoService(
+                    new JdbcTemplate(
+                            testutil.PostgresDataSource.getDataSource()));
 
     @Test
     @Order(1)
@@ -27,39 +30,35 @@ public class TestPostgreSqlCandidateDao {
                 1L,
                 "chef");
         assert (candidateDAO.save(c) != 0);
-        savedCandidate = c;
+    }
+
+    @Test
+    @Order(2)
+    public void testPrintCandidates() {
+        candidateId = candidateDAO.getAll().stream().findFirst().get().getId();
     }
 
     //todo: the idea that tests have to run in order for later tests to work is a bad idea
     @Test
-    @Order(2)
-    public void testGetCandidateAndGeneratedIdPropagation() throws NonExistentCandidateException {
-        assert (Objects.equals(candidateDAO.get(savedCandidate.getId()).getId(), savedCandidate.getId()));
-    }
-
-    @Test
     @Order(3)
-    public void testUpdate() {
-
-        Candidate firstCandidate = new Candidate(2L, "Manuel");
-        assert (candidateDAO.save(firstCandidate) != 0);
-        updatedCandidate = firstCandidate;
-
-        firstCandidate.setName("Franklin");
-        assert (candidateDAO.update(firstCandidate));
+    public void testGet() throws NonExistentCandidateException {
+        assert (Objects.nonNull(candidateDAO.get(candidateId)));
     }
 
     @Test
     @Order(4)
-    public void testDelete() {
+    public void testUpdate() throws NonExistentCandidateException {
 
-        assert (candidateDAO.delete(savedCandidate));
-        assert (candidateDAO.delete(updatedCandidate));
+        Candidate firstCandidate = candidateDAO.get(candidateId);
+        firstCandidate.setName("Franklin");
+
+        assert (candidateDAO.update(firstCandidate) == 1);
     }
 
     @Test
     @Order(5)
-    public void testPrintCandidates() {
-        candidateDAO.getAll().forEach(System.out::println);
+    public void testDelete() throws NonExistentCandidateException {
+
+        assert (candidateDAO.delete(candidateDAO.get(candidateId)) == 1);
     }
 }

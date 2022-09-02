@@ -23,41 +23,46 @@ class WebApiHibernateCandidateServiceTest {
             new CandidateService(
                     new HibernateCandidateDaoService());
 
+    // todo: tests can never be ran on data that is used, it will delete & update rows arbitrarily
     @Test
     @Order(1)
     void testSave() {
-        candidateId = candidateService.save(new Candidate("muselk"));
-        assert (candidateId != 0);
+        Candidate muselk = new Candidate("muselk");
+        int rowsInserted = candidateService.save(muselk);
+        assert (rowsInserted != 0);
     }
 
     @Test
     @Order(2)
-    void testGet() throws NonExistentCandidateException {
-        Candidate candidate = candidateService.get(candidateId);
-        assert (Objects.equals(candidate.getName(), "muselk"));
+    void testGetAll() {
+        Collection<Candidate> candidates = candidateService.getAll();
+        assert (candidates.size() != 0);
+
+        candidateId = candidates.stream().findFirst().get().getId();
+        assert (Objects.nonNull(candidateId));
+        assert (candidateId != 0);
     }
 
     @Test
     @Order(3)
-    void testUpdate() throws NonExistentCandidateException {
+    void testGet() throws NonExistentCandidateException {
         Candidate candidate = candidateService.get(candidateId);
-        candidate.setName("shrek");
-        boolean updated = candidateService.update(candidate);
-        assert (updated);
+        assert (Objects.nonNull(candidate.getName()));
+        assert (Objects.nonNull(candidate.getId()));
     }
 
     @Test
     @Order(4)
-    void testGetAll() {
-        Collection<Candidate> candidates = candidateService.getAll();
-        assert (candidates.size() != 0);
+    void testUpdate() throws NonExistentCandidateException {
+        Candidate candidate = candidateService.get(candidateId);
+        candidate.setName("shrek");
+        assert (candidateService.update(candidate) == 1);
     }
 
     @Test
     @Order(5)
     void testDelete() throws NonExistentCandidateException {
         Candidate candidate = candidateService.get(candidateId);
-        boolean deleted = candidateService.delete(candidate);
-        assert (deleted);
+        assert (candidateService.delete(candidate) == 1);
     }
 }

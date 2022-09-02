@@ -19,7 +19,7 @@ public class CandidateService {
         this.candidateDao = candidateDao;
     }
 
-    public Long save(Candidate candidate) {
+    public int save(Candidate candidate) {
         return candidateDao.save(candidate);
     }
 
@@ -27,11 +27,11 @@ public class CandidateService {
         return candidateDao.get(id);
     }
 
-    public boolean update(Candidate candidate) {
+    public int update(Candidate candidate) {
         return candidateDao.update(candidate);
     }
 
-    public boolean delete(Candidate candidate) {
+    public int delete(Candidate candidate) {
         return candidateDao.delete(candidate);
     }
 

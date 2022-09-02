@@ -12,9 +12,9 @@ public interface Dao<T, I, E extends NonExistentEntityException> {
 
     Collection<T> getAll();
 
-    I save(T t);
+    int save(T t);
 
-    boolean update(T t);
+    int update(T t);
 
-    boolean delete(T t);
+    int delete(T t);
 }
