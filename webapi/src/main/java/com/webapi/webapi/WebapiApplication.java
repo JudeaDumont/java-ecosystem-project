@@ -1,9 +1,11 @@
 package com.webapi.webapi;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@EnableEncryptableProperties
 public class WebapiApplication {
 
     public static void main(String[] args) {
@@ -11,3 +13,5 @@ public class WebapiApplication {
     }
 
 }
+
+//todo: figure out the best way to deal with environment variables, like the secret key for jasypt for instance

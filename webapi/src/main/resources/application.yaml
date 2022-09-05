@@ -1,6 +1,6 @@
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://localhost:5432/sampleDB
-    username: postgres
-    password: root
+    jdbc-url: ENC(hCF9N1tCqnPGFOpeJptLfmCqJcl5Kq7l92xnyoB9TGKNOgQR2Nq6z56sM3BGoI2t+DWwsNrX/uA=)
+    username: ENC(1Kq0vluoQ1Vp3Fn9C5FCntojLhDnTtxd)
+    password: ENC(3XI6tcCl9ss7+DZ9SeMExg==)
     pool-size: 3
