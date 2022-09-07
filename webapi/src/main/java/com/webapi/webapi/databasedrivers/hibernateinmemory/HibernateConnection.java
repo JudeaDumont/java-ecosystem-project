@@ -33,8 +33,7 @@ public class HibernateConnection {
     public static <T> void genericSave(T obj) {
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
-        //todo: figure out what the non-deprecated version of this is in hibernate docs
-        session.save(obj);
+        session.persist(obj);
         session.getTransaction().commit();
         session.close();
     }
@@ -70,7 +69,7 @@ public class HibernateConnection {
 
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
-        session.update(object);
+        session.merge(object);
         session.getTransaction().commit();
         session.close();
     }
@@ -79,7 +78,7 @@ public class HibernateConnection {
 
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
-        session.delete(object);
+        session.remove(object);
         session.getTransaction().commit();
         session.close();
     }

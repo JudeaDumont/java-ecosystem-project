@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -46,6 +47,9 @@ public class TestGenericHibernateMethodsViaCandidate {
         assertEquals(retrieved.getName(), "chef");
         retrieved.setName("jeff");
         HibernateConnection.genericUpdate(retrieved);
+        Candidate retrievedAgain = HibernateConnection.
+                genericGetByClassAndID(Candidate.class, id);
+        assert (Objects.equals(retrievedAgain.getName(), "jeff"));
         logger.info(++testOrder);
     }
 
@@ -56,13 +60,16 @@ public class TestGenericHibernateMethodsViaCandidate {
                 genericGetByClassAndID(Candidate.class, id);
         assertEquals(retrieved.getName(), "jeff");
         HibernateConnection.genericDelete(retrieved);
+        Candidate retrievedAgain = HibernateConnection.
+                genericGetByClassAndID(Candidate.class, id);
+        assert (retrievedAgain == null);
         logger.info(++testOrder);
     }
 
     @Test
     @Order(5)
     public void testCandidatesByName() {
-        Candidate judeaDumont = new Candidate(9123L, "Judea Dumont");
+        Candidate judeaDumont = new Candidate("Judea Dumont");
         HibernateConnection.genericSave(judeaDumont);
 
         List<Candidate> candidatesByName = HibernateConnection.genericGetByName(Candidate.class, "Judea Dumont");
