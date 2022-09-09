@@ -1,6 +1,6 @@
 package persistentdatatests;
 
-import com.webapi.webapi.databasedrivers.hibernateinmemory.HibernateConnection;
+import com.webapi.webapi.databasedrivers.hibernateinmemory.HibernateConnectionGenericMethods;
 import com.webapi.webapi.model.candidate.Candidate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +25,7 @@ public class TestGenericHibernateMethodsViaCandidate {
     @Order(1)
     public void testSave() throws ClassNotFoundException {
         Candidate chef = new Candidate("chef");
-        HibernateConnection.genericSave(chef);
+        HibernateConnectionGenericMethods.genericSave(chef);
         id = chef.getId();
         logger.info(++testOrder);
     }
@@ -33,7 +33,7 @@ public class TestGenericHibernateMethodsViaCandidate {
     @Test
     @Order(2)
     public void testGet() throws ClassNotFoundException {
-        Candidate retrieved = HibernateConnection.
+        Candidate retrieved = HibernateConnectionGenericMethods.
                 genericGetByClassAndID(Candidate.class, id);
         assertEquals(retrieved.getName(), "chef");
         logger.info(++testOrder);
@@ -42,12 +42,12 @@ public class TestGenericHibernateMethodsViaCandidate {
     @Test
     @Order(3)
     public void testUpdate() throws ClassNotFoundException {
-        Candidate retrieved = HibernateConnection.
+        Candidate retrieved = HibernateConnectionGenericMethods.
                 genericGetByClassAndID(Candidate.class, id);
         assertEquals(retrieved.getName(), "chef");
         retrieved.setName("jeff");
-        HibernateConnection.genericUpdate(retrieved);
-        Candidate retrievedAgain = HibernateConnection.
+        HibernateConnectionGenericMethods.genericUpdate(retrieved);
+        Candidate retrievedAgain = HibernateConnectionGenericMethods.
                 genericGetByClassAndID(Candidate.class, id);
         assert (Objects.equals(retrievedAgain.getName(), "jeff"));
         logger.info(++testOrder);
@@ -56,11 +56,11 @@ public class TestGenericHibernateMethodsViaCandidate {
     @Test
     @Order(4)
     public void testDelete() throws ClassNotFoundException {
-        Candidate retrieved = HibernateConnection.
+        Candidate retrieved = HibernateConnectionGenericMethods.
                 genericGetByClassAndID(Candidate.class, id);
         assertEquals(retrieved.getName(), "jeff");
-        HibernateConnection.genericDelete(retrieved);
-        Candidate retrievedAgain = HibernateConnection.
+        HibernateConnectionGenericMethods.genericDelete(retrieved);
+        Candidate retrievedAgain = HibernateConnectionGenericMethods.
                 genericGetByClassAndID(Candidate.class, id);
         assert (retrievedAgain == null);
         logger.info(++testOrder);
@@ -70,9 +70,9 @@ public class TestGenericHibernateMethodsViaCandidate {
     @Order(5)
     public void testCandidatesByName() {
         Candidate judeaDumont = new Candidate("Judea Dumont");
-        HibernateConnection.genericSave(judeaDumont);
+        HibernateConnectionGenericMethods.genericSave(judeaDumont);
 
-        List<Candidate> candidatesByName = HibernateConnection.genericGetByName(Candidate.class, "Judea Dumont");
+        List<Candidate> candidatesByName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, "Judea Dumont");
         for (Candidate person : candidatesByName) {
             System.out.println("You want to hire " + person.getName());
         }

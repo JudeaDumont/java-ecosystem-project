@@ -4,9 +4,7 @@ import com.webapi.webapi.model.NonExistentEntityException;
 
 import java.util.Collection;
 
-// This is used to standardize the way DB objects are imported/exported from java
-// Would be unnecessary if there was an object mapper
-// This is essentially the standardization by which an object mapper is implemented
+// This is essentially the standardization by which an object mapper (to/from serialized objects) is implemented
 public interface Dao<T, I, E extends NonExistentEntityException> {
     T get(I id) throws E;
 

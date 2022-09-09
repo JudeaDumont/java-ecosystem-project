@@ -17,7 +17,7 @@ public class HibernateCandidateDaoService implements Dao<Candidate, Long, NonExi
     public int save(Candidate candidate) {
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
-        Long saved = (Long) session.save(candidate);
+        session.persist(candidate);
         session.getTransaction().commit();
         session.close();
         return 1;
@@ -27,7 +27,7 @@ public class HibernateCandidateDaoService implements Dao<Candidate, Long, NonExi
     public int delete(Candidate candidate) {
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
-        session.delete(candidate);
+        session.remove(candidate);
         session.getTransaction().commit();
         session.close();
         return 1;
@@ -37,14 +37,13 @@ public class HibernateCandidateDaoService implements Dao<Candidate, Long, NonExi
     public int update(Candidate candidate) {
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
-        session.update(candidate);
+        session.merge(candidate);
         session.getTransaction().commit();
         session.close();
         return 1;
     }
 
     public Candidate get(Long id) throws NonExistentCandidateException {
-
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
         Candidate retrieved = session.get(Candidate.class, id);
@@ -57,10 +56,9 @@ public class HibernateCandidateDaoService implements Dao<Candidate, Long, NonExi
     public List<Candidate> getAll() {
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
-
-        Query tQuery = session.createQuery(
-                "from Candidate c");
-        List resultList = tQuery.getResultList();
+        Query<Candidate> tQuery = session.createQuery(
+                "from Candidate c", Candidate.class);
+        List<Candidate> resultList = tQuery.getResultList();
 
         session.close();
         return resultList;
