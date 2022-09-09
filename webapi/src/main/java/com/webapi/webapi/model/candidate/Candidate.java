@@ -21,13 +21,11 @@ public class Candidate implements ID {
 
     public Candidate(@JsonProperty("id") Long id,
                      @JsonProperty("name") String name) {
-        // for application use, to create new Employees
         this.id = id;
         this.name = name;
     }
 
     public Candidate(String name) {
-        // for application use, to create new Employees
         this.name = name;
     }
 

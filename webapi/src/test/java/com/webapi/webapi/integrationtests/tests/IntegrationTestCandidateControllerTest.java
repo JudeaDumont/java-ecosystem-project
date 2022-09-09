@@ -15,15 +15,6 @@ import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.util.List;
 
-//todo: use resources in test such that it conforms to the setup in the web application source code,
-// datasource configuration is mapped out in application.yaml
-// log4j properties work for each test run, there isn't tons of spring output
-// db.migration schematics if necessary but might cause issues with duplicate sets of schemas.
-
-//todo: remove spring output from console unless error or fatal etc.
-
-//
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class IntegrationTestCandidateControllerTest {

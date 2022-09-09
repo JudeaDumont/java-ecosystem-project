@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Types;
 import java.util.Collection;
-import java.util.logging.Logger;
 
 @Repository("postgresCandidate")
 public class PostgreSqlCandidateDaoService implements
         Dao<Candidate, Long, NonExistentCandidateException> {
 
-    private static final Logger LOGGER = Logger.getLogger(PostgreSqlCandidateDaoService.class.getName());
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -25,9 +24,12 @@ public class PostgreSqlCandidateDaoService implements
     @Override
     public Candidate get(Long id) {
         String sql = "SELECT * FROM Candidate WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) -> {
-            return new Candidate(resultSet.getLong("id"), resultSet.getString("name"));
-        });
+        return jdbcTemplate.queryForObject(sql,
+                new Object[]{id},
+                new int[]{Types.BIGINT},
+                (resultSet, i) -> {
+                    return new Candidate(resultSet.getLong("id"), resultSet.getString("name"));
+                });
     }
 
     @Override
