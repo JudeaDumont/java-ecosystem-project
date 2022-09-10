@@ -2,8 +2,6 @@ package persistentdatatests;
 
 import com.webapi.webapi.databasedrivers.hibernateinmemory.HibernateConnectionGenericMethods;
 import com.webapi.webapi.model.candidate.Candidate;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -14,12 +12,13 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//todo: fix these tests such that they can be ran individually and have impact/left over on data if successful
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestGenericHibernateMethodsViaCandidate {
 
     private static Long id = null;
     private static Long testOrder = 0L;
-    private static final Logger logger = LogManager.getLogger(TestGenericHibernateMethodsViaCandidate.class);
 
     @Test
     @Order(1)
@@ -27,7 +26,6 @@ public class TestGenericHibernateMethodsViaCandidate {
         Candidate chef = new Candidate("chef");
         HibernateConnectionGenericMethods.genericSave(chef);
         id = chef.getId();
-        logger.info(++testOrder);
     }
 
     @Test
@@ -36,7 +34,6 @@ public class TestGenericHibernateMethodsViaCandidate {
         Candidate retrieved = HibernateConnectionGenericMethods.
                 genericGetByClassAndID(Candidate.class, id);
         assertEquals(retrieved.getName(), "chef");
-        logger.info(++testOrder);
     }
 
     @Test
@@ -50,7 +47,6 @@ public class TestGenericHibernateMethodsViaCandidate {
         Candidate retrievedAgain = HibernateConnectionGenericMethods.
                 genericGetByClassAndID(Candidate.class, id);
         assert (Objects.equals(retrievedAgain.getName(), "jeff"));
-        logger.info(++testOrder);
     }
 
     @Test
@@ -63,7 +59,6 @@ public class TestGenericHibernateMethodsViaCandidate {
         Candidate retrievedAgain = HibernateConnectionGenericMethods.
                 genericGetByClassAndID(Candidate.class, id);
         assert (retrievedAgain == null);
-        logger.info(++testOrder);
     }
 
     @Test
@@ -76,6 +71,5 @@ public class TestGenericHibernateMethodsViaCandidate {
         for (Candidate person : candidatesByName) {
             System.out.println("You want to hire " + person.getName());
         }
-        logger.info(++testOrder);
     }
 }

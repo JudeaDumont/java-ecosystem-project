@@ -1,6 +1,6 @@
 package persistentdatatests;
 
-import com.webapi.webapi.databasedrivers.Dao;
+import com.webapi.webapi.databasedrivers.CandidateDao;
 import com.webapi.webapi.databasedrivers.postgres.services.PostgreSqlCandidateDaoService;
 import com.webapi.webapi.model.candidate.Candidate;
 import com.webapi.webapi.model.candidate.NonExistentCandidateException;
@@ -18,7 +18,7 @@ public class TestPostgreSqlCandidateDao {
 
     public static Long candidateId = null;
 
-    private static final Dao<Candidate, Long, NonExistentCandidateException> candidateDAO =
+    private static final CandidateDao<Candidate, Long, NonExistentCandidateException> candidateDAO =
             new PostgreSqlCandidateDaoService(
                     new JdbcTemplate(
                             testutil.PostgresDataSource.getDataSource()));

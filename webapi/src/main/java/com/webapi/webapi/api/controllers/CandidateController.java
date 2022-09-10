@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RequestMapping("api/v1/candidate")
 @RestController
@@ -34,6 +35,11 @@ public class CandidateController {
         return candidateService.getAll();
     }
 
+    @GetMapping("/getByName/{name}")
+    public List<Candidate> getByName(@PathVariable String name) throws NonExistentCandidateException {
+        return candidateService.getByName(name);
+    }
+
     @PutMapping
     public int put(@RequestBody Candidate candidate) throws NonExistentCandidateException {
         return candidateService.update(candidate);
@@ -43,5 +49,10 @@ public class CandidateController {
     public int delete(@PathVariable Long id) throws NonExistentCandidateException {
         Candidate candidateToDelete = candidateService.get(id);
         return candidateService.delete(candidateToDelete);
+    }
+
+    @PostMapping("/saveReturnID")
+    public Long saveReturnID(@RequestBody Candidate candidate) {
+        return candidateService.saveReturnID(candidate);
     }
 }
