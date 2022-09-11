@@ -23,14 +23,6 @@ class WebApiHibernateCandidateServiceTest {
             new CandidateService(
                     new HibernateCandidateDaoService());
 
-
-    //todo: tests can never be ran on data that is used, it will delete & update rows arbitrarily
-    //todo: make this test save a guid and then get it by name and delete it
-    //todo: need a getbyname from hibernate for Candidate through candidateDAO
-    //todo: getbyname method needs to be tested method in every suite
-    //todo: make all tests runnable individually, (template for junit already edited for the necessary env vars)
-
-    //todo: I think this suite can be applied to the other dao implementations including the one that implements the controller(mostly)
     //todo: the integration tests will need to recreate this flow to satisfy "tests can be run individually" and "passing tests don't effect data"
     //todo: hibernateControllerTest should exist for thoroughness.
     @Test

@@ -2,6 +2,7 @@ package persistentdatatests;
 
 import com.webapi.webapi.databasedrivers.hibernateinmemory.HibernateConnectionGenericMethods;
 import com.webapi.webapi.model.candidate.Candidate;
+import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -9,67 +10,140 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import java.util.List;
 import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-//todo: fix these tests such that they can be ran individually and have impact/left over on data if successful
+import java.util.UUID;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestGenericHibernateMethodsViaCandidate {
 
-    private static Long id = null;
-    private static Long testOrder = 0L;
-
     @Test
     @Order(1)
-    public void testSave() throws ClassNotFoundException {
-        Candidate chef = new Candidate("chef");
-        HibernateConnectionGenericMethods.genericSave(chef);
-        id = chef.getId();
+    void test_Save_GetByName_Delete() throws NonExistentCandidateException {
+        String uuid = UUID.randomUUID().toString();
+
+        HibernateConnectionGenericMethods.genericSave((new Candidate(uuid)));
+
+        List<Candidate> candidatesMatchingName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, uuid);
+        assert (candidatesMatchingName.size() == 1);
+        assert (Objects.equals(candidatesMatchingName.get(0).getName(), uuid));
+
+        HibernateConnectionGenericMethods.genericDelete(candidatesMatchingName.get(0));
+
+        List<Candidate> candidatesMatchingName2 = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, uuid);
+        assert (candidatesMatchingName2.size() == 0);
     }
 
     @Test
     @Order(2)
-    public void testGet() throws ClassNotFoundException {
-        Candidate retrieved = HibernateConnectionGenericMethods.
-                genericGetByClassAndID(Candidate.class, id);
-        assertEquals(retrieved.getName(), "chef");
+    void test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll() throws NonExistentCandidateException {
+        String uuid1 = UUID.randomUUID().toString();
+        String uuid2 = UUID.randomUUID().toString();
+
+        List<Candidate> candidates = HibernateConnectionGenericMethods.genericGetAll(Candidate.class);
+        int candidatesSize = candidates.size();
+
+        HibernateConnectionGenericMethods.genericSave(new Candidate(uuid1));
+        HibernateConnectionGenericMethods.genericSave(new Candidate(uuid2));
+
+        List<Candidate> candidatesAfterInsert = HibernateConnectionGenericMethods.genericGetAll(Candidate.class);
+        assert (candidatesAfterInsert.size() == candidatesSize + 2);
+
+        List<Candidate> candidatesMatchingName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, uuid1);
+        assert (candidatesMatchingName.size() == 1);
+        assert (Objects.equals(candidatesMatchingName.get(0).getName(), uuid1));
+
+        List<Candidate> candidatesMatchingName2 = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, uuid2);
+        assert (candidatesMatchingName2.size() == 1);
+        assert (Objects.equals(candidatesMatchingName2.get(0).getName(), uuid2));
+
+        HibernateConnectionGenericMethods.genericDelete(candidatesMatchingName.get(0));
+        HibernateConnectionGenericMethods.genericDelete(candidatesMatchingName2.get(0));
+
+        List<Candidate> candidatesAfterDelete = HibernateConnectionGenericMethods.genericGetAll(Candidate.class);
+        assert (candidatesAfterDelete.size() == candidatesSize);
     }
 
     @Test
     @Order(3)
-    public void testUpdate() throws ClassNotFoundException {
-        Candidate retrieved = HibernateConnectionGenericMethods.
-                genericGetByClassAndID(Candidate.class, id);
-        assertEquals(retrieved.getName(), "chef");
-        retrieved.setName("jeff");
-        HibernateConnectionGenericMethods.genericUpdate(retrieved);
-        Candidate retrievedAgain = HibernateConnectionGenericMethods.
-                genericGetByClassAndID(Candidate.class, id);
-        assert (Objects.equals(retrievedAgain.getName(), "jeff"));
+    void test_SaveID_Get_Del() throws NonExistentCandidateException, ClassNotFoundException {
+        String uuid1 = UUID.randomUUID().toString();
+
+        Long id = HibernateConnectionGenericMethods.genericSaveReturnID(new Candidate(uuid1));
+        assert (id != null);
+        assert (id != 0);
+
+        Candidate candidate = HibernateConnectionGenericMethods.genericGet(Candidate.class, id);
+        assert (candidate != null);
+
+        HibernateConnectionGenericMethods.genericDelete(candidate);
+        List<Candidate> candidatesMatchingName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, uuid1);
+        assert (candidatesMatchingName.size() == 0);
     }
 
     @Test
     @Order(4)
-    public void testDelete() throws ClassNotFoundException {
-        Candidate retrieved = HibernateConnectionGenericMethods.
-                genericGetByClassAndID(Candidate.class, id);
-        assertEquals(retrieved.getName(), "jeff");
-        HibernateConnectionGenericMethods.genericDelete(retrieved);
-        Candidate retrievedAgain = HibernateConnectionGenericMethods.
-                genericGetByClassAndID(Candidate.class, id);
-        assert (retrievedAgain == null);
+    void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws NonExistentCandidateException, ClassNotFoundException {
+        String uuid1 = UUID.randomUUID().toString();
+        String changeUuid1 = UUID.randomUUID().toString();
+
+        Long id = HibernateConnectionGenericMethods.genericSaveReturnID(new Candidate(uuid1));
+        assert (id != null);
+        assert (id != 0);
+
+        Candidate candidate = HibernateConnectionGenericMethods.genericGet(Candidate.class, id);
+        assert (candidate != null);
+
+        candidate.setName(changeUuid1);
+
+        HibernateConnectionGenericMethods.genericUpdate(candidate);
+
+        List<Candidate> candidatesMatchingName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, uuid1);
+        assert (candidatesMatchingName.size() == 0);
+
+        List<Candidate> candidatesMatchingChangeName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, changeUuid1);
+        assert (candidatesMatchingChangeName.size() == 1);
+        assert (Objects.equals(candidatesMatchingChangeName.get(0).getName(), changeUuid1));
+
+        HibernateConnectionGenericMethods.genericDelete(candidate);
+
+        List<Candidate> candidatesMatchingName2 = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, uuid1);
+        assert (candidatesMatchingName2.size() == 0);
+
     }
 
     @Test
     @Order(5)
-    public void testCandidatesByName() {
-        Candidate judeaDumont = new Candidate("Judea Dumont");
-        HibernateConnectionGenericMethods.genericSave(judeaDumont);
+    void test_SaveID_Get_Del_Del() throws NonExistentCandidateException, ClassNotFoundException {
+        String uuid1 = UUID.randomUUID().toString();
 
-        List<Candidate> candidatesByName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, "Judea Dumont");
-        for (Candidate person : candidatesByName) {
-            System.out.println("You want to hire " + person.getName());
-        }
+        Long id = HibernateConnectionGenericMethods.genericSaveReturnID(new Candidate(uuid1));
+        assert (id != null && id != 0);
+
+        Candidate candidate = HibernateConnectionGenericMethods.genericGet(Candidate.class, id);
+        assert (candidate != null);
+
+        HibernateConnectionGenericMethods.genericDelete(candidate);
+
+        List<Candidate> candidatesMatchingName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, uuid1);
+        assert (candidatesMatchingName.size() == 0);
+    }
+
+    @Test
+    @Order(6)
+    void test_SaveReturnID() throws NonExistentCandidateException {
+        Candidate kraken = new Candidate("kraken");
+        Long id = HibernateConnectionGenericMethods.genericSaveReturnID(kraken);
+        assert (id != null && id != 0);
+
+        HibernateConnectionGenericMethods.genericDelete(kraken);
+
+        List<Candidate> candidatesMatchingName = HibernateConnectionGenericMethods.genericGetByName(Candidate.class, "kraken");
+        assert (candidatesMatchingName.size() == 0);
+    }
+
+    @Test
+    @Order(7)
+    void test_BadUpdate() throws NonExistentCandidateException {
+        String uuid1 = UUID.randomUUID().toString();
+        HibernateConnectionGenericMethods.genericUpdate(new Candidate(0L, uuid1));
     }
 }

@@ -6,6 +6,7 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
+//todo: refactor methods to use a lambda that opens and closes a session before and after it
 public class HibernateConnectionGenericMethods {
     private HibernateConnectionGenericMethods() {
     }
@@ -18,7 +19,16 @@ public class HibernateConnectionGenericMethods {
         session.close();
     }
 
-    public static <T> T genericGetByClassAndID(Class<T> classOfObj, Long id) throws ClassNotFoundException {
+    public static <T extends ID> Long genericSaveReturnID(T obj) {
+        Session session = HibernateConnection.getSession();
+        session.beginTransaction();
+        session.persist(obj);
+        session.getTransaction().commit();
+        session.close();
+        return obj.getId();
+    }
+
+    public static <T> T genericGet(Class<T> classOfObj, Long id) throws ClassNotFoundException {
 
         Session session = HibernateConnection.getSession();
         session.beginTransaction();
@@ -61,5 +71,17 @@ public class HibernateConnectionGenericMethods {
         session.remove(object);
         session.getTransaction().commit();
         session.close();
+    }
+
+    public static <T extends ID> List<T> genericGetAll(Class<T> classOfObject) {
+        Session session = HibernateConnection.getSession();
+        session.beginTransaction();
+
+        Query<T> tQuery = session.createQuery(
+                "from " + genericGetTableNameFromClass(classOfObject), classOfObject);
+
+        List<T> resultList = tQuery.getResultList();
+        session.close();
+        return resultList;
     }
 }

@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 //todo: create a hierarchy of dao interfaces, DAO -> CandidateDAO, etc.
+// Then, the question becomes: what common methods operate on our data?
+// The commonalities can be exploited such that the DAOs are named for the methods that operate on data, not the objects.
+// Then, you use templates to communicate with the data source, and the object mapper is generated meta models
 
 //todo: replace methods with usage of jdbc.core.simple implementations
 @Repository("postgresCandidate")
