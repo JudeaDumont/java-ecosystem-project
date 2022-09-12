@@ -6,7 +6,6 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-//todo: refactor methods to use a lambda that opens and closes a session before and after it
 public class HibernateConnectionGenericMethods {
 
     private static Session session = null;
@@ -20,14 +19,14 @@ public class HibernateConnectionGenericMethods {
         return packageLocation[packageLocation.length - 1];
     }
 
-    private interface RunIt<R> {
+    private interface FeedMeLambdasIllInferTheReturnType<R> {
         R op();
     }
 
-    public static <R> R runInSession(RunIt<R> runIt) {
+    public static <R> R runInSession(FeedMeLambdasIllInferTheReturnType<R> feedMeLambdasIllInferTheReturnType) {
         session = HibernateConnection.getSession();
         session.beginTransaction();
-        R result = runIt.op();
+        R result = feedMeLambdasIllInferTheReturnType.op();
         session.getTransaction().commit();
         session.close();
         return result;
