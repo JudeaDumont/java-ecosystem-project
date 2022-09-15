@@ -16,3 +16,7 @@ public class WebapiApplication {
 
 //todo: figure out the best way to deal with environment variables, like the secret key for jasypt for instance
 // right now they are dealt with by editing: run configurations... > templates > add env var there
+
+//todo: Tools to use:
+// assertj
+// mockito
