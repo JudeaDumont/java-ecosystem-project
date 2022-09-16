@@ -1,6 +1,7 @@
 package com.webapi.webapi.services;
 
 import com.webapi.webapi.databasedrivers.CandidateDao;
+import com.webapi.webapi.databasedrivers.DuplicatePrimaryKeyException;
 import com.webapi.webapi.model.candidate.Candidate;
 import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class CandidateService {
         return candidateDao.saveReturnID(candidate);
     }
 
-    public Candidate get(Long id) throws NonExistentCandidateException {
+    public Candidate get(Long id) throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         return candidateDao.get(id);
     }
 

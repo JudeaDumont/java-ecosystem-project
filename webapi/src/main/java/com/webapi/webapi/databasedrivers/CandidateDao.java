@@ -9,7 +9,7 @@ import java.util.List;
 
 // This is essentially the standardization by which an object mapper (to/from serialized objects) is implemented
 public interface CandidateDao<T, I, E extends NonExistentEntityException> {
-    T get(I id) throws E;
+    T get(I id) throws E, DuplicatePrimaryKeyException;
 
     Collection<T> getAll();
 

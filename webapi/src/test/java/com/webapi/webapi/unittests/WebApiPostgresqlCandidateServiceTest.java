@@ -1,5 +1,6 @@
 package com.webapi.webapi.unittests;
 
+import com.webapi.webapi.databasedrivers.DuplicatePrimaryKeyException;
 import com.webapi.webapi.databasedrivers.postgres.services.PostgreSqlCandidateDaoService;
 import com.webapi.webapi.model.candidate.Candidate;
 import com.webapi.webapi.model.candidate.NonExistentCandidateException;
@@ -19,8 +20,6 @@ import java.util.UUID;
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class WebApiPostgresqlCandidateServiceTest {
-
-    static private Long candidateId = null;
 
     static private final CandidateService candidateService =
             new CandidateService(
@@ -77,7 +76,7 @@ class WebApiPostgresqlCandidateServiceTest {
 
     @Test
     @Order(3)
-    void test_SaveID_Get_Del() throws NonExistentCandidateException {
+    void test_SaveID_Get_Del() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
 
         Long id = candidateService.saveReturnID(new Candidate(uuid1));
@@ -92,7 +91,7 @@ class WebApiPostgresqlCandidateServiceTest {
 
     @Test
     @Order(4)
-    void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws NonExistentCandidateException {
+    void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
         String changeUuid1 = UUID.randomUUID().toString();
 
@@ -119,7 +118,7 @@ class WebApiPostgresqlCandidateServiceTest {
 
     @Test
     @Order(5)
-    void test_SaveID_Get_Del_Del() throws NonExistentCandidateException {
+    void test_SaveID_Get_Del_Del() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
 
         Long id = candidateService.saveReturnID(new Candidate(uuid1));

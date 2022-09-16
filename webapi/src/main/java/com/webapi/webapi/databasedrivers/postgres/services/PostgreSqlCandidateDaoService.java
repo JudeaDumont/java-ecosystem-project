@@ -1,6 +1,7 @@
 package com.webapi.webapi.databasedrivers.postgres.services;
 
 import com.webapi.webapi.databasedrivers.CandidateDao;
+import com.webapi.webapi.databasedrivers.DuplicatePrimaryKeyException;
 import com.webapi.webapi.model.candidate.Candidate;
 import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Types;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -25,23 +25,30 @@ public class PostgreSqlCandidateDaoService implements
         CandidateDao<Candidate, Long, NonExistentCandidateException> {
 
     private final JdbcTemplate jdbcTemplate;
-    private final SimpleJdbcInsert insertIntoUser;
+    private final SimpleJdbcInsert insertIntoCandidate;
 
     @Autowired
     public PostgreSqlCandidateDaoService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        insertIntoUser = new SimpleJdbcInsert(jdbcTemplate).withTableName("Candidate").usingGeneratedKeyColumns("id");
+        insertIntoCandidate = new SimpleJdbcInsert(jdbcTemplate).withTableName("Candidate").usingGeneratedKeyColumns("id");
     }
 
     @Override
-    public Candidate get(Long id) {
-        String sql = "SELECT * FROM Candidate WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql,
-                new Object[]{id},
-                new int[]{Types.BIGINT},
-                (resultSet, i) -> {
-                    return new Candidate(resultSet.getLong("id"), resultSet.getString("name"));
-                });
+    public Candidate get(Long id) throws DuplicatePrimaryKeyException {
+        String sql = "SELECT * FROM Candidate WHERE id = " + id.toString();
+
+        List<Candidate> candidatesMatchingID = jdbcTemplate.query(sql, (resultSet, i) -> {
+//            if (!resultSet.isBeforeFirst()) {
+            return new Candidate(resultSet.getLong("id"), resultSet.getString("name"));
+//            }
+//            return null;
+        });
+        if (candidatesMatchingID.size() == 1) {
+            return candidatesMatchingID.get(0);
+        } else if (candidatesMatchingID.size() == 0) {
+            return null;
+        }
+        throw new DuplicatePrimaryKeyException();
     }
 
     @Override
@@ -63,7 +70,7 @@ public class PostgreSqlCandidateDaoService implements
         final Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", candidate.getName());
 
-        return (Long) insertIntoUser.executeAndReturnKey(parameters);
+        return (Long) insertIntoCandidate.executeAndReturnKey(parameters);
     }
 
     @Override

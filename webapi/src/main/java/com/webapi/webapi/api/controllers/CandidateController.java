@@ -1,5 +1,6 @@
 package com.webapi.webapi.api.controllers;
 
+import com.webapi.webapi.databasedrivers.DuplicatePrimaryKeyException;
 import com.webapi.webapi.model.candidate.Candidate;
 import com.webapi.webapi.model.candidate.NonExistentCandidateException;
 import com.webapi.webapi.services.CandidateService;
@@ -26,7 +27,7 @@ public class CandidateController {
     }
 
     @GetMapping("/{id}")
-    public Candidate get(@PathVariable Long id) throws NonExistentCandidateException {
+    public Candidate get(@PathVariable Long id) throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         return candidateService.get(id);
     }
 
@@ -46,8 +47,11 @@ public class CandidateController {
     }
 
     @DeleteMapping("/{id}")
-    public int delete(@PathVariable Long id) throws NonExistentCandidateException {
+    public int delete(@PathVariable Long id) throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         Candidate candidateToDelete = candidateService.get(id);
+        if (candidateToDelete == null) {
+            return 0;
+        }
         return candidateService.delete(candidateToDelete);
     }
 

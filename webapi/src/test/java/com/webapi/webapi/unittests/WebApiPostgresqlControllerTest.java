@@ -1,6 +1,7 @@
 package com.webapi.webapi.unittests;
 
 import com.webapi.webapi.api.controllers.CandidateController;
+import com.webapi.webapi.databasedrivers.DuplicatePrimaryKeyException;
 import com.webapi.webapi.databasedrivers.postgres.services.PostgreSqlCandidateDaoService;
 import com.webapi.webapi.model.candidate.Candidate;
 import com.webapi.webapi.model.candidate.NonExistentCandidateException;
@@ -30,7 +31,7 @@ class WebApiPostgresqlControllerTest {
 
     @Test
     @Order(1)
-    void test_Save_GetByName_Delete() throws NonExistentCandidateException {
+    void test_Save_GetByName_Delete() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         String uuid = UUID.randomUUID().toString();
 
         int rowsInserted = candidateController.save(new Candidate(uuid));
@@ -45,7 +46,7 @@ class WebApiPostgresqlControllerTest {
 
     @Test
     @Order(2)
-    void test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll() throws NonExistentCandidateException {
+    void test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
         String uuid2 = UUID.randomUUID().toString();
 
@@ -77,7 +78,7 @@ class WebApiPostgresqlControllerTest {
 
     @Test
     @Order(3)
-    void test_SaveID_Get_Del() throws NonExistentCandidateException {
+    void test_SaveID_Get_Del() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
 
         Long id = candidateController.saveReturnID(new Candidate(uuid1));
@@ -92,7 +93,7 @@ class WebApiPostgresqlControllerTest {
 
     @Test
     @Order(4)
-    void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws NonExistentCandidateException {
+    void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
         String changeUuid1 = UUID.randomUUID().toString();
 
@@ -119,7 +120,7 @@ class WebApiPostgresqlControllerTest {
 
     @Test
     @Order(5)
-    void test_SaveID_Get_Del_Del() throws NonExistentCandidateException {
+    void test_SaveID_Get_Del_Del() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
 
         Long id = candidateController.saveReturnID(new Candidate(uuid1));
@@ -129,11 +130,12 @@ class WebApiPostgresqlControllerTest {
         assert (candidate != null);
 
         assert (candidateController.delete(candidate.getId()) == 1);
+        assert (candidateController.delete(candidate.getId()) == 0);
     }
 
     @Test
     @Order(6)
-    void test_SaveReturnID2() throws NonExistentCandidateException {
+    void test_SaveReturnID2() throws NonExistentCandidateException, DuplicatePrimaryKeyException {
         Candidate kraken = new Candidate("kraken");
         Long id = candidateController.saveReturnID(kraken);
         kraken.setId(id); //postgresql uses raw sql, it isn't going to manipulate the java object for you.

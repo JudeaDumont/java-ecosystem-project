@@ -198,12 +198,8 @@ class IntegrationTestCandidateControllerTest {
         HttpResponse<String> getByIdHttpResponse2 = IntegrationTestHttpClient.
                 get("http://localhost:" + port + "/api/v1/candidate/" + saveReturnIDResponse.body());
 
-        List<Candidate> candidatesFromGetByName = gson.fromJson(
-                getByIdHttpResponse2.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
-
-        Candidate candidateFromApp = candidatesFromGetByName.get(0);
+        Candidate candidateFromApp = gson.fromJson(
+                getByIdHttpResponse2.body(), Candidate.class);
 
         assert (candidateFromApp != null);
         assert (candidateFromApp.getId().toString().equals(saveReturnIDResponse.body()));
@@ -285,11 +281,11 @@ class IntegrationTestCandidateControllerTest {
         String uuid1 = UUID.randomUUID().toString();
 
         HttpResponse<String> saveReturnIDResponse = IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate",
+                post("http://localhost:" + port + "/api/v1/candidate/saveReturnID",
                         gson.toJson(new Candidate(uuid1)));
 
         HttpResponse<String> deleteHttpResponse2 = IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + saveReturnIDResponse);
+                delete("http://localhost:" + port + "/api/v1/candidate/" + saveReturnIDResponse.body());
         assert (Objects.equals(deleteHttpResponse2.body(), "1"));
     }
 
@@ -303,7 +299,7 @@ class IntegrationTestCandidateControllerTest {
         Gson gson = new Gson();
         HttpResponse<String> updateResponse = IntegrationTestHttpClient.
                 put("http://localhost:" + port + "/api/v1/candidate",
-                        gson.toJson(new Candidate(uuid1)));
+                        gson.toJson(new Candidate(0L, uuid1)));
         assert (Objects.equals(updateResponse.body(), "0"));
     }
 }
