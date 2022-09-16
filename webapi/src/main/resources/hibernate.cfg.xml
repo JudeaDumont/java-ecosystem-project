@@ -29,7 +29,7 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="com.webapi.webapi.model.candidate.Candidate"/>
+        <mapping class="com.webapi.model.candidate.Candidate"/>
 
     </session-factory>
 

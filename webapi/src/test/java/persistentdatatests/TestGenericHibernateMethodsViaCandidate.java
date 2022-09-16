@@ -1,8 +1,7 @@
 package persistentdatatests;
 
-import com.webapi.webapi.databasedrivers.hibernateinmemory.HibernateConnectionGenericMethods;
-import com.webapi.webapi.model.candidate.Candidate;
-import com.webapi.webapi.model.candidate.NonExistentCandidateException;
+import com.webapi.databasedrivers.hibernateinmemory.HibernateConnectionGenericMethods;
+import com.webapi.model.candidate.Candidate;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,7 @@ public class TestGenericHibernateMethodsViaCandidate {
 
     @Test
     @Order(1)
-    void test_Save_GetByName_Delete() throws NonExistentCandidateException {
+    void test_Save_GetByName_Delete() {
         String uuid = UUID.randomUUID().toString();
 
         HibernateConnectionGenericMethods.genericSave((new Candidate(uuid)));
@@ -34,7 +33,7 @@ public class TestGenericHibernateMethodsViaCandidate {
 
     @Test
     @Order(2)
-    void test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll() throws NonExistentCandidateException {
+    void test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll() {
         String uuid1 = UUID.randomUUID().toString();
         String uuid2 = UUID.randomUUID().toString();
 
@@ -64,7 +63,7 @@ public class TestGenericHibernateMethodsViaCandidate {
 
     @Test
     @Order(3)
-    void test_SaveID_Get_Del() throws NonExistentCandidateException, ClassNotFoundException {
+    void test_SaveID_Get_Del() throws ClassNotFoundException {
         String uuid1 = UUID.randomUUID().toString();
 
         Long id = HibernateConnectionGenericMethods.genericSaveReturnID(new Candidate(uuid1));
@@ -81,7 +80,7 @@ public class TestGenericHibernateMethodsViaCandidate {
 
     @Test
     @Order(4)
-    void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws NonExistentCandidateException, ClassNotFoundException {
+    void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws ClassNotFoundException {
         String uuid1 = UUID.randomUUID().toString();
         String changeUuid1 = UUID.randomUUID().toString();
 
@@ -112,7 +111,7 @@ public class TestGenericHibernateMethodsViaCandidate {
 
     @Test
     @Order(5)
-    void test_SaveID_Get_Del_Del() throws NonExistentCandidateException, ClassNotFoundException {
+    void test_SaveID_Get_Del_Del() throws ClassNotFoundException {
         String uuid1 = UUID.randomUUID().toString();
 
         Long id = HibernateConnectionGenericMethods.genericSaveReturnID(new Candidate(uuid1));
@@ -129,7 +128,7 @@ public class TestGenericHibernateMethodsViaCandidate {
 
     @Test
     @Order(6)
-    void test_SaveReturnID() throws NonExistentCandidateException {
+    void test_SaveReturnID() {
         Candidate kraken = new Candidate("kraken");
         Long id = HibernateConnectionGenericMethods.genericSaveReturnID(kraken);
         assert (id != null && id != 0);
@@ -142,7 +141,7 @@ public class TestGenericHibernateMethodsViaCandidate {
 
     @Test
     @Order(7)
-    void test_BadUpdate() throws NonExistentCandidateException {
+    void test_BadUpdate() {
         String uuid1 = UUID.randomUUID().toString();
         HibernateConnectionGenericMethods.genericUpdate(new Candidate(0L, uuid1));
     }
