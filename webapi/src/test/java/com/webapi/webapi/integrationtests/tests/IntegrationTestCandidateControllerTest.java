@@ -238,7 +238,6 @@ class IntegrationTestCandidateControllerTest {
 
     }
 
-    //todo: does not pass because the implementation needs to return 0 back to the client
     @Test
     @Order(5)
     void test_SaveID_Get_Del_Del() throws IOException, InterruptedException {
@@ -266,9 +265,6 @@ class IntegrationTestCandidateControllerTest {
                 delete("http://localhost:" + port + "/api/v1/candidate/" + candidateFromApp.getId().toString());
         assert (Objects.equals(deleteHttpResponse2.body(), "1"));
 
-
-        //todo: it is importnt to note the implementation of this, "what happens when you try to delete something that isn't there?
-        // my opinion is that it should tell the client "hey, that didn't exist", aka, response body should be 0
         HttpResponse<String> deleteHttpResponse3 = IntegrationTestHttpClient.
                 delete("http://localhost:" + port + "/api/v1/candidate/" + candidateFromApp.getId().toString());
         assert (Objects.equals(deleteHttpResponse3.body(), "0"));
@@ -289,12 +285,9 @@ class IntegrationTestCandidateControllerTest {
         assert (Objects.equals(deleteHttpResponse2.body(), "1"));
     }
 
-    //todo: does not pass because the implementation needs to return 0 back to the client
     @Test
     @Order(7)
     void test_BadUpdate() throws IOException, InterruptedException {
-
-        //todo: the result of this implementation is important as well, the expectation is that it return "0"
         String uuid1 = UUID.randomUUID().toString();
         Gson gson = new Gson();
         HttpResponse<String> updateResponse = IntegrationTestHttpClient.
