@@ -12,7 +12,7 @@ import java.util.List;
 @Repository("hibernateCandidate")
 public class HibernateCandidateDaoService implements CandidateDao<Candidate, Long> {
 
-    //todo: whole project should be checked for wetness, especially tests
+    //todo: whole project should be checked for wetness, especially tests, enclose everything in a function
 
     private static Session session = null;
 
