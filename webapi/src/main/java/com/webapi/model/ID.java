@@ -1,6 +1,6 @@
 package com.webapi.model;
 
-//todo: make use of this to help generify database drivers
+//Useful contract for use with templatization
 public interface ID {
     String getName();
 

@@ -33,14 +33,11 @@ public class PostgreSqlCandidateDaoService implements
     }
 
     @Override
-    public Candidate get(Long id) throws DuplicatePrimaryKeyException {
-        String sql = "SELECT * FROM Candidate WHERE id = " + id.toString();
+    public Candidate get(Long candidateID) throws DuplicatePrimaryKeyException {
+        String getQuery = "SELECT * FROM Candidate WHERE id = " + candidateID.toString();
 
-        List<Candidate> candidatesMatchingID = jdbcTemplate.query(sql, (resultSet, i) -> {
-//            if (!resultSet.isBeforeFirst()) {
+        List<Candidate> candidatesMatchingID = jdbcTemplate.query(getQuery, (resultSet, i) -> {
             return new Candidate(resultSet.getLong("id"), resultSet.getString("name"));
-//            }
-//            return null;
         });
         if (candidatesMatchingID.size() == 1) {
             return candidatesMatchingID.get(0);
@@ -52,8 +49,8 @@ public class PostgreSqlCandidateDaoService implements
 
     @Override
     public Collection<Candidate> getAll() {
-        String sql = "SELECT * FROM Candidate";
-        return jdbcTemplate.query(sql, (resultSet, i) ->
+        String getAllQuery = "SELECT * FROM Candidate";
+        return jdbcTemplate.query(getAllQuery, (resultSet, i) ->
                 new Candidate(
                         resultSet.getLong("id"),
                         resultSet.getString("name")));
@@ -61,8 +58,8 @@ public class PostgreSqlCandidateDaoService implements
 
     @Override
     public int save(Candidate candidate) {
-        String query = "insert into Candidate values(DEFAULT,'" + candidate.getName() + "')";
-        return jdbcTemplate.update(query);
+        String insertQuery = "insert into Candidate values(DEFAULT,'" + candidate.getName() + "')";
+        return jdbcTemplate.update(insertQuery);
     }
 
     public Long saveReturnID(Candidate candidate) {
@@ -73,9 +70,9 @@ public class PostgreSqlCandidateDaoService implements
     }
 
     @Override
-    public List<Candidate> getByName(String name) {
-        String sql = "SELECT * FROM Candidate WHERE name='" + name + "' ";
-        return jdbcTemplate.query(sql, (resultSet, i) ->
+    public List<Candidate> getByName(String candidateName) {
+        String getByNameQuery = "SELECT * FROM Candidate WHERE name='" + candidateName + "' ";
+        return jdbcTemplate.query(getByNameQuery, (resultSet, i) ->
                 new Candidate(
                         resultSet.getLong("id"),
                         resultSet.getString("name")));

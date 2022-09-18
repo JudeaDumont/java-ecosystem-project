@@ -9,6 +9,9 @@ import jakarta.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Table;
 
+//todo: make a model/class where a GUID is used for the id column
+//todo: make a model/class where a UUID is used for the id column
+
 @Entity
 @Table(appliesTo = "Candidate")
 public class Candidate implements ID {
@@ -16,22 +19,19 @@ public class Candidate implements ID {
     private String name;
 
     public Candidate() {
-        // this form used by Hibernate
+        // this form is used by Hibernate
     }
 
-    public Candidate(@JsonProperty("id") Long id,
-                     @JsonProperty("name") String name) {
-        this.id = id;
-        this.name = name;
+    public Candidate(@JsonProperty("id") Long candidateID,
+                     @JsonProperty("name") String candidateName) {
+        this.id = candidateID;
+        this.name = candidateName;
     }
 
-    public Candidate(String name) {
-        this.name = name;
+    public Candidate(String candidateName) {
+        this.name = candidateName;
     }
 
-    //todo: make a model/class where a GUID is used for the id column
-    //todo: make a model/class where a UUID is used for the id column
-    // is that even possible? google "UUID/GUID as primary key postgresql"
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -39,8 +39,8 @@ public class Candidate implements ID {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long candidateID) {
+        this.id = candidateID;
     }
 
     @Column
@@ -48,8 +48,8 @@ public class Candidate implements ID {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String candidateName) {
+        this.name = candidateName;
     }
 
     @Override

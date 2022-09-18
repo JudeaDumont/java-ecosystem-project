@@ -28,12 +28,12 @@ public class CandidateService {
         return candidateDao.saveReturnID(candidate);
     }
 
-    public Candidate get(Long id) throws DuplicatePrimaryKeyException {
-        return candidateDao.get(id);
+    public Candidate get(Long candidateID) throws DuplicatePrimaryKeyException {
+        return candidateDao.get(candidateID);
     }
 
-    public List<Candidate> getByName(String name) {
-        return candidateDao.getByName(name);
+    public List<Candidate> getByName(String candidateName) {
+        return candidateDao.getByName(candidateName);
     }
 
     public int update(Candidate candidate) {

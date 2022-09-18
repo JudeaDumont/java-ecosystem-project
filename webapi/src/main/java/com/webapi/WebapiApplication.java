@@ -20,3 +20,22 @@ public class WebapiApplication {
 //todo: Tools to use:
 // assertj
 // mockito
+
+//todo: to DRY out all the code in this repo, what we need to do is refactor into
+// method enclosures that are no more than three lines long
+
+//todo: top down refactor of code, naming conventions, function enclosures, etc.
+
+//todo: look at the correct way to use hibernate from that spring boot postgres tutorial
+
+//todo: add a react front-end
+
+//todo: add selenium tests
+
+//todo: add mockito
+
+//todo: add documentation on test automation fundamentals and how to prioritize automation tasks
+
+//todo: add CI/CD hooked into git hub, gitLab
+
+//todo: add code coverage tools (guide, not a goal) SonarQube

@@ -1,11 +1,10 @@
 package com.webapi.databasedrivers;
 
-import com.webapi.model.candidate.Candidate;
-
 import java.util.Collection;
 import java.util.List;
 
 // This is essentially the standardization by which an object mapper (to/from serialized objects) is implemented
+// I suppose the reason for keeping this generic is that it would be easy to copy into another dao for another model
 public interface CandidateDao<T, I> {
     T get(I id) throws DuplicatePrimaryKeyException;
 
@@ -15,7 +14,7 @@ public interface CandidateDao<T, I> {
 
     Long saveReturnID(T t);
 
-    List<Candidate> getByName(String name);
+    List<T> getByName(String name);
 
     int update(T t);
 

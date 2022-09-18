@@ -8,6 +8,7 @@ import java.util.List;
 
 public class HibernateConnectionGenericMethods {
 
+    //Methods that use runInSession need a reference to the session
     private static Session session = null;
 
     private HibernateConnectionGenericMethods() {

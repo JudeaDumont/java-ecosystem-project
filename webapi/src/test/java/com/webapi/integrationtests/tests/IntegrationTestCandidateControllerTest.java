@@ -27,65 +27,60 @@ class IntegrationTestCandidateControllerTest {
     //todo: check to see if there is an easy way to run tests in parallel
     // foreshadowing: how many connections can postgresql handle?
 
-    //todo: to DRY out all the code in this repo, what we need to do is refactor into
-    // method enclosures that are no more than three lines long
+    private List<Candidate> getCandidatesByName(String uuid) throws IOException, InterruptedException {
+        Gson gson = new Gson();
+        HttpResponse<String> getNameHttpResponse = IntegrationTestHttpClient.
+                get("http://localhost:" + port + "/api/v1/candidate/getByName/" + uuid);
 
-    //todo: top down refactor of code, naming conventions, function enclosures, etc.
+        return gson.fromJson(
+                getNameHttpResponse.body(),
+                new TypeToken<List<Candidate>>() {
+                }.getType());
+    }
 
-    //todo: look at the correct way to use hibernate from that spring boot postgres tutorial
+    private Candidate getCandidateWithUUIDName() {
+        String uuid = UUID.randomUUID().toString();
+        return new Candidate(uuid);
+    }
 
-    //todo: add a react front-end
+    private <T> String getJson(Class<T> classOfObject, T object) {
+        Gson gson = new Gson();
+        return gson.toJson(object);
+    }
 
-    //todo: add selenium tests
+    private String postCandidate(Candidate newCandidate1) throws IOException, InterruptedException {
+        return IntegrationTestHttpClient.
+                post("http://localhost:" + port + "/api/v1/candidate", getJson(Candidate.class, newCandidate1)).body();
+    }
 
-    //todo: add mockito
-
-    //todo: add documentation on test automation fundamentals and how to prioritize automation tasks
-
-    //todo: add CI/CD hooked into git hub, gitLab
-
-    //todo: add code coverage tools (guide, not a goal) SonarQube
-
+    private String deleteCandidate(Candidate candidate) throws IOException, InterruptedException {
+        return IntegrationTestHttpClient.
+                delete("http://localhost:" + port + "/api/v1/candidate/" + candidate.getId().toString()).body();
+    }
 
     @Test
     @Order(1)
     void test_Save_GetByName_Delete() throws IOException, InterruptedException {
-        String uuid = UUID.randomUUID().toString();
 
-        Gson gson = new Gson();
-        String json = gson.toJson(new Candidate(uuid));
+        Candidate newCandidate1 = getCandidateWithUUIDName();
 
-        HttpResponse<String> voidHttpResponse = IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate", json);
+        String postResult = postCandidate(newCandidate1);
 
-        assert (Objects.equals(voidHttpResponse.body(), "1"));
+        assert (Objects.equals(postResult, "1"));
 
-        HttpResponse<String> getNameHttpResponse = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/getByName/" + uuid);
-
-        List<Candidate> candidatesMatchingName = gson.fromJson(
-                getNameHttpResponse.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
+        List<Candidate> candidatesMatchingName = getCandidatesByName(newCandidate1.getName());
 
         assert (candidatesMatchingName.size() == 1);
 
-        assert (Objects.equals(candidatesMatchingName.get(0).getName(), uuid));
+        assert (Objects.equals(candidatesMatchingName.get(0).getName(), newCandidate1.getName()));
 
-        HttpResponse<String> voidDeleteHttpResponse = IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + candidatesMatchingName.get(0).getId().toString());
+        String deleteResponse = deleteCandidate(candidatesMatchingName.get(0));
 
-        assert (Objects.equals(voidDeleteHttpResponse.body(), "1"));
+        assert (Objects.equals(deleteResponse, "1"));
 
-        HttpResponse<String> getNameHttpResponse2 = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/getByName/" + uuid);
+        List<Candidate> deleteCheck = getCandidatesByName(newCandidate1.getName());
 
-        List<Candidate> candidatesMatchingName2 = gson.fromJson(
-                getNameHttpResponse2.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
-
-        assert (candidatesMatchingName2.size() == 0);
+        assert (deleteCheck.size() == 0);
     }
 
     //todo: give a good explanation of each test, and why this one in particular seems so elaborate

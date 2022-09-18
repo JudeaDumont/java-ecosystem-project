@@ -14,6 +14,7 @@ public class HibernateCandidateDaoService implements CandidateDao<Candidate, Lon
 
     //todo: whole project should be checked for wetness, especially tests, enclose everything in a function
 
+    //Methods that use runInSession need a reference to the session
     private static Session session = null;
 
     private interface FeedMeLambdasIllInferTheReturnType<R> {
@@ -70,16 +71,16 @@ public class HibernateCandidateDaoService implements CandidateDao<Candidate, Lon
     }
 
     @Override
-    public Candidate get(Long id) {
-        return runInSession(() -> session.get(Candidate.class, id));
+    public Candidate get(Long candidateID) {
+        return runInSession(() -> session.get(Candidate.class, candidateID));
     }
 
     @Override
-    public List<Candidate> getByName(String name) {
+    public List<Candidate> getByName(String candidateName) {
         return runInSession(() -> {
-            Query<Candidate> query = session.createQuery("from Candidate where name=:name", Candidate.class);
-            query.setParameter("name", name);
-            return query.getResultList();
+            Query<Candidate> tQuery = session.createQuery("from Candidate where name=:name", Candidate.class);
+            tQuery.setParameter("name", candidateName);
+            return tQuery.getResultList();
         });
     }
 
