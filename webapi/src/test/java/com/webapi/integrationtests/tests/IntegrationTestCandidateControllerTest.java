@@ -1,18 +1,12 @@
 package com.webapi.integrationtests.tests;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.webapi.integrationtests.IntegrationTestHttpClient;
+import com.webapi.integrationtests.tests.Candidate.CandidateTestHelperFunctions;
 import com.webapi.model.candidate.Candidate;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -23,28 +17,28 @@ class IntegrationTestCandidateControllerTest {
 
     @LocalServerPort
     private int port;
+    private CandidateTestHelperFunctions candidateTestHelper;
 
     //todo: check to see if there is an easy way to run tests in parallel
     // foreshadowing: how many connections can postgresql handle?
+
+
+    @BeforeEach
+    void setUp() {
+        this.candidateTestHelper = new CandidateTestHelperFunctions(port);
+    }
 
     @Test
     @Order(1)
     void test_Save_GetByName_Delete() throws IOException, InterruptedException {
 
-        Candidate newCandidate1 = getCandidateWithUUIDName();
+        Candidate candidate = candidateTestHelper.saveReturnCandidate();
 
-        String postResult = postCandidate(newCandidate1);
-        assert (Objects.equals(postResult, "1"));
+        List<Candidate> candidatesMatchingName = candidateTestHelper.getCandidatesByNameReturn1(candidate.getName());
 
-        List<Candidate> candidatesMatchingName = getCandidatesByName(newCandidate1.getName());
-        assert (candidatesMatchingName.size() == 1);
-        assert (Objects.equals(candidatesMatchingName.get(0).getName(), newCandidate1.getName()));
+        candidateTestHelper.deleteCandidateReturn1(candidatesMatchingName.get(0));
 
-        String deleteResponse = deleteCandidate(candidatesMatchingName.get(0));
-        assert (Objects.equals(deleteResponse, "1"));
-
-        List<Candidate> deleteCheck = getCandidatesByName(newCandidate1.getName());
-        assert (deleteCheck.size() == 0);
+        candidateTestHelper.getCandidatesReturn0(candidate);
     }
 
     //todo: give a good explanation of each test, and why this one in particular seems so elaborate
@@ -52,164 +46,66 @@ class IntegrationTestCandidateControllerTest {
     @Order(2)
     void test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll() throws IOException, InterruptedException {
 
-        Candidate candidate1 = getCandidateWithUUIDName();
-        Candidate candidate2 = getCandidateWithUUIDName();
+        int candidatesSizePriorToAnyOperation = candidateTestHelper.getAllCandidatesReturnSize();
 
-        List<Candidate> allCandidates = getAllCandidates();
-        int candidatesSizePriorToAnyOperation = allCandidates.size();
+        Candidate candidate1 = candidateTestHelper.saveReturnCandidate();
+        Candidate candidate2 = candidateTestHelper.saveReturnCandidate();
 
-        String postResponse1 = postCandidate(candidate1);
-        String postResponse2 = postCandidate(candidate2);
+        assert (candidateTestHelper.getAllCandidatesReturnSize() == candidatesSizePriorToAnyOperation + 2);
 
-        assert (Objects.equals(postResponse1, "1"));
-        assert (Objects.equals(postResponse2, "1"));
+        List<Candidate> candidatesByName1 = candidateTestHelper.getCandidatesByNameReturn1(candidate1.getName());
+        List<Candidate> candidatesByName2 = candidateTestHelper.getCandidatesByNameReturn1(candidate2.getName());
 
-        List<Candidate> allCandidatesAfterPost = getAllCandidates();
-        assert (allCandidatesAfterPost.size() == candidatesSizePriorToAnyOperation + 2);
+        candidateTestHelper.deleteCandidateReturn1(candidatesByName1.get(0));
+        candidateTestHelper.deleteCandidateReturn1(candidatesByName2.get(0));
 
-        List<Candidate> candidatesByName = getCandidatesByName(candidate1.getName());
-        assert (candidatesByName.size() == 1);
-        assert (Objects.equals(candidatesByName.get(0).getName(), candidate1.getName()));
-
-        List<Candidate> candidatesByName2 = getCandidatesByName(candidate2.getName());
-        assert (candidatesByName2.size() == 1);
-        assert (Objects.equals(candidatesByName2.get(0).getName(), candidate2.getName()));
-
-        assert (Objects.equals(deleteCandidate(candidatesByName.get(0)), "1"));
-        assert (Objects.equals(deleteCandidate(candidatesByName2.get(0)), "1"));
-
-        List<Candidate> allCandidatesAfterDeletion = getAllCandidates();
-
-        assert (allCandidatesAfterDeletion.size() == candidatesSizePriorToAnyOperation);
+        assert (candidateTestHelper.getAllCandidatesReturnSize() == candidatesSizePriorToAnyOperation);
     }
 
-    private List<Candidate> getCandidatesByName(String candidateName) throws IOException, InterruptedException {
-        Gson gson = new Gson();
-        HttpResponse<String> getNameHttpResponse = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/getByName/" + candidateName);
+    @Test
+    @Order(3)
+    void test_SaveID_Get_Del() throws IOException, InterruptedException {
+        Candidate candidate = candidateTestHelper.saveReturnCandidate();
 
-        return gson.fromJson(
-                getNameHttpResponse.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
-    }
-
-    private Candidate getCandidateWithUUIDName() {
-        String uuid = UUID.randomUUID().toString();
-        return new Candidate(uuid);
-    }
-
-    //this one will be private when moved
-    private <T> String getJson(Class<T> classOfObject, T object) {
-        Gson gson = new Gson();
-        return gson.toJson(object);
-    }
-
-    private String postCandidate(Candidate newCandidate1) throws IOException, InterruptedException {
-        return IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate", getJson(Candidate.class, newCandidate1)).body();
-    }
-
-    private String deleteCandidate(Candidate candidate) throws IOException, InterruptedException {
-        return IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + candidate.getId().toString()).body();
-    }
-
-    private List<Candidate> getAllCandidates() throws IOException, InterruptedException {
-        Gson gson = new Gson();
-        HttpResponse<String> allCandidates = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate");
-
-        assert (allCandidates.statusCode() == 200);
-        return gson.fromJson(
-                allCandidates.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
+        candidateTestHelper.deleteCandidateReturn1(candidate);
     }
 
     //todo: need a once over on all of the names, ensure they match the result they are actually getting
     // start a naming convention standard here in this project
 
     @Test
-    @Order(3)
-    void test_SaveID_Get_Del() throws IOException, InterruptedException {
-        String uuid1 = UUID.randomUUID().toString();
-
-        Gson gson = new Gson();
-
-        HttpResponse<String> saveReturnIDResponse = IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate",
-                        gson.toJson(new Candidate(uuid1)));
-
-        assert (!Objects.equals(saveReturnIDResponse.body(), "0"));
-
-        HttpResponse<String> getByNameHttpResponse2 = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/getByName/" + uuid1);
-
-        List<Candidate> candidatesFromGetByName = gson.fromJson(
-                getByNameHttpResponse2.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
-
-        Candidate candidateFromApp = candidatesFromGetByName.get(0);
-
-        HttpResponse<String> deleteHttpResponse2 = IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + candidateFromApp.getId().toString());
-        assert (Objects.equals(deleteHttpResponse2.body(), "1"));
-    }
-
-    @Test
     @Order(4)
     void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws IOException, InterruptedException {
-        String uuid1 = UUID.randomUUID().toString();
+        // Candidate name is a UUID that will need to be changed to a new UUID
         String changeUuid1 = UUID.randomUUID().toString();
 
-        Gson gson = new Gson();
+        // Save & expose a new Candidate, set the ID in the original object
+        Candidate candidate = candidateTestHelper.saveReturnCandidate();
 
-        HttpResponse<String> saveReturnIDResponse = IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate/saveReturnID",
-                        gson.toJson(new Candidate(uuid1)));
+        // Pull the candidate we just posted to the API
+        Candidate candidateFromID = candidateTestHelper.getCandidateByIDReturnCandidate(candidate.getId());
 
-        assert (!Objects.equals(saveReturnIDResponse.body(), ""));
+        assert (Objects.equals(candidate.getId(), candidateFromID.getId()));
+        assert (Objects.equals(candidate.getName(), candidateFromID.getName()));
 
-        HttpResponse<String> getByIdHttpResponse2 = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/" + saveReturnIDResponse.body());
+        // Make a change
+        candidateFromID.setName(changeUuid1);
+        String updateResponse = candidateTestHelper.updateCandidateReturn1(candidateFromID);
 
-        Candidate candidateFromApp = gson.fromJson(
-                getByIdHttpResponse2.body(), Candidate.class);
+        // Get the changed candidate by the change we made
+        List<Candidate> candidateAfterChange = candidateTestHelper.getCandidatesByNameReturn1(changeUuid1);
 
-        assert (candidateFromApp != null);
-        assert (candidateFromApp.getId().toString().equals(saveReturnIDResponse.body()));
-        assert (Objects.equals(candidateFromApp.getName(), uuid1));
+        // Ensure that Attempting to get by previous value doesn't work
+        candidateTestHelper.getCandidatesByNameReturn0(candidate.getName());
 
-        candidateFromApp.setName(changeUuid1);
+        // Check ID consistency
+        assert (Objects.equals(candidate.getId(), candidateFromID.getId()));
+        assert (Objects.equals(candidate.getId(), candidateAfterChange.get(0).getId()));
 
-        HttpResponse<String> updateResponse = IntegrationTestHttpClient.
-                put("http://localhost:" + port + "/api/v1/candidate",
-                        gson.toJson(candidateFromApp));
+        // Delete candidate and make sure you can't pull it with our change
+        candidateTestHelper.deleteCandidateReturn1(candidateFromID);
 
-        assert (Objects.equals(updateResponse.body(), "1"));
-
-        HttpResponse<String> getByNameHttpResponse2 = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/getByName/" + changeUuid1);
-
-        List<Candidate> candidatesFromGetByName2 = gson.fromJson(
-                getByNameHttpResponse2.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
-
-        assert (candidatesFromGetByName2.size() == 1);
-
-        List<Candidate> candidatesFromGetByName3 = gson.fromJson(
-                getByNameHttpResponse2.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
-
-        assert (candidatesFromGetByName3.get(0).getId().toString().equals(saveReturnIDResponse.body()));
-
-        HttpResponse<String> deleteHttpResponse2 = IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + saveReturnIDResponse.body());
-        assert (Objects.equals(deleteHttpResponse2.body(), "1"));
+        candidateTestHelper.deleteCandidateReturn0(candidate);
 
         //todo: add comments for each on of these sequences of http requests, and make each comment match the name of the test
         // name should be short and descriptive, test 1 thing, and it should use domain specific language
@@ -217,59 +113,23 @@ class IntegrationTestCandidateControllerTest {
 
     @Test
     @Order(5)
-    void test_SaveID_Get_Del_Del() throws IOException, InterruptedException {
-        String uuid1 = UUID.randomUUID().toString();
-
-        Gson gson = new Gson();
-
-        HttpResponse<String> saveReturnIDResponse = IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate",
-                        gson.toJson(new Candidate(uuid1)));
-
-        assert (!Objects.equals(saveReturnIDResponse.body(), "0"));
-
-        HttpResponse<String> getByNameHttpResponse2 = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/getByName/" + uuid1);
-
-        List<Candidate> candidatesFromGetByName = gson.fromJson(
-                getByNameHttpResponse2.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
-
-        Candidate candidateFromApp = candidatesFromGetByName.get(0);
-
-        HttpResponse<String> deleteHttpResponse2 = IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + candidateFromApp.getId().toString());
-        assert (Objects.equals(deleteHttpResponse2.body(), "1"));
-
-        HttpResponse<String> deleteHttpResponse3 = IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + candidateFromApp.getId().toString());
-        assert (Objects.equals(deleteHttpResponse3.body(), "0"));
+    void test_SaveID_Del_Del() throws IOException, InterruptedException {
+        Candidate candidate = candidateTestHelper.saveReturnCandidate();
+        candidateTestHelper.deleteCandidateReturn1(candidate);
+        candidateTestHelper.deleteCandidateReturn0(candidate);
     }
 
     @Test
     @Order(6)
     void test_SaveReturnID() throws IOException, InterruptedException {
-        Gson gson = new Gson();
-        String uuid1 = UUID.randomUUID().toString();
-
-        HttpResponse<String> saveReturnIDResponse = IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate/saveReturnID",
-                        gson.toJson(new Candidate(uuid1)));
-
-        HttpResponse<String> deleteHttpResponse2 = IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + saveReturnIDResponse.body());
-        assert (Objects.equals(deleteHttpResponse2.body(), "1"));
+        Candidate candidate = candidateTestHelper.saveReturnCandidate();
+        candidateTestHelper.deleteCandidateReturn1(candidate);
     }
 
     @Test
     @Order(7)
     void test_BadUpdate() throws IOException, InterruptedException {
         String uuid1 = UUID.randomUUID().toString();
-        Gson gson = new Gson();
-        HttpResponse<String> updateResponse = IntegrationTestHttpClient.
-                put("http://localhost:" + port + "/api/v1/candidate",
-                        gson.toJson(new Candidate(0L, uuid1)));
-        assert (Objects.equals(updateResponse.body(), "0"));
+        candidateTestHelper.updateCandidateReturn0(new Candidate(0L, uuid1));
     }
 }
