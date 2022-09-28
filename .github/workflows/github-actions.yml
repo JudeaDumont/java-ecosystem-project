@@ -4,34 +4,34 @@ jobs:
   run_tests:
     runs-on: ubuntu-latest
     container: node:latest
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_DB: sampleDB
-          POSTGRES_PASSWORD: root
-          POSTGRES_PORT: 5432
-          POSTGRES_USER: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    #    services:
+    #      postgres:
+    #        image: postgres:latest
+    #        env:
+    #          POSTGRES_DB: sampleDB
+    #          POSTGRES_PASSWORD: root
+    #          POSTGRES_PORT: 5432
+    #          POSTGRES_USER: postgres
+    #        ports:
+    #          - 5432:5432
+    #        options: >-
+    #          --health-cmd pg_isready
+    #          --health-interval 10s
+    #          --health-timeout 5s
+    #          --health-retries 5
     steps:
-      - name: Install PostgreSQL client
-        run: |
-          apt-get update
-          apt-get install --yes postgresql-client
-          
-          # queries database with postgres client
-      - name: Query database
-        run: psql -h postgres -d sampleDB -U postgres -c 'SELECT 1;'
-        env:
-          # postgress password is required; alternatively, you can run:
-          # `PGPASSWORD=postgres_password psql ...`
-          PGPASSWORD: root
+      #      - name: Install PostgreSQL client
+      #        run: |
+      #          apt-get update
+      #          apt-get install --yes postgresql-client
+      #
+      #          # queries database with postgres client
+      #      - name: Query database
+      #        run: psql -h postgres -d sampleDB -U postgres -c 'SELECT 1;'
+      #        env:
+      #          # postgress password is required; alternatively, you can run:
+      #          # `PGPASSWORD=postgres_password psql ...`
+      #          PGPASSWORD: root
 
       - name: Checkout the repository
         uses: actions/checkout@v3
