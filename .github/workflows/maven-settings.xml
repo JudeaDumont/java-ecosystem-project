@@ -15,7 +15,7 @@
                 </repository>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/JudeaDumont/java-ecosystem-project</url>
+                    <url>https://maven.pkg.github.com/cloud-technology/spring-boot-starter-parent</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
