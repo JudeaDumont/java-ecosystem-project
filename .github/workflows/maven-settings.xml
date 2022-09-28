@@ -80,7 +80,7 @@
                     </releases>
                 </repository>
                 <repository>
-                    <id>jboss</id>
+                    <id>jboss-nexus</id>
                     <url>https://repository.jboss.org/nexus/service/local/</url>
                     <snapshots>
                         <enabled>true</enabled>
