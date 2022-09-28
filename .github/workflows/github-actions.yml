@@ -49,6 +49,7 @@ jobs:
           # `PGPASSWORD=postgres_password psql ...`
           PGPASSWORD: root
   run_tests:
+    needs: postgres-job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
