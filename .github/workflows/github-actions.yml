@@ -17,6 +17,6 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Run install
-        run: mvn install
+        run: mvn install --file webapi/pom.xml
       - name: Run tests with Maven
         run: mvn -B test --file webapi/pom.xml
