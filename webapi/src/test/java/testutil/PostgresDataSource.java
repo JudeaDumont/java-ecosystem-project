@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PostgresDataSource {
     private static final String DRIVER = "org.postgresql.Driver";
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/sampleDB";
+    private static final String JDBC_URL = "jdbc:postgresql://127.0.0.1:5432/sampleDB";
     public static final String USERNAME = "postgres";
     private static final String PASSWORD = "root";
 
