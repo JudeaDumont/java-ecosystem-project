@@ -3,6 +3,7 @@ on: [ push ]
 jobs:
   postgres-job:
     runs-on: ubuntu-latest
+    container: node:latest
     services:
       postgres:
         image: postgres:latest
@@ -24,12 +25,9 @@ jobs:
         run: |
           apt-get update
           apt-get install --yes postgresql-client
-          apt-get install --yes npm
           apt-get install --yes maven
       - name: Query database
         run: psql -h postgres -d sampleDB -U postgres -c 'SELECT 1;'
-        env:
-          PGPASSWORD: root
       - name: Checkout the repository
         uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -48,3 +46,6 @@ jobs:
           USER_NAME: ${{ secrets.USER_NAME }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           JASYPT_ENCRYPTOR_PASSWORD: "secretkey"
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
+          PGPASSWORD: root

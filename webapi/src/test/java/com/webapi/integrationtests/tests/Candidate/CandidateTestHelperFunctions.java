@@ -25,7 +25,7 @@ public class CandidateTestHelperFunctions {
 
 
     //todo: pull this from the application.yaml
-    private final String springHost = "http://127.0.0.1:";
+    private final String springHost = "http://postgres:";
 
     private List<Candidate> getCandidatesByName(String candidateName) throws IOException, InterruptedException {
         Gson gson = new Gson();
