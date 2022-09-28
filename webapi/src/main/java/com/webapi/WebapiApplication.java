@@ -39,3 +39,5 @@ public class WebapiApplication {
 //todo: add CI/CD hooked into git hub, gitLab
 
 //todo: add code coverage tools (guide, not a goal) SonarQube
+
+//todo: encrypt the information in github actions and maven setting

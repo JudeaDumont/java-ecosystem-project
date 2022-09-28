@@ -13,4 +13,7 @@ java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input
 
 jdbc:postgresql://localhost:5432/sampleDB
 
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input="1Kq0vluoQ1Vp3Fn9C5FCntojLhDnTtxd" password="secretkey" algorithm=PBEWithMD5AndDES
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input="3XI6tcCl9ss7+DZ9SeMExg==" password="secretkey" algorithm=PBEWithMD5AndDES
+
 
