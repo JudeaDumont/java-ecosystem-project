@@ -5,6 +5,7 @@ cd C:\Users\dum75377\.m2\repository\org\jasypt\jasypt\1.9.3
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="oracle" password=secretkey algorithm=PBEWithMD5AndDES
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="postgres" password=secretkey algorithm=PBEWithMD5AndDES
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="root" password=secretkey algorithm=PBEWithMD5AndDES
+
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="jdbc:postgresql://localhost:5432/sampleDB" password=secretkey algorithm=PBEWithMD5AndDES
 
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="jdbc:postgresql://postgres:5432/sampleDB" password=secretkey algorithm=PBEWithMD5AndDES
