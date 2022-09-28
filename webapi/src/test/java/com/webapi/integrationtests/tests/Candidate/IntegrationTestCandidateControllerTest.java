@@ -1,6 +1,5 @@
-package com.webapi.integrationtests.tests;
+package com.webapi.integrationtests.tests.Candidate;
 
-import com.webapi.integrationtests.tests.Candidate.CandidateTestHelperFunctions;
 import com.webapi.model.candidate.Candidate;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -62,11 +62,13 @@ public class PostgreSqlCandidateDaoService implements
         return jdbcTemplate.update(insertQuery);
     }
 
+    @Override
     public Long saveReturnID(Candidate candidate) {
         final Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", candidate.getName());
-
-        return (Long) insertIntoCandidate.executeAndReturnKey(parameters);
+        Long generatedCandidateId = (Long) insertIntoCandidate.executeAndReturnKey(parameters);
+        candidate.setId(generatedCandidateId);
+        return generatedCandidateId;
     }
 
     @Override
