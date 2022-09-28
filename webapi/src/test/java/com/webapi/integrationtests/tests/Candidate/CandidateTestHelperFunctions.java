@@ -23,10 +23,14 @@ public class CandidateTestHelperFunctions {
     // for example, expecting 1 or 0 can call another method and pass the number it expects in as a parameter
     // instead of methods repeating each other greatly
 
+
+    //todo: pull this from the application.yaml
+    private final String springHost = "http://localhost:";
+
     private List<Candidate> getCandidatesByName(String candidateName) throws IOException, InterruptedException {
         Gson gson = new Gson();
         HttpResponse<String> getNameHttpResponse = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/getByName/" + candidateName);
+                get(springHost + port + "/api/v1/candidate/getByName/" + candidateName);
 
         return gson.fromJson(
                 getNameHttpResponse.body(),
@@ -47,18 +51,18 @@ public class CandidateTestHelperFunctions {
 
     private String postCandidate(Candidate newCandidate1) throws IOException, InterruptedException {
         return IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate", getJson(Candidate.class, newCandidate1)).body();
+                post(springHost + port + "/api/v1/candidate", getJson(Candidate.class, newCandidate1)).body();
     }
 
     private String deleteCandidate(Candidate candidate) throws IOException, InterruptedException {
         return IntegrationTestHttpClient.
-                delete("http://localhost:" + port + "/api/v1/candidate/" + candidate.getId().toString()).body();
+                delete(springHost + port + "/api/v1/candidate/" + candidate.getId().toString()).body();
     }
 
     private List<Candidate> getAllCandidates() throws IOException, InterruptedException {
         Gson gson = new Gson();
         HttpResponse<String> allCandidates = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate");
+                get(springHost + port + "/api/v1/candidate");
 
         assert (allCandidates.statusCode() == 200);
         return gson.fromJson(
@@ -69,14 +73,14 @@ public class CandidateTestHelperFunctions {
 
     private String postCandidateReturnID(Candidate newCandidate1) throws IOException, InterruptedException {
         return IntegrationTestHttpClient.
-                post("http://localhost:" + port + "/api/v1/candidate/saveReturnID",
+                post(springHost + port + "/api/v1/candidate/saveReturnID",
                         getJson(Candidate.class, newCandidate1)).body();
     }
 
     public String updateCandidateReturn1(Candidate candidateFromID) throws IOException, InterruptedException {
         Gson gson = new Gson();
         String putResponse = IntegrationTestHttpClient.
-                put("http://localhost:" + port + "/api/v1/candidate",
+                put(springHost + port + "/api/v1/candidate",
                         gson.toJson(candidateFromID)).body();
         assert (Objects.equals(putResponse, "1"));
         return putResponse;
@@ -85,7 +89,7 @@ public class CandidateTestHelperFunctions {
     public String updateCandidateReturn0(Candidate candidateFromID) throws IOException, InterruptedException {
         Gson gson = new Gson();
         String putResponse = IntegrationTestHttpClient.
-                put("http://localhost:" + port + "/api/v1/candidate",
+                put(springHost + port + "/api/v1/candidate",
                         gson.toJson(candidateFromID)).body();
         assert (Objects.equals(putResponse, "0"));
         return putResponse;
@@ -100,14 +104,14 @@ public class CandidateTestHelperFunctions {
     private String updateCandidate(Candidate candidateFromID) throws IOException, InterruptedException {
         Gson gson = new Gson();
         return IntegrationTestHttpClient.
-                put("http://localhost:" + port + "/api/v1/candidate",
+                put(springHost + port + "/api/v1/candidate",
                         gson.toJson(candidateFromID)).body();
     }
 
     public Candidate getCandidateByIDReturnCandidate(Long candidateID) throws IOException, InterruptedException {
         Gson gson = new Gson();
         HttpResponse<String> getByIdHttpResponse = IntegrationTestHttpClient.
-                get("http://localhost:" + port + "/api/v1/candidate/" + candidateID);
+                get(springHost + port + "/api/v1/candidate/" + candidateID);
         assert (getByIdHttpResponse.body() != null);
         return gson.fromJson(
                 getByIdHttpResponse.body(), Candidate.class);
