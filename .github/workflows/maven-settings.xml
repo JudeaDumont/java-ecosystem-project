@@ -10,7 +10,7 @@
             <id>github</id>
             <repositories>
                 <repository>
-                    <id>central</id>
+                    <id>maven</id>
                     <url>https://repo1.maven.org/maven2</url>
                     <snapshots>
                         <enabled>true</enabled>
@@ -20,7 +20,7 @@
                     </releases>
                 </repository>
                 <repository>
-                    <id>central</id>
+                    <id>maven.apache</id>
                     <url>https://repo.maven.apache.org/maven2</url>
                     <snapshots>
                         <enabled>true</enabled>
@@ -30,7 +30,7 @@
                     </releases>
                 </repository>
                 <repository>
-                    <id>central</id>
+                    <id>spring</id>
                     <url>https://repo.spring.io/milestone</url>
                     <snapshots>
                         <enabled>true</enabled>
@@ -40,7 +40,7 @@
                     </releases>
                 </repository>
                 <repository>
-                    <id>central</id>
+                    <id>jboss</id>
                     <url>https://repository.jboss.org/nexus/content/repositories/public/</url>
                     <snapshots>
                         <enabled>true</enabled>
@@ -50,7 +50,7 @@
                     </releases>
                 </repository>
                 <repository>
-                    <id>central</id>
+                    <id>spring.io</id>
                     <url>https://repo.spring.io/snapshot/</url>
                     <snapshots>
                         <enabled>true</enabled>
