@@ -3,7 +3,6 @@ on: [ push ]
 jobs:
   postgres-job:
     runs-on: ubuntu-latest
-    container: node:latest
     services:
       postgres:
         image: postgres:latest
@@ -25,6 +24,7 @@ jobs:
         run: |
           apt-get update
           apt-get install --yes postgresql-client
+          apt-get install --yes npm
           apt-get install --yes maven
       - name: Query database
         run: psql -h postgres -d sampleDB -U postgres -c 'SELECT 1;'
