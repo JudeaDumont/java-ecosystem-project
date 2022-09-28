@@ -25,7 +25,7 @@ jobs:
         run: |
           apt-get update
           apt-get install --yes postgresql-client
-          apt-get install --yes mvn
+          apt-get install --yes maven
       - name: Query database
         run: psql -h postgres -d sampleDB -U postgres -c 'SELECT 1;'
         env:
