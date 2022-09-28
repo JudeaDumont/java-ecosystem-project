@@ -28,7 +28,7 @@ jobs:
           apt-get install --yes postgresql-client
           apt-get install --yes maven
       - name: Query database
-        run: psql -h postgres -d sampleDB -U postgres -P root -c 'SELECT 1;'
+        run: psql -h postgres -d sampleDB -U postgres -c 'SELECT 1;'
         env:
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
