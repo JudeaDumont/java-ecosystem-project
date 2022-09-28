@@ -12,6 +12,7 @@ jobs:
           POSTGRES_PASSWORD: root
           POSTGRES_PORT: 5432
           POSTGRES_USER: postgres
+          POSTGRES_HOST: postgres
         ports:
           - 5432:5432
         options: >-
@@ -28,6 +29,10 @@ jobs:
           apt-get install --yes maven
       - name: Query database
         run: psql -h postgres -d sampleDB -U postgres -P root -c 'SELECT 1;'
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
+          PGPASSWORD: root
       - name: Checkout the repository
         uses: actions/checkout@v3
       - name: Set up JDK 17
