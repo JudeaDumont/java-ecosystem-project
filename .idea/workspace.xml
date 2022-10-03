@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="738aef55-d286-4d96-981f-d297abdcf7e1" name="Changes" comment="- New checkout/build from clean system causes dependency management changes&#10;- You have to include the both the slf4j-reload4j and the slf4j-api dependency to get it to stop throwing &quot;&#10;java.lang.ClassNotFoundException: org.slf4j.helpers.*&quot; Wow that's really arbitrary and unsearchable&#10;- java logger dependencies are terrible">
-      <change afterPath="$PROJECT_DIR$/webapi/src/main/resources/log4j.properties" afterDir="false" />
+    <list default="true" id="738aef55-d286-4d96-981f-d297abdcf7e1" name="Changes" comment="- &quot;log4j:WARN Please initialize the log4j system properly&quot;&#10;- We have to initialize log4j because: we backed up dependencies such that dependencies are easier to resolve on clean installs, those dependencies change their logging policies XD, then conflicts happen because we have to have multiple logger versions XD, then we have to manually pull in dependencies for that logger XD, then we have to configure that logger so it doesn't complain about not being setup correctly.">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/github-actions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/github-actions.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,13 +228,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661160222755</updated>
-    </task>
-    <task id="LOCAL-00039" summary="- Attempting to automate test running">
-      <created>1664342268551</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1664342268551</updated>
     </task>
     <task id="LOCAL-00040" summary="- Attempting to automate test running">
       <created>1664342511912</created>
@@ -571,7 +565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664764828465</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="- &quot;log4j:WARN Please initialize the log4j system properly&quot;&#10;- We have to initialize log4j because: we backed up dependencies such that dependencies are easier to resolve on clean installs, those dependencies change their logging policies XD, then conflicts happen because we have to have multiple logger versions XD, then we have to manually pull in dependencies for that logger XD, then we have to configure that logger so it doesn't complain about not being setup correctly.">
+      <created>1664765206394</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1664765206394</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -597,7 +598,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactored Generic Hibernate Driver to run a lambda in-between opening and closing a session&#10; - its insane how convenient functional programming is in Java, trying to do this in plain javascript breaks encapsulation rules or something like that&#10; - I'm so not convinced its this easy to work out that I'm going to redo it in a brand-new checkout and write a readme" />
     <MESSAGE value="- Refactored Candidate Hibernate Driver to run a lambda in-between opening and closing a session&#10; - The main point to understand is that the pattern INFERS the return type based on what you return, so cool" />
     <MESSAGE value="- Refactoring Integration tests to follow the same principles as the unit tests with ensuring the database is acting as expected" />
     <MESSAGE value="- Fixing integration tests, there are two tests (one for a bad delete, and one for a bad update) both of which just need to return 0 back to the client." />
@@ -622,7 +622,8 @@
     <MESSAGE value="- postgres password added" />
     <MESSAGE value="- New checkout/build from clean system causes dependency management changes" />
     <MESSAGE value="- New checkout/build from clean system causes dependency management changes&#10;- You have to include the both the slf4j-reload4j and the slf4j-api dependency to get it to stop throwing &quot;&#10;java.lang.ClassNotFoundException: org.slf4j.helpers.*&quot; Wow that's really arbitrary and unsearchable&#10;- java logger dependencies are terrible" />
-    <option name="LAST_COMMIT_MESSAGE" value="- New checkout/build from clean system causes dependency management changes&#10;- You have to include the both the slf4j-reload4j and the slf4j-api dependency to get it to stop throwing &quot;&#10;java.lang.ClassNotFoundException: org.slf4j.helpers.*&quot; Wow that's really arbitrary and unsearchable&#10;- java logger dependencies are terrible" />
+    <MESSAGE value="- &quot;log4j:WARN Please initialize the log4j system properly&quot;&#10;- We have to initialize log4j because: we backed up dependencies such that dependencies are easier to resolve on clean installs, those dependencies change their logging policies XD, then conflicts happen because we have to have multiple logger versions XD, then we have to manually pull in dependencies for that logger XD, then we have to configure that logger so it doesn't complain about not being setup correctly." />
+    <option name="LAST_COMMIT_MESSAGE" value="- &quot;log4j:WARN Please initialize the log4j system properly&quot;&#10;- We have to initialize log4j because: we backed up dependencies such that dependencies are easier to resolve on clean installs, those dependencies change their logging policies XD, then conflicts happen because we have to have multiple logger versions XD, then we have to manually pull in dependencies for that logger XD, then we have to configure that logger so it doesn't complain about not being setup correctly." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
