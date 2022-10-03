@@ -23,3 +23,8 @@ gh api -H "Accept: application/vnd.github+json" /repos/JudeaDumont/java-ecosyste
 gh api --method DELETE -H "Accept: application/vnd.github+json" /repos/JudeaDumont/java-ecosystem-project/actions/caches
 
 
+CREATE DATABASE sampleDB;
+psql -h postgres -d sampleDB -U postgres
+
+
+
