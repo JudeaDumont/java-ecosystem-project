@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="738aef55-d286-4d96-981f-d297abdcf7e1" name="Changes" comment="- Run the tests in CI/CD">
       <change beforePath="$PROJECT_DIR$/.github/workflows/github-actions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/github-actions.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,13 +227,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661160222755</updated>
-    </task>
-    <task id="LOCAL-00049" summary="- Attempting to automate test running, created an access token for read package permissions in github, set in the env here">
-      <created>1664346413569</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1664346413569</updated>
     </task>
     <task id="LOCAL-00050" summary="- Attempting to automate test running, created an access token for read package permissions in github, set in the env here">
       <created>1664346777306</created>
@@ -570,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664768105639</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="- Run the tests in CI/CD">
+      <created>1664768155913</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1664768155913</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
