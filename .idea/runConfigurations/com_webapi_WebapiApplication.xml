@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="WebapiApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+  <configuration default="false" name="com.webapi.WebapiApplication" type="Application" factoryName="Application" nameIsGenerated="true">
     <envs>
       <env name="JASYPT_ENCRYPTOR_PASSWORD" value="secretkey" />
     </envs>
-    <option name="MAIN_CLASS_NAME" value="com.webapi.webapi.WebapiApplication" />
+    <option name="MAIN_CLASS_NAME" value="com.webapi.WebapiApplication" />
     <module name="webapi" />
     <extension name="coverage">
       <pattern>
