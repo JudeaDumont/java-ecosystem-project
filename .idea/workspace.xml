@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="738aef55-d286-4d96-981f-d297abdcf7e1" name="Changes" comment="- &quot;log4j:WARN Please initialize the log4j system properly&quot;&#10;- We have to initialize log4j because: we backed up dependencies such that dependencies are easier to resolve on clean installs, those dependencies change their logging policies XD, then conflicts happen because we have to have multiple logger versions XD, then we have to manually pull in dependencies for that logger XD, then we have to configure that logger so it doesn't complain about not being setup correctly.">
+    <list default="true" id="738aef55-d286-4d96-981f-d297abdcf7e1" name="Changes" comment="- Run the tests in CI/CD">
       <change beforePath="$PROJECT_DIR$/.github/workflows/github-actions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/github-actions.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -228,13 +227,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661160222755</updated>
-    </task>
-    <task id="LOCAL-00040" summary="- Attempting to automate test running">
-      <created>1664342511912</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1664342511912</updated>
     </task>
     <task id="LOCAL-00041" summary="- Attempting to automate test running">
       <created>1664342578835</created>
@@ -572,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664765206394</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="- Run the tests in CI/CD">
+      <created>1664765834088</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1664765834089</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -598,7 +597,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactored Candidate Hibernate Driver to run a lambda in-between opening and closing a session&#10; - The main point to understand is that the pattern INFERS the return type based on what you return, so cool" />
     <MESSAGE value="- Refactoring Integration tests to follow the same principles as the unit tests with ensuring the database is acting as expected" />
     <MESSAGE value="- Fixing integration tests, there are two tests (one for a bad delete, and one for a bad update) both of which just need to return 0 back to the client." />
     <MESSAGE value="- Implementation for update and delete fixed such that if the operation is performed on Candidate that doesn't exist then 0 is returned back to the client&#10; - Problem is the queryByObject throws exceptions if any other number than 1 is returned by the query (wow, so fragile)&#10; - Replaced the query and then made a new exception for a duplicate primary query since regular queries can return 0 or more rows, and if it does for a getbyid then that means that multiple entities have the same id, which means there is a duplicate primary key in the database, in which case something terrible has happened." />
@@ -623,7 +621,8 @@
     <MESSAGE value="- New checkout/build from clean system causes dependency management changes" />
     <MESSAGE value="- New checkout/build from clean system causes dependency management changes&#10;- You have to include the both the slf4j-reload4j and the slf4j-api dependency to get it to stop throwing &quot;&#10;java.lang.ClassNotFoundException: org.slf4j.helpers.*&quot; Wow that's really arbitrary and unsearchable&#10;- java logger dependencies are terrible" />
     <MESSAGE value="- &quot;log4j:WARN Please initialize the log4j system properly&quot;&#10;- We have to initialize log4j because: we backed up dependencies such that dependencies are easier to resolve on clean installs, those dependencies change their logging policies XD, then conflicts happen because we have to have multiple logger versions XD, then we have to manually pull in dependencies for that logger XD, then we have to configure that logger so it doesn't complain about not being setup correctly." />
-    <option name="LAST_COMMIT_MESSAGE" value="- &quot;log4j:WARN Please initialize the log4j system properly&quot;&#10;- We have to initialize log4j because: we backed up dependencies such that dependencies are easier to resolve on clean installs, those dependencies change their logging policies XD, then conflicts happen because we have to have multiple logger versions XD, then we have to manually pull in dependencies for that logger XD, then we have to configure that logger so it doesn't complain about not being setup correctly." />
+    <MESSAGE value="- Run the tests in CI/CD" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Run the tests in CI/CD" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
