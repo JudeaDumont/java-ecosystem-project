@@ -32,9 +32,9 @@ jobs:
       - name: Query database
         run: |
           pwd
-          cd webapi
+          cd webapi/src/main/resources/db/migration
           pwd
-          psql -h postgres -d sampleDB -U postgres -f ".\webapi\src\main\resources\db\migration\V1__CandidateTable.sql"
+          psql -h postgres -d sampleDB -U postgres -f "V1__CandidateTable.sql"
 
         env:
           POSTGRES_HOST: postgres
