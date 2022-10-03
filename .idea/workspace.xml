@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="738aef55-d286-4d96-981f-d297abdcf7e1" name="Changes" comment="- Run the tests in CI/CD">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_19_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_19_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_19_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_17_2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapi/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapi/src/test/java/com/webapi/integrationtests/tests/Candidate/CandidateTestHelperFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/src/test/java/com/webapi/integrationtests/tests/Candidate/CandidateTestHelperFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapi/src/test/java/com/webapi/integrationtests/tests/Candidate/IntegrationTestCandidateControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/src/test/java/com/webapi/integrationtests/tests/Candidate/IntegrationTestCandidateControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/webapi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/webapi.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +90,7 @@
       <recent name="com.webapi.webapi.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IntegrationTestCandidateControllerTest">
+  <component name="RunManager" selected="JUnit.All in webapi">
     <configuration name="IntegrationTestCandidateControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="webapi" />
       <extension name="coverage">
@@ -232,13 +236,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661160222755</updated>
-    </task>
-    <task id="LOCAL-00053" summary="- Attempting to automate test running, created an access token for read package permissions in github, set in the env here">
-      <created>1664348959361</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1664348959361</updated>
     </task>
     <task id="LOCAL-00054" summary="- Attempting to automate test running, adding a bunch of repos">
       <created>1664349074836</created>
@@ -576,7 +573,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664768759661</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="- Run the tests in CI/CD">
+      <created>1664771098475</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1664771098475</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
