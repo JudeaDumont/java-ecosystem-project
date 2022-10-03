@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="738aef55-d286-4d96-981f-d297abdcf7e1" name="Changes" comment="- Run the tests in CI/CD">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/github-actions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/github-actions.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/src/test/java/com/webapi/integrationtests/tests/Candidate/CandidateTestHelperFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/src/test/java/com/webapi/integrationtests/tests/Candidate/CandidateTestHelperFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/src/test/java/com/webapi/integrationtests/tests/Candidate/IntegrationTestCandidateControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/src/test/java/com/webapi/integrationtests/tests/Candidate/IntegrationTestCandidateControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +54,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/Admin/IdeaProjects/java-ecosystem-project/webapi/src/test/resources",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -62,6 +66,7 @@
       <recent name="com.webapi.webapi.databasedrivers" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\IdeaProjects\java-ecosystem-project\webapi\src\test\resources" />
       <recent name="C:\Users\dum75377\Desktop\java-ecosystem-project\webapi\src\main\resources" />
       <recent name="C:\Users\dum75377\Desktop\java-ecosystem-project\webapi" />
       <recent name="C:\Users\dum75377\Desktop\java-ecosystem-project\webapi\src\test\resources" />
@@ -81,7 +86,7 @@
       <recent name="com.webapi.webapi.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in webapi">
+  <component name="RunManager" selected="JUnit.IntegrationTestCandidateControllerTest">
     <configuration name="IntegrationTestCandidateControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="webapi" />
       <extension name="coverage">
@@ -211,6 +216,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.IntegrationTestCandidateControllerTest" />
         <item itemvalue="Maven.webapi [processor:process]" />
         <item itemvalue="Maven.webapi [processor:process-test]" />
         <item itemvalue="JUnit.IntegrationTestCandidateControllerTest.test_SaveID_Get_Update_GetByName_GetByName_Delete" />
@@ -226,13 +232,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661160222755</updated>
-    </task>
-    <task id="LOCAL-00052" summary="- Attempting to automate test running, created an access token for read package permissions in github, set in the env here">
-      <created>1664347701552</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1664347701552</updated>
     </task>
     <task id="LOCAL-00053" summary="- Attempting to automate test running, created an access token for read package permissions in github, set in the env here">
       <created>1664348959361</created>
@@ -570,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664768629487</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="- Run the tests in CI/CD">
+      <created>1664768759661</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1664768759661</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

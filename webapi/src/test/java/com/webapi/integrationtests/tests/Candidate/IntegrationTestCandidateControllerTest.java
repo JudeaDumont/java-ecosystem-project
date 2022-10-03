@@ -2,20 +2,21 @@ package com.webapi.integrationtests.tests.Candidate;
 
 import com.webapi.model.candidate.Candidate;
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class IntegrationTestCandidateControllerTest {
 
-    @LocalServerPort
-    private int port;
+    @Autowired
+    private ServerProperties serverProperties;
     private CandidateTestHelperFunctions candidateTestHelper;
 
     //todo: check to see if there is an easy way to run tests in parallel
@@ -24,7 +25,7 @@ class IntegrationTestCandidateControllerTest {
 
     @BeforeEach
     void setUp() {
-        this.candidateTestHelper = new CandidateTestHelperFunctions(port);
+        this.candidateTestHelper = new CandidateTestHelperFunctions(serverProperties.getPort());
     }
 
     @Test
