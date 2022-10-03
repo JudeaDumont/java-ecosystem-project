@@ -14,6 +14,8 @@ public class WebapiApplication {
 
 }
 
+//todo: too much output in github actions CI/CD
+
 //todo: figure out the best way to deal with environment variables, like the secret key for jasypt for instance
 // right now they are dealt with by editing: run configurations... > templates > add env var there
 

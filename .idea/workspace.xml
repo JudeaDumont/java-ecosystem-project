@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="738aef55-d286-4d96-981f-d297abdcf7e1" name="Changes" comment="- Run the tests in CI/CD">
       <change beforePath="$PROJECT_DIR$/.github/workflows/github-actions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/github-actions.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/src/main/java/com/webapi/WebapiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/src/main/java/com/webapi/WebapiApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,13 +228,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661160222755</updated>
-    </task>
-    <task id="LOCAL-00041" summary="- Attempting to automate test running">
-      <created>1664342578835</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1664342578835</updated>
     </task>
     <task id="LOCAL-00042" summary="- Attempting to automate test running">
       <created>1664342684620</created>
@@ -571,7 +565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664765834089</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="- Run the tests in CI/CD">
+      <created>1664766283686</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1664766283687</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
