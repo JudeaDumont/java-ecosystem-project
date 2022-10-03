@@ -30,7 +30,12 @@ jobs:
           apt-get install --yes postgresql-client
           apt-get install --yes maven
       - name: Query database
-        run: psql -h postgres -d sampleDB -U postgres -f ".\webapi\src\main\resources\db\migration\V1__CandidateTable.sql"
+        run: |
+          pwd
+          cd webapi
+          pwd
+          psql -h postgres -d sampleDB -U postgres -f ".\webapi\src\main\resources\db\migration\V1__CandidateTable.sql"
+
         env:
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
