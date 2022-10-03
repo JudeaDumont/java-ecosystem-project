@@ -227,13 +227,6 @@
       <option name="presentableId" value="Default" />
       <updated>1661160222755</updated>
     </task>
-    <task id="LOCAL-00044" summary="- Attempting to automate test running, created an access token for read package permissions in github, set in the env here">
-      <created>1664344566739</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1664344566739</updated>
-    </task>
     <task id="LOCAL-00045" summary="- Attempting to automate test running, created an access token for read package permissions in github, set in the env here">
       <created>1664344634221</created>
       <option name="number" value="00045" />
@@ -570,7 +563,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664766716041</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="- Run the tests in CI/CD">
+      <created>1664766959156</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1664766959156</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
