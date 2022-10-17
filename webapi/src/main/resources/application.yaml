@@ -4,5 +4,3 @@ app:
     username: ENC(1Kq0vluoQ1Vp3Fn9C5FCntojLhDnTtxd)
     password: ENC(3XI6tcCl9ss7+DZ9SeMExg==)
     pool-size: 3
-
-#    todo: we need a different configuration for running locally.
