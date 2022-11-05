@@ -34,7 +34,7 @@ jobs:
           pwd
           cd webapi/src/main/resources/db/migration
           pwd
-          psql -h postgres -d sampledb -U postgres -f "V1__CandidateTable.sql"
+          psql -h postgres -d sampledb -U postgres -f "V1.1__CandidateTable.sql"
 
         env:
           POSTGRES_HOST: postgres
