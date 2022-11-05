@@ -35,5 +35,9 @@ psql -h postgres -d sampledb -U postgres
 ./mvnw --encrypt-password postgres
 ./mvnw --encrypt-password root
 
+./mvnw flyway:clean
+./mvnw flyway:baseline
+./mvnw flyway:migrate
+
 
 

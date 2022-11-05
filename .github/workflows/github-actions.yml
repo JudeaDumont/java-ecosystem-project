@@ -24,17 +24,20 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+
       - name: Install PostgreSQL client & Maven
         run: |
           apt-get update
           apt-get install --yes postgresql-client
           apt-get install --yes maven
+
       - name: Migrate database
         run: |
           pwd
-          cd webapi/src/main/resources/db/migration
+          cd webapi
           pwd
-          psql -h postgres -d sampledb -U postgres -f "V1.1__CandidateTable.sql"
+          mvn flyway:baseline
+          mvn flyway:migrate
 
         env:
           POSTGRES_HOST: postgres
