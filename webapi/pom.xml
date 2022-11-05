@@ -113,9 +113,9 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>9.7.0</version>
                 <configuration>
-                    <url>jdbc:postgresql://postgres:5432/sampledb</url>
-                    <user>postgres</user>
-                    <password>root</password>
+                    <url>${postgresurl}</url>
+                    <user>${postgresuser}</user>
+                    <password>${postgrespassword}</password>
                     <cleanDisabled>false</cleanDisabled>
                 </configuration>
             </plugin>

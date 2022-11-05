@@ -31,3 +31,5 @@
 - run ./mvnw  --encrypt-master-password root
 - save the results into settings.security
 - Copy settings-security.xml to C:\Users\<user>\.m2\settings-security.xml
+- Make sure that the maven settings used are the ones found in .github/workflows
+- Change maven settings in IntelliJ to use .github/workflows settings

@@ -90,6 +90,11 @@
                     </releases>
                 </repository>
             </repositories>
+            <properties>
+                <postgresurl>jdbc:postgresql://postgres:5432/sampledb</postgresurl>
+                <postgresuser>postgres</postgresuser>
+                <postgrespassword>root</postgrespassword>
+            </properties>
         </profile>
     </profiles>
 
@@ -100,5 +105,4 @@
             <password>${env.ACCESS_TOKEN}</password>
         </server>
     </servers>
-
 </settings>
