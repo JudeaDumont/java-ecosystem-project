@@ -27,9 +27,9 @@ jobs:
 
       - name: Install PostgreSQL client & Maven
         run: |
-          apt-get update
-          apt-get install --yes postgresql-client
-          apt-get install --yes maven
+          apt-get -q update
+          apt-get -q install --yes postgresql-client
+          apt-get -q install --yes maven
 
       - name: Migrate database
         run: |
@@ -57,7 +57,7 @@ jobs:
       - name: Run tests with Maven
         run: |
           cd webapi
-          mvn -q .github/workflows/maven-settings.xml -B test
+          mvn -q -B test
         env:
           USER_NAME: ${{ secrets.USER_NAME }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
