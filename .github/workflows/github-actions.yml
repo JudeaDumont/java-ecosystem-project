@@ -8,7 +8,7 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_DB: sampleDB
+          POSTGRES_DB: sampledb
           POSTGRES_PASSWORD: root
           POSTGRES_PORT: 5432
           POSTGRES_USER: postgres
@@ -24,17 +24,17 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
-      - name: Install PostgreSQL client
+      - name: Install PostgreSQL client & Maven
         run: |
           apt-get update
           apt-get install --yes postgresql-client
           apt-get install --yes maven
-      - name: Query database
+      - name: Migrate database
         run: |
           pwd
           cd webapi/src/main/resources/db/migration
           pwd
-          psql -h postgres -d sampleDB -U postgres -f "V1__CandidateTable.sql"
+          psql -h postgres -d sampledb -U postgres -f "V1__CandidateTable.sql"
 
         env:
           POSTGRES_HOST: postgres
@@ -51,7 +51,7 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Build with Maven
+      - name: Run tests with Maven
         run: mvn -q clean install -s .github/workflows/maven-settings.xml -B test --file webapi/pom.xml
         env:
           USER_NAME: ${{ secrets.USER_NAME }}

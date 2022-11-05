@@ -6,14 +6,12 @@ java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="postgres" password=secretkey algorithm=PBEWithMD5AndDES
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="root" password=secretkey algorithm=PBEWithMD5AndDES
 
-//DON'T USE THIS
-java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="jdbc:postgresql://127.0.0.1:5432/sampleDB" password=secretkey algorithm=PBEWithMD5AndDES
-
 //USE THE FOLLOWING AND SETUP YOUR HOSTS FILE
-java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="jdbc:postgresql://postgres:5432/sampleDB" password=secretkey algorithm=PBEWithMD5AndDES
+cd C:\Users\dum75377\.m2\repository\org\jasypt\jasypt\1.9.3
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="jdbc:postgresql://postgres:5432/sampledb" password=secretkey algorithm=PBEWithMD5AndDES
 +60ZoQA9C3xIkGsLEvNWWEBSBFHOmOi47JKryyv6zjnHk90WFyZOmvHRN+etifuuZSaTviuNBcU=
 
-jdbc:postgresql://localhost:5432/sampleDB
+jdbc:postgresql://localhost:5432/sampledb
 
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input="1Kq0vluoQ1Vp3Fn9C5FCntojLhDnTtxd" password="secretkey" algorithm=PBEWithMD5AndDES
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringDecryptionCLI input="3XI6tcCl9ss7+DZ9SeMExg==" password="secretkey" algorithm=PBEWithMD5AndDES
@@ -25,15 +23,15 @@ gh api -H "Accept: application/vnd.github+json" /repos/JudeaDumont/java-ecosyste
 gh api --method DELETE -H "Accept: application/vnd.github+json" /repos/JudeaDumont/java-ecosystem-project/actions/caches
 
 
-//USE FLYWAY, DO NOT USE THE FOLLOWING
-CREATE DATABASE sampleDB;
-psql -h postgres -d sampleDB -U postgres
+//Flyway cannot create the database, it will get confused.
+CREATE DATABASE sampledb;
+psql -h postgres -d sampledb -U postgres
 
 
 ./mvnw  --encrypt-master-password root
 {nEhJxY1DZN4HdZ3NidVY1aFUZ5jUSb92HwwAoNRyS8Y=}
 
-./mvnw --encrypt-password jdbc:postgresql://postgres:5432/sampleDB
+./mvnw --encrypt-password jdbc:postgresql://postgres:5432/sampledb
 ./mvnw --encrypt-password postgres
 ./mvnw --encrypt-password root
 

@@ -1,6 +1,6 @@
 app:
   datasource:
-    jdbc-url: ENC(Jlp+Auvm3unyiKRHYpTmXNhmkTqCQWGJnLFk7FnJArUtPTUYqK/cBB0rgixdjm87n3ULVCki4s8=)
+    jdbc-url: ENC(6wEXVtpzWbFVOUS4zGMDu6kSWc/13Mwyn7jjYePTy4lEXXrqcpAOt7Cu+IaJut3vQUGhrDrr6PM=)
     username: ENC(1Kq0vluoQ1Vp3Fn9C5FCntojLhDnTtxd)
     password: ENC(3XI6tcCl9ss7+DZ9SeMExg==)
     pool-size: 3
