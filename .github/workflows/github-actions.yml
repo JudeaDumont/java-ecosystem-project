@@ -45,12 +45,11 @@ jobs:
           POSTGRES_PASSWORD: root
           PGPASSWORD: root
 
-      - name: Cache Maven packages
-        uses: actions/cache@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
         with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+          java-version: 17
+
       - name: Run tests with Maven
         run: |
           cd webapi
@@ -62,3 +61,10 @@ jobs:
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
           PGPASSWORD: root
+
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
