@@ -23,50 +23,93 @@ class WebApiHibernateCandidateServiceTest {
             new CandidateService(
                     new HibernateCandidateDaoService());
 
-    //todo: the integration tests will need to recreate this flow to satisfy "tests can be run individually" and "passing tests don't effect data"
     //todo: hibernateControllerTest should exist for thoroughness.
+
+    private Candidate createCandidateWithUUIDName() {
+        String uuid = UUID.randomUUID().toString();
+        return new Candidate(uuid);
+    }
+
+    private Candidate createCandidateWithNameFromArg(String name) {
+        return new Candidate(name);
+    }
+
+    private Candidate saveCandidateWithName(Candidate candidateWithUUIDName) {
+        int rowsInserted = candidateService.save(candidateWithUUIDName);
+        assert (rowsInserted == 1);
+        return candidateWithUUIDName;
+    }
+
+    private Candidate createCandidateWithNameSaveCandidateReturnCandidate(String name) {
+        Candidate candidateWithUUIDName = createCandidateWithNameFromArg(name);
+        return saveCandidateWithName(candidateWithUUIDName);
+    }
+
+    private Candidate createCandidateSaveCandidateReturnCandidate() {
+        Candidate candidateWithUUIDName = createCandidateWithUUIDName();
+        return saveCandidateWithName(candidateWithUUIDName);
+    }
+
+    private List<Candidate> getCandidatesByName(String candidateName) {
+        return getCandidatesByName(candidateName, 1);
+    }
+
+    private List<Candidate> getCandidatesByName(String candidateName, int numOfExpectedCandidates) {
+        List<Candidate> candidatesMatchingName = candidateService.getByName(candidateName);
+        assert (candidatesMatchingName.size() == numOfExpectedCandidates);
+        assert (Objects.equals(candidatesMatchingName.get(0).getName(), candidateName));
+        return candidatesMatchingName;
+    }
+
+    private Long createCandidateSaveCandidateReturnID() {
+        Long id = candidateService.saveReturnID(new Candidate(UUID.randomUUID().toString()));
+        assert (id != null);
+        assert (id != 0);
+        return id;
+    }
+
+    private void deleteCandidates(List<Candidate> candidatesByName) {
+        for (Candidate candidate: candidatesByName) {
+            assert (candidateService.delete(candidate) == 1);
+        }
+    }
+
+    private Candidate createCandidateSaveCandidateGetCandidateByIDReturnCandidate() throws DuplicatePrimaryKeyException {
+        Long id = createCandidateSaveCandidateReturnID();
+        Candidate candidate = candidateService.get(id);
+        assert (candidate != null);
+        return candidate;
+    }
+
+    private String updateCandidate(Candidate candidate) {
+        String changeUuid1 = UUID.randomUUID().toString();
+        candidate.setName(changeUuid1);
+        int update = candidateService.update(candidate);
+        assert (update == 1);
+        return changeUuid1;
+    }
+
     @Test
     @Order(1)
     void test_Save_GetByName_Delete() {
-        String uuid = UUID.randomUUID().toString();
-
-        int rowsInserted = candidateService.save(new Candidate(uuid));
-        assert (rowsInserted == 1);
-
-        List<Candidate> candidatesMatchingName = candidateService.getByName(uuid);
-        assert (candidatesMatchingName.size() == 1);
-        assert (Objects.equals(candidatesMatchingName.get(0).getName(), uuid));
-
+        Candidate candidateWithUUIDName = createCandidateSaveCandidateReturnCandidate();
+        List<Candidate> candidatesMatchingName = getCandidatesByName(candidateWithUUIDName.getName());
         assert (candidateService.delete(candidatesMatchingName.get(0)) == 1);
     }
 
     @Test
     @Order(2)
     void test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll() {
-        String uuid1 = UUID.randomUUID().toString();
-        String uuid2 = UUID.randomUUID().toString();
+        int candidatesSize = candidateService.getAll().size();
 
-        Collection<Candidate> candidates = candidateService.getAll();
-        int candidatesSize = candidates.size();
+        String candidateName = createCandidateSaveCandidateReturnCandidate().getName();
 
-        int rowsInserted = candidateService.save(new Candidate(uuid1));
-        assert (rowsInserted == 1);
-        int rowsInserted2 = candidateService.save(new Candidate(uuid2));
-        assert (rowsInserted2 == 1);
+        createCandidateWithNameSaveCandidateReturnCandidate(candidateName);
 
-        Collection<Candidate> candidatesAfterInsert = candidateService.getAll();
-        assert (candidatesAfterInsert.size() == candidatesSize + 2);
+        List<Candidate> candidatesByName = getCandidatesByName(candidateName, 2);
+        assert (candidatesByName.size() == candidatesSize + 2);
 
-        List<Candidate> candidatesMatchingName = candidateService.getByName(uuid1);
-        assert (candidatesMatchingName.size() == 1);
-        assert (Objects.equals(candidatesMatchingName.get(0).getName(), uuid1));
-
-        List<Candidate> candidatesMatchingName2 = candidateService.getByName(uuid2);
-        assert (candidatesMatchingName2.size() == 1);
-        assert (Objects.equals(candidatesMatchingName2.get(0).getName(), uuid2));
-
-        assert (candidateService.delete(candidatesMatchingName.get(0)) == 1);
-        assert (candidateService.delete(candidatesMatchingName2.get(0)) == 1);
+        deleteCandidates(candidatesByName);
 
         Collection<Candidate> candidatesAfterDelete = candidateService.getAll();
         assert (candidatesAfterDelete.size() == candidatesSize);
@@ -75,48 +118,29 @@ class WebApiHibernateCandidateServiceTest {
     @Test
     @Order(3)
     void test_SaveID_Get_Del() throws DuplicatePrimaryKeyException {
-        String uuid1 = UUID.randomUUID().toString();
-
-        Long id = candidateService.saveReturnID(new Candidate(uuid1));
-        assert (id != null);
-        assert (id != 0);
-
-        Candidate candidate = candidateService.get(id);
-        assert (candidate != null);
-
+        Candidate candidate = createCandidateSaveCandidateGetCandidateByIDReturnCandidate();
         assert (candidateService.delete(candidate) == 1);
     }
 
     @Test
     @Order(4)
     void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws DuplicatePrimaryKeyException {
-        String uuid1 = UUID.randomUUID().toString();
-        String changeUuid1 = UUID.randomUUID().toString();
+        Candidate candidate = createCandidateSaveCandidateGetCandidateByIDReturnCandidate();
+        String nameBeforeChange = candidate.getName();
 
-        Long id = candidateService.saveReturnID(new Candidate(uuid1));
-        assert (id != null);
-        assert (id != 0);
+        String changeUuid1 = updateCandidate(candidate);
 
-        Candidate candidate = candidateService.get(id);
-        assert (candidate != null);
-
-        candidate.setName(changeUuid1);
-
-        int update = candidateService.update(candidate);
-
-        List<Candidate> candidatesMatchingName = candidateService.getByName(uuid1);
+        List<Candidate> candidatesMatchingName = candidateService.getByName(nameBeforeChange);
         assert (candidatesMatchingName.size() == 0);
 
         List<Candidate> candidatesMatchingChangeName = candidateService.getByName(changeUuid1);
         assert (Objects.equals(candidatesMatchingChangeName.get(0).getName(), changeUuid1));
-
-        assert (update == 1);
         assert (candidateService.delete(candidate) == 1);
     }
 
     @Test
     @Order(5)
-    void test_SaveID_Get_Del_Del() throws DuplicatePrimaryKeyException {
+    void test_BadDelete() throws DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
 
         Long id = candidateService.saveReturnID(new Candidate(uuid1));
@@ -131,17 +155,13 @@ class WebApiHibernateCandidateServiceTest {
 
     @Test
     @Order(6)
-    void test_SaveReturnID() {
-        Candidate kraken = new Candidate("kraken");
-        Long id = candidateService.saveReturnID(kraken);
-        assert (id != null && id != 0);
-        assert (candidateService.delete(kraken) == 1);
+    void test_SaveReturnID() throws DuplicatePrimaryKeyException {
+        assert (candidateService.delete(createCandidateSaveCandidateGetCandidateByIDReturnCandidate()) == 1);
     }
 
     @Test
     @Order(7)
     void test_BadUpdate() {
-        String uuid1 = UUID.randomUUID().toString();
-        assert (candidateService.update(new Candidate(0L, uuid1)) == 0);
+        assert (candidateService.update(new Candidate(0L, UUID.randomUUID().toString())) == 0);
     }
 }

@@ -44,6 +44,4 @@ public class WebapiApplication {
 
 //todo: encrypt the information in github actions and maven setting
 
-//todo: flyway should be used instead of running the create DB and sql itself.
-
 //todo: encrypt the credentials in the pom file (its annoying because you have to use maven settings that are external to the project)
