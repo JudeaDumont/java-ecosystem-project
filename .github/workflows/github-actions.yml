@@ -36,8 +36,8 @@ jobs:
           pwd
           cd webapi
           pwd
-          mvn -q flyway:baseline
-          mvn -q flyway:migrate
+          mvn -q flyway:baseline -s .github/workflows/maven-settings.xml
+          mvn -q flyway:migrate -s .github/workflows/maven-settings.xml
 
         env:
           POSTGRES_HOST: postgres
