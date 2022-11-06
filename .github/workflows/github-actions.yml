@@ -34,8 +34,6 @@ jobs:
       - name: Migrate database, build project for flyway
         run: |
           pwd
-          cd webapi
-          pwd
           mvn -q flyway:baseline -s .github/workflows/maven-settings.xml
           mvn -q flyway:migrate -s .github/workflows/maven-settings.xml
 
