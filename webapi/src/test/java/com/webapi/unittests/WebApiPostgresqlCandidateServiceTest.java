@@ -26,48 +26,28 @@ class WebApiPostgresqlCandidateServiceTest {
                             new JdbcTemplate(
                                     testutil.PostgresDataSource.getDataSource())));
 
+    CandidateServiceTestHelper helper = new CandidateServiceTestHelper(candidateService);
+
     @Test
     @Order(1)
     void test_Save_GetByName_Delete() {
-        String uuid = UUID.randomUUID().toString();
-
-        int rowsInserted = candidateService.save(new Candidate(uuid));
-        assert (rowsInserted == 1);
-
-        List<Candidate> candidatesMatchingName = candidateService.getByName(uuid);
-        assert (candidatesMatchingName.size() == 1);
-        assert (Objects.equals(candidatesMatchingName.get(0).getName(), uuid));
-
+        Candidate candidateWithUUIDName = helper.createCandidateSaveCandidateReturnCandidate();
+        List<Candidate> candidatesMatchingName = helper.getCandidatesByName(candidateWithUUIDName.getName());
         assert (candidateService.delete(candidatesMatchingName.get(0)) == 1);
     }
 
     @Test
     @Order(2)
-    void test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll() {
-        String uuid1 = UUID.randomUUID().toString();
-        String uuid2 = UUID.randomUUID().toString();
+    void test_CandidateWithSameName() {
+        int candidatesSize = candidateService.getAll().size();
 
-        Collection<Candidate> candidates = candidateService.getAll();
-        int candidatesSize = candidates.size();
+        String candidateName = helper.createCandidateSaveCandidateReturnCandidate().getName();
+        helper.createCandidateWithNameSaveCandidateReturnCandidate(candidateName);
 
-        int rowsInserted = candidateService.save(new Candidate(uuid1));
-        assert (rowsInserted == 1);
-        int rowsInserted2 = candidateService.save(new Candidate(uuid2));
-        assert (rowsInserted2 == 1);
+        List<Candidate> candidatesByName = helper.getCandidatesByName(candidateName, 2);
+        assert (candidatesByName.size() == candidatesSize + 2);
 
-        Collection<Candidate> candidatesAfterInsert = candidateService.getAll();
-        assert (candidatesAfterInsert.size() == candidatesSize + 2);
-
-        List<Candidate> candidatesMatchingName = candidateService.getByName(uuid1);
-        assert (candidatesMatchingName.size() == 1);
-        assert (Objects.equals(candidatesMatchingName.get(0).getName(), uuid1));
-
-        List<Candidate> candidatesMatchingName2 = candidateService.getByName(uuid2);
-        assert (candidatesMatchingName2.size() == 1);
-        assert (Objects.equals(candidatesMatchingName2.get(0).getName(), uuid2));
-
-        assert (candidateService.delete(candidatesMatchingName.get(0)) == 1);
-        assert (candidateService.delete(candidatesMatchingName2.get(0)) == 1);
+        helper.deleteCandidates(candidatesByName);
 
         Collection<Candidate> candidatesAfterDelete = candidateService.getAll();
         assert (candidatesAfterDelete.size() == candidatesSize);
@@ -76,48 +56,29 @@ class WebApiPostgresqlCandidateServiceTest {
     @Test
     @Order(3)
     void test_SaveID_Get_Del() throws DuplicatePrimaryKeyException {
-        String uuid1 = UUID.randomUUID().toString();
-
-        Long id = candidateService.saveReturnID(new Candidate(uuid1));
-        assert (id != null);
-        assert (id != 0);
-
-        Candidate candidate = candidateService.get(id);
-        assert (candidate != null);
-
+        Candidate candidate = helper.createCandidateSaveCandidateGetCandidateByIDReturnCandidate();
         assert (candidateService.delete(candidate) == 1);
     }
 
     @Test
     @Order(4)
     void test_SaveID_Get_Update_GetByName_GetByName_Delete() throws DuplicatePrimaryKeyException {
-        String uuid1 = UUID.randomUUID().toString();
-        String changeUuid1 = UUID.randomUUID().toString();
+        Candidate candidate = helper.createCandidateSaveCandidateGetCandidateByIDReturnCandidate();
+        String nameBeforeChange = candidate.getName();
 
-        Long id = candidateService.saveReturnID(new Candidate(uuid1));
-        assert (id != null);
-        assert (id != 0);
+        String changeUuid1 = helper.updateCandidate(candidate);
 
-        Candidate candidate = candidateService.get(id);
-        assert (candidate != null);
-
-        candidate.setName(changeUuid1);
-
-        int update = candidateService.update(candidate);
-
-        List<Candidate> candidatesMatchingName = candidateService.getByName(uuid1);
+        List<Candidate> candidatesMatchingName = candidateService.getByName(nameBeforeChange);
         assert (candidatesMatchingName.size() == 0);
 
         List<Candidate> candidatesMatchingChangeName = candidateService.getByName(changeUuid1);
         assert (Objects.equals(candidatesMatchingChangeName.get(0).getName(), changeUuid1));
-
-        assert (update == 1);
         assert (candidateService.delete(candidate) == 1);
     }
 
     @Test
     @Order(5)
-    void test_SaveID_Get_Del_Del() throws DuplicatePrimaryKeyException {
+    void test_BadDelete() throws DuplicatePrimaryKeyException {
         String uuid1 = UUID.randomUUID().toString();
 
         Long id = candidateService.saveReturnID(new Candidate(uuid1));
@@ -132,18 +93,13 @@ class WebApiPostgresqlCandidateServiceTest {
 
     @Test
     @Order(6)
-    void test_SaveReturnID2() {
-        Candidate kraken = new Candidate("kraken");
-        Long id = candidateService.saveReturnID(kraken);
-        kraken.setId(id); //postgresql uses raw sql, it isn't going to manipulate the java object for you.
-        assert (id != null && id != 0);
-        assert (candidateService.delete(kraken) == 1);
+    void test_SaveReturnID() throws DuplicatePrimaryKeyException {
+        assert (candidateService.delete(helper.createCandidateSaveCandidateGetCandidateByIDReturnCandidate()) == 1);
     }
 
     @Test
     @Order(7)
     void test_BadUpdate() {
-        String uuid1 = UUID.randomUUID().toString();
-        assert (candidateService.update(new Candidate(0L, uuid1)) == 0);
+        assert (candidateService.update(new Candidate(0L, UUID.randomUUID().toString())) == 0);
     }
 }
