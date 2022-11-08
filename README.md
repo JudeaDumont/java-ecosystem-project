@@ -33,3 +33,9 @@
 - Copy settings-security.xml to C:\Users\<user>\.m2\settings-security.xml
 - Make sure that the maven settings used are the ones found in .github/workflows
 - Change maven settings in IntelliJ to use .github/workflows settings
+
+
+
+#TroubleShooting:
+- You might see an error "java.lang.IllegalArgumentException: Password cannot be set empty"
+- this means you are missing the environment variable: JASYPT_ENCRYPTOR_PASSWORD=secretkey
