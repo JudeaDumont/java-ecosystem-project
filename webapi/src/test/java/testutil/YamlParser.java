@@ -15,7 +15,7 @@ public class YamlParser {
     public static Map<String, String> getPostgreDataSource() {
         Map<String, String> meaningfulData = new HashMap<>();
         try {
-            InputStream inputStream = new FileInputStream(new File("").getAbsolutePath().concat("\\src\\main\\resources\\application.yaml"));
+            InputStream inputStream = new FileInputStream(new File("").getAbsolutePath().concat("/src/main/resources/application.yaml"));
             Yaml yaml = new Yaml();
 
             Map<String, Map<String, Map<String, String>>> data = null;
