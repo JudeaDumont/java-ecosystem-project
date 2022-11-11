@@ -2,10 +2,7 @@ package com.webapi.model.candidate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.webapi.model.ID;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Table;
 
@@ -15,6 +12,16 @@ import org.hibernate.annotations.Table;
 @Entity
 @Table(appliesTo = "Candidate")
 public class Candidate implements ID {
+    @Id
+    @SequenceGenerator(
+            name = "candidate_sequence",
+            sequenceName = "candidate_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "candidate_sequence"
+    )
     private Long id;
     private String name;
 

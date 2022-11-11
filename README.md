@@ -14,11 +14,13 @@
 - See \webapi\src\main\util\CommandsFile
 - Port: 5432
 - Needs user: "postgres" with password: "root"
-- Create DB: "SampleDB"
+- Create DB: "SampleDB" CREATE DATABASE sampledb;
+
 
 ## Migrate Flyway
 
 - Open Maven project widget in intelliJ
+- Make sure that the maven settings used are the ones found in .github/workflows/maven-settings.xml
 - Run Baseline
 - Run Migrate
 - Should all be green as long as this is a proper clean install etc.
@@ -31,8 +33,8 @@
 - run ./mvnw  --encrypt-master-password root
 - save the results into settings.security
 - Copy settings-security.xml to C:\Users\<user>\.m2\settings-security.xml
-- Make sure that the maven settings used are the ones found in .github/workflows
-- Change maven settings in IntelliJ to use .github/workflows settings
+- Make sure that the maven settings used are the ones found in .github/workflows/maven-settings.xml
+- Change maven settings in IntelliJ to use .github/workflows/maven-settings.xml
 
 
 
