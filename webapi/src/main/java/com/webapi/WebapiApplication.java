@@ -24,6 +24,10 @@ public class WebapiApplication {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setAllowedOrigins(Arrays.asList(
+                "http://localhost:3000", //React
+                "http://localhost:4200" //Angular
+        ));
+        corsConfiguration.setAllowedHeaders(Arrays.asList(
                 "Origin",
                 "Access-Control-Allow-Origin",
                 "Content-Type",
@@ -35,7 +39,7 @@ public class WebapiApplication {
                 "X-Requested-With",
                 "Access-Control-Request-Method",
                 "Access-Control-Request-Headers"
-                ));
+        ));
         corsConfiguration.setExposedHeaders(Arrays.asList(
                 "Origin",
                 "Content-Type",
