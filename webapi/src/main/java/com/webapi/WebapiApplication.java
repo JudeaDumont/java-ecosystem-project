@@ -19,6 +19,7 @@ public class WebapiApplication {
     }
 
     @Bean
+    @SuppressWarnings("unused")
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -94,3 +95,5 @@ public class WebapiApplication {
 //todo: encrypt the information in github actions and maven setting
 
 //todo: encrypt the credentials in the pom file (its annoying because you have to use maven settings that are external to the project)
+
+//todo: add an enum to the schema, use flyway, integrate all the way up into UI
