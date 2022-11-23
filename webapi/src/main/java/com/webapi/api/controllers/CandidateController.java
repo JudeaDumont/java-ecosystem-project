@@ -29,7 +29,19 @@ public class CandidateController {
     public Candidate get(@PathVariable Long candidateID) throws DuplicatePrimaryKeyException {
         return candidateService.get(candidateID);
     }
-
+    //todo: Wrap the results in an object named for response i.e. "CandidateResponse" that has time stamp information etc.
+    //  export interface CandidateResponse {
+    //    timeStamp: Date;
+    //    statusCode: number;
+    //    status: string;
+    //    reason: string;
+    //    message: string;
+    //    developerMessage: string;
+    //    data: {
+    //        candidates?: Candidate[],
+    //        candidate?: Candidate,
+    //    }
+    //}
     @GetMapping
     public Collection<Candidate> getAll() {
         return candidateService.getAll();
