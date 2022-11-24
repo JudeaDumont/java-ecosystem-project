@@ -49,7 +49,7 @@ class WebApiPostgresqlControllerTest {
         String uuid1 = UUID.randomUUID().toString();
         String uuid2 = UUID.randomUUID().toString();
 
-        Collection<Candidate> candidates = candidateController.getAll();
+        Collection<Candidate> candidates = (Collection<Candidate>) candidateController.getAll().getBody().getData().get("candidates");
         int candidatesSize = candidates.size();
 
         int rowsInserted = candidateController.save(new Candidate(uuid1));
@@ -57,7 +57,7 @@ class WebApiPostgresqlControllerTest {
         int rowsInserted2 = candidateController.save(new Candidate(uuid2));
         assert (rowsInserted2 == 1);
 
-        Collection<Candidate> candidatesAfterInsert = candidateController.getAll();
+        Collection<Candidate> candidatesAfterInsert = (Collection<Candidate>) candidateController.getAll().getBody().getData().get("candidates");
         assert (candidatesAfterInsert.size() == candidatesSize + 2);
 
         List<Candidate> candidatesMatchingName = candidateController.getByName(uuid1);
@@ -71,7 +71,7 @@ class WebApiPostgresqlControllerTest {
         assert (candidateController.delete(candidatesMatchingName.get(0).getId()) == 1);
         assert (candidateController.delete(candidatesMatchingName2.get(0).getId()) == 1);
 
-        Collection<Candidate> candidatesAfterDelete = candidateController.getAll();
+        Collection<Candidate> candidatesAfterDelete = (Collection<Candidate>) candidateController.getAll().getBody().getData().get("candidates");
         assert (candidatesAfterDelete.size() == candidatesSize);
     }
 

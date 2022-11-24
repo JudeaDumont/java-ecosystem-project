@@ -1,13 +1,18 @@
 package com.webapi.api.controllers;
 
 import com.webapi.databasedrivers.DuplicatePrimaryKeyException;
+import com.webapi.model.Response;
 import com.webapi.model.candidate.Candidate;
 import com.webapi.services.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+
+import static java.time.LocalDateTime.now;
+import static org.springframework.http.HttpStatus.OK;
 
 @RequestMapping("api/v1/candidate")
 @RestController
@@ -29,6 +34,7 @@ public class CandidateController {
     public Candidate get(@PathVariable Long candidateID) throws DuplicatePrimaryKeyException {
         return candidateService.get(candidateID);
     }
+
     //todo: Wrap the results in an object named for response i.e. "CandidateResponse" that has time stamp information etc.
     //  export interface CandidateResponse {
     //    timeStamp: Date;
@@ -43,8 +49,17 @@ public class CandidateController {
     //    }
     //}
     @GetMapping
-    public Collection<Candidate> getAll() {
-        return candidateService.getAll();
+    public ResponseEntity<Response>
+    getAll() {
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(Map.of("candidates", candidateService.getAll()))
+                        .message("Candidates retrieved")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
     }
 
     @GetMapping("/getByName/{candidateName}")

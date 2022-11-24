@@ -1,6 +1,7 @@
 package com.webapi.integrationtests.tests.Candidate;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.webapi.integrationtests.IntegrationTestHttpClient;
 import com.webapi.model.candidate.Candidate;
@@ -65,10 +66,15 @@ public class CandidateTestHelperFunctions {
                 get(springHost + port + "/api/v1/candidate");
 
         assert (allCandidates.statusCode() == 200);
-        return gson.fromJson(
-                allCandidates.body(),
-                new TypeToken<List<Candidate>>() {
-                }.getType());
+        //if you try and fromJson the body into a Response object it throws up because timestamp type visibility,
+        // therefor we have to unpack the object via strings as follows
+
+        String body = allCandidates.body();
+        JsonObject response = gson.fromJson(body, JsonObject.class);
+        JsonObject data = gson.fromJson(response.get("data").toString(), JsonObject.class);
+        List<Candidate> candidates = gson.fromJson(data.get("candidates").toString(), new TypeToken<List<Candidate>>() {
+        }.getType());
+        return candidates;
     }
 
     private String postCandidateReturnID(Candidate newCandidate1) throws IOException, InterruptedException {

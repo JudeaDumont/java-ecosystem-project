@@ -11,7 +11,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -45,12 +44,14 @@ class WebApiPostgresqlCandidateServiceTest {
         helper.createCandidateWithNameSaveCandidateReturnCandidate(candidateName);
 
         List<Candidate> candidatesByName = helper.getCandidatesByName(candidateName, 2);
-        assert (candidatesByName.size() == candidatesSize + 2);
+
+        int candidatesAfterAdd = candidateService.getAll().size();
+        assert (candidatesAfterAdd == candidatesSize + 2);
 
         helper.deleteCandidates(candidatesByName);
 
-        Collection<Candidate> candidatesAfterDelete = candidateService.getAll();
-        assert (candidatesAfterDelete.size() == candidatesSize);
+        int candidatesAfterDelete = candidateService.getAll().size();
+        assert (candidatesAfterDelete == candidatesSize);
     }
 
     @Test
