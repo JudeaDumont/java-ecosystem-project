@@ -71,6 +71,7 @@ jobs:
           cd angular
           apt-get -q install --yes npm
           yes | npm install -g @angular/cli
+          ng serve
           
 
       - name: Cache Maven packages
