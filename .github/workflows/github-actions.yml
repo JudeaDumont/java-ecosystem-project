@@ -71,7 +71,8 @@ jobs:
           cd angular
           apt-get -q install --yes npm
           yes | npm install -g @angular/cli
-          ng update @angular/cli @angular/core --allow-dirty --force
+          yes | npm install -g @angular/core
+          
           ng serve
           
 
