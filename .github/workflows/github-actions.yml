@@ -73,6 +73,7 @@ jobs:
           apt-get -q install --yes npm
           yes | npm install -g @angular/cli
           yes | npm install -g @angular/core
+          npm install --save-dev @angular-devkit/build-angular
           
           ng serve
           
