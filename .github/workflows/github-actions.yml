@@ -69,6 +69,7 @@ jobs:
       - name: Install NPM
         run: |
           cd angular
+          pwd
           apt-get -q install --yes npm
           yes | npm install -g @angular/cli
           yes | npm install -g @angular/core
