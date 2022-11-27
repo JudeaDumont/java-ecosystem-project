@@ -70,6 +70,10 @@ jobs:
         run: |
           cd angular
           apt-get -q install --yes npm
+          yes | npm install -g @angular/cli
+          yes | ng update @angular/cli @angular/core --allow-dirty
+          yes | npm i @angular/material@15.0.0
+          
 
       - name: Cache Maven packages
         uses: actions/cache@v3
