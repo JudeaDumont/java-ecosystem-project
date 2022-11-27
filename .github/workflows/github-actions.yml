@@ -60,11 +60,16 @@ jobs:
           POSTGRES_PORT: 5432
           PGPASSWORD: root
 
-      - name: CheckoutAngular
+      - name: Checkout Angular
         uses: actions/checkout@v3
         with:
           repository: JudeaDumont/angular8-frontend
           path: ./angular
+
+      - name: Install NPM
+        run: |
+          cd angular
+          apt-get -q install --yes npm
 
       - name: Cache Maven packages
         uses: actions/cache@v3
