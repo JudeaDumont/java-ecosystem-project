@@ -40,7 +40,7 @@ jobs:
           
           apt-get install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome*.deb 2>/dev/null
+          dpkg -i google-chrome*.deb || true
           apt-get install -f
           
           cd SeleniumWithCucucumber
