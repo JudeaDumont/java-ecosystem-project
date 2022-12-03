@@ -76,7 +76,6 @@ jobs:
           npm install --save-dev @angular-devkit/build-angular@15.0.0
           ng update @angular/cli @angular/core --allow-dirty
           npm i @angular/material@15.0.0
-          pwd
           
           nohup ng serve 2>&1 >> /var/log/ng.log &
           
