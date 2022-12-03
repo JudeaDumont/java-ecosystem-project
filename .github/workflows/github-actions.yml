@@ -46,10 +46,10 @@ jobs:
           google-chrome --version
           google-chrome --headless --no-sandbox
           
-          ln -s /usr/bin/google-chrome-stable /usr/bin/google-chrome
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
           mvn clean verify -Dtestng.dtd.http=true
+#          Google Chrome 108.0.5359.94
 
       - name: Checkout the repository
         uses: actions/checkout@v3
