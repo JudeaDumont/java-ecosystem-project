@@ -87,7 +87,7 @@ jobs:
 
       - name: Build Selenium/Cucumber with Maven
         run:  |
-          yes | npm install chrome -g
+          yes | npm install puppeteer -g
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
           mvn clean verify -Dtestng.dtd.http=true
