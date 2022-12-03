@@ -37,6 +37,8 @@ jobs:
         run: |
           yes | npm install chromium -g
           yes | npm install puppeteer -g
+          apt-get -q install --yes maven
+          
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
           mvn clean verify -Dtestng.dtd.http=true
@@ -48,7 +50,6 @@ jobs:
         run: |
           apt-get -q update
           apt-get -q install --yes postgresql-client
-          apt-get -q install --yes maven
 
       - name: Migrate database, build project for flyway
         run: |
