@@ -44,6 +44,7 @@ jobs:
           apt-get install --yes -f
           echo creamy
           google-chrome --version
+          google-chrome --headless
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
