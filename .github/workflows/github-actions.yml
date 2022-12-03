@@ -37,7 +37,8 @@ jobs:
         run: |
           apt-get -q update
           apt-get -q install --yes maven
-          npm i latest-chrome-version
+          npm i chrome
+          npm i chromedriver
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
