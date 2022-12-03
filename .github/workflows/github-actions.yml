@@ -37,12 +37,7 @@ jobs:
         run: |
           apt-get -q update
           apt-get -q install --yes maven
-          
-          apt-get install -y libappindicator1 fonts-liberation
-          apt-get install -f
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome*.deb
-          google-chrome-stable -version
+          npm install --global chrome-headless-launcher
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
