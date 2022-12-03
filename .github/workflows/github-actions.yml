@@ -84,12 +84,6 @@ jobs:
         with:
           repository: JudeaDumont/SeleniumWithCucucumber
           path: ./SeleniumWithCucucumber
-
-      - name: Change Selenium/Cucumber Directory
-        run: |
-          cd SeleniumWithCucucumber
-          echo SeleniumCucumber
-          pwd
           
       - name: Set up Selenium/Cucumber JDK 1.8
         uses: actions/setup-java@v1
@@ -97,7 +91,11 @@ jobs:
           java-version: 10
 
       - name: Build Selenium/Cucumber with Maven
-        run: mvn clean verify -Dtestng.dtd.http=true
+        run:  |
+          cd SeleniumWithCucucumber
+          echo SeleniumCucumber
+          pwd
+          mvn clean verify -Dtestng.dtd.http=true
 
       - uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
