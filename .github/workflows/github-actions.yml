@@ -37,7 +37,7 @@ jobs:
         run: |
           apt-get -q update
           apt-get -q install --yes maven
-          apt-get -q install xvfb
+          apt-get -q install --yes xvfb
           
           apt-get install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
