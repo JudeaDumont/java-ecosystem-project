@@ -27,6 +27,20 @@ jobs:
         with:
           java-version: 19
 
+      - name: Checkout Selenium/Cucumber
+        uses: actions/checkout@v3
+        with:
+          repository: JudeaDumont/SeleniumWithCucucumber
+          path: ./SeleniumWithCucucumber
+
+      - name: Build Selenium/Cucumber with Maven
+        run: |
+          yes | npm install chromium -g
+          yes | npm install puppeteer -g
+          cd SeleniumWithCucucumber
+          echo SeleniumCucumber
+          mvn clean verify -Dtestng.dtd.http=true
+
       - name: Checkout the repository
         uses: actions/checkout@v3
 
@@ -78,19 +92,7 @@ jobs:
           npm i @angular/material@15.0.0
           
           nohup ng serve 2>&1 >> /var/log/ng.log &
-          
-      - name: Checkout Selenium/Cucumber
-        uses: actions/checkout@v3
-        with:
-          repository: JudeaDumont/SeleniumWithCucucumber
-          path: ./SeleniumWithCucucumber
 
-      - name: Build Selenium/Cucumber with Maven
-        run:  |
-          yes | npm install puppeteer -g
-          cd SeleniumWithCucucumber
-          echo SeleniumCucumber
-          mvn clean verify -Dtestng.dtd.http=true
 
       - uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
