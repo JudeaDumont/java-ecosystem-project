@@ -94,7 +94,6 @@ jobs:
         run:  |
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
-          pwd
           mvn clean verify -Dtestng.dtd.http=true
 
       - uses: deblockt/cucumber-report-annotations-action@v1.7
