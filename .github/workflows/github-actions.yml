@@ -37,9 +37,7 @@ jobs:
         run: |
           apt-get -q update
           apt-get -q install --yes maven
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome-stable_current_amd64.deb
-          apt-get install -f
+          npm i latest-chrome-version
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
