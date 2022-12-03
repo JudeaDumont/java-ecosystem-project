@@ -37,6 +37,7 @@ jobs:
         run: |
           apt-get -q update
           apt-get -q install --yes maven
+          apt-get -q install xvfb
           
           apt-get install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -45,11 +46,13 @@ jobs:
           echo creamy
           google-chrome --version
           google-chrome --headless --no-sandbox
+          Xvfb :0 -ac -screen 0 1024x768x24 &
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
           mvn clean verify -Dtestng.dtd.http=true
 #          Google Chrome 108.0.5359.94
+                        #108.0.5359.71
 
       - name: Checkout the repository
         uses: actions/checkout@v3
