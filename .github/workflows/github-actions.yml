@@ -37,8 +37,7 @@ jobs:
         run: |
           apt-get -q update
           apt-get -q install --yes maven
-          yes | npm install chromium -g
-          yes | npm install puppeteer -g
+          apt-get -q install google-chrome-stable
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
