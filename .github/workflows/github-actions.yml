@@ -45,6 +45,7 @@ jobs:
           echo creamy
           google-chrome --version
           google-chrome --headless --no-sandbox
+          Xvfb :0 -ac -screen 0 1024x768x24 &
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
