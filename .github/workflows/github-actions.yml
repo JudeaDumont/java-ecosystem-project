@@ -42,6 +42,8 @@ jobs:
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           dpkg -i google-chrome*.deb || true
           apt-get install --yes -f
+          echo:creamy
+          google-chrome --version
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
