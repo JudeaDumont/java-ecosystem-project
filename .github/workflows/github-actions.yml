@@ -35,9 +35,10 @@ jobs:
 
       - name: Build Selenium/Cucumber with Maven
         run: |
+          apt-get -q update
+          apt-get -q install --yes maven
           yes | npm install chromium -g
           yes | npm install puppeteer -g
-          apt-get -q install --yes maven
           
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
@@ -48,7 +49,6 @@ jobs:
 
       - name: Install PostgreSQL client & Maven
         run: |
-          apt-get -q update
           apt-get -q install --yes postgresql-client
 
       - name: Migrate database, build project for flyway
