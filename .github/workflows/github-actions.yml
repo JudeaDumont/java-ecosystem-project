@@ -3,7 +3,7 @@ on: [ push ]
 jobs:
   build-and-test-job:
     runs-on: ubuntu-latest
-    container: node:latest
+#    container: node:latest
     services:
       postgres:
         image: postgres:latest
