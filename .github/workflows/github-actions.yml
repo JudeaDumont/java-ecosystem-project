@@ -79,12 +79,13 @@ jobs:
           
           nohup ng serve 2>&1 >> /var/log/ng.log &
           
-      - name: Checkout SeleniumWithCucucumber
-
+      - name: Checkout Selenium/Cucumber
         uses: actions/checkout@v3
         with:
           repository: JudeaDumont/SeleniumWithCucucumber
           path: ./SeleniumWithCucucumber
+
+      - name: Change Selenium/Cucumber Directory
         run: |
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
