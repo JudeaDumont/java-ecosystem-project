@@ -79,7 +79,6 @@ jobs:
           ng update @angular/cli @angular/core --allow-dirty
           npm i @angular/material@15.0.0
           
-          nohup ng serve 2>&1 >> /var/log/ng.log &
 
       - name: Checkout Selenium/Cucumber
         uses: actions/checkout@v3
@@ -89,7 +88,7 @@ jobs:
 
       - name: Build Selenium/Cucumber with Maven
 
-        #fix for dbus included (chrome still fails)
+        #fix for dbus included
         run: |
           apt-get -q install --yes xvfb
           echo creamydbus
@@ -108,6 +107,9 @@ jobs:
           google-chrome --headless --no-sandbox
           Xvfb :0 -ac -screen 0 1024x768x24 &
 
+          cd angular
+          nohup ng serve 2>&1 >> /var/log/ng.log &
+          cd ..
 
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
