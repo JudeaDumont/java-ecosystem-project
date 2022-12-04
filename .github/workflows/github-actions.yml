@@ -37,6 +37,8 @@ jobs:
           path: ./SeleniumWithCucucumber
 
       - name: Build Selenium/Cucumber with Maven
+
+        #fix for dbus included (chrome still fails)
         run: |
           apt-get -q update
           apt-get -q install --yes maven
