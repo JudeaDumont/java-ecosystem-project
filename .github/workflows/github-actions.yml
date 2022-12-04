@@ -4,6 +4,7 @@ jobs:
   build-and-test-job:
     runs-on: ubuntu-latest
     container: node:latest
+    options: --hostname stack
     services:
       postgres:
         image: postgres:latest
