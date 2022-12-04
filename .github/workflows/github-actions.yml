@@ -112,8 +112,6 @@ jobs:
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
           mvn clean verify -Dtestng.dtd.http=true
-          #          Google Chrome 108.0.5359.94
-        #108.0.5359.71
 
       - uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
