@@ -43,6 +43,8 @@ jobs:
           apt-get -q install --yes xvfb
           echo creamydbus
           apt-get -q install --yes dbus
+          mkdir /run/dbus -p
+          dbus-daemon --system
 
           apt-get -q install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
