@@ -108,8 +108,7 @@ jobs:
           Xvfb :0 -ac -screen 0 1024x768x24 &
 
           cd angular
-          nohup ng serve 2>&1 >> /var/log/ng.log &
-          ng serve
+          ng serve &
           cd ..
           
           echo hostnameplease
