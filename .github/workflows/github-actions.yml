@@ -99,7 +99,7 @@ jobs:
 
           apt-get -q install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome*.deb || true
+          dpkg -i google-chrome*.deb || true &> /dev/null
           apt-get -q install --yes -f
           ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
           google-chrome --version
@@ -110,13 +110,8 @@ jobs:
           cd angular
           ng serve &
           cd ..
-          
-          echo hostnameplease
-          echo $HOSTNAME
-          cat /proc/sys/kernel/hostname
 
           cd SeleniumWithCucucumber
-          echo SeleniumCucumber
           mvn -q clean verify -Dtestng.dtd.http=true
 
       - uses: deblockt/cucumber-report-annotations-action@v1.7
