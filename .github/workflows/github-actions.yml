@@ -99,7 +99,7 @@ jobs:
 
           apt-get -q install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome*.deb || true &> /dev/null
+          dpkg -i google-chrome*.deb || true 
           apt-get -q install --yes -f
           ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
           google-chrome --version
