@@ -57,6 +57,11 @@ jobs:
 #          Google Chrome 108.0.5359.94
                         #108.0.5359.71
 
+      - uses: deblockt/cucumber-report-annotations-action@v1.7
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          path: "**/cucumber.json"
+
       - name: Checkout the repository
         uses: actions/checkout@v3
 
@@ -106,12 +111,6 @@ jobs:
           npm i @angular/material@15.0.0
           
           nohup ng serve 2>&1 >> /var/log/ng.log &
-
-
-      - uses: deblockt/cucumber-report-annotations-action@v1.7
-        with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          path: "**/cucumber.json"
 
       - name: Deploy Selenium/Cucumber report page to GitHub Page
         uses: peaceiris/actions-gh-pages@v3
