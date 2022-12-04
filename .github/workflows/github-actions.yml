@@ -39,10 +39,10 @@ jobs:
           apt-get -q install --yes maven
           apt-get -q install --yes xvfb
           
-          apt-get install -y libappindicator1 fonts-liberation
+          apt-get -q install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           dpkg -i google-chrome*.deb || true
-          apt-get install --yes -f
+          apt-get -q install --yes -f
           echo creamy
           ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
           google-chrome --version
