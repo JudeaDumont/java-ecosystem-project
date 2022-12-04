@@ -110,6 +110,10 @@ jobs:
           cd angular
           nohup ng serve 2>&1 >> /var/log/ng.log &
           cd ..
+          
+          echo hostnameplease
+          echo $HOSTNAME
+          cat /proc/sys/kernel/hostname
 
           cd SeleniumWithCucucumber
           echo SeleniumCucumber
