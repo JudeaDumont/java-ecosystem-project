@@ -23,107 +23,107 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-        steps:
-          - name: Set up JDK 19
-            uses: actions/setup-java@v1
-            with:
-              java-version: 19
+      steps:
+        - name: Set up JDK 19
+          uses: actions/setup-java@v1
+          with:
+            java-version: 19
 
-          - name: Checkout the repository
-            uses: actions/checkout@v3
+        - name: Checkout the repository
+          uses: actions/checkout@v3
 
-          - name: Install PostgreSQL client & Maven
-            run: |
-              apt-get -q install --yes postgresql-client
+        - name: Install PostgreSQL client & Maven
+          run: |
+            apt-get -q install --yes postgresql-client
 
-          - name: Migrate database, build project for flyway
-            run: |
-              pwd
-              mvn -q flyway:baseline -s .github/workflows/maven-settings.xml --file webapi/pom.xml
-              mvn -q flyway:migrate -s .github/workflows/maven-settings.xml --file webapi/pom.xml
+        - name: Migrate database, build project for flyway
+          run: |
+            pwd
+            mvn -q flyway:baseline -s .github/workflows/maven-settings.xml --file webapi/pom.xml
+            mvn -q flyway:migrate -s .github/workflows/maven-settings.xml --file webapi/pom.xml
 
-            env:
-              POSTGRES_HOST: postgres
-              POSTGRES_PORT: 5432
-              POSTGRES_PASSWORD: root
-              PGPASSWORD: root
+          env:
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
+            POSTGRES_PASSWORD: root
+            PGPASSWORD: root
 
-          - name: Run tests with Maven
-            run: |
-              cd webapi
-              mvn -q -B test
-            env:
-              USER_NAME: ${{ secrets.USER_NAME }}
-              ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-              JASYPT_ENCRYPTOR_PASSWORD: "secretkey"
-              POSTGRES_HOST: postgres
-              POSTGRES_PORT: 5432
-              PGPASSWORD: root
+        - name: Run tests with Maven
+          run: |
+            cd webapi
+            mvn -q -B test
+          env:
+            USER_NAME: ${{ secrets.USER_NAME }}
+            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+            JASYPT_ENCRYPTOR_PASSWORD: "secretkey"
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
+            PGPASSWORD: root
 
-          - name: Checkout Angular
-            uses: actions/checkout@v3
-            with:
-              repository: JudeaDumont/angular8-frontend
-              path: ./angular
+        - name: Checkout Angular
+          uses: actions/checkout@v3
+          with:
+            repository: JudeaDumont/angular8-frontend
+            path: ./angular
 
-          - name: Install and Run Angular
-            run: |
-              cd angular
-              pwd
-              apt-get -q install --yes npm
-              yes | npm install -g @angular/cli
-              yes | npm install -g @angular/core
-              npm install --save-dev @angular-devkit/build-angular@15.0.0
-              ng update @angular/cli @angular/core --allow-dirty
-              npm i @angular/material@15.0.0
-              
-              nohup ng serve 2>&1 >> /var/log/ng.log &
-              
+        - name: Install and Run Angular
+          run: |
+            cd angular
+            pwd
+            apt-get -q install --yes npm
+            yes | npm install -g @angular/cli
+            yes | npm install -g @angular/core
+            npm install --save-dev @angular-devkit/build-angular@15.0.0
+            ng update @angular/cli @angular/core --allow-dirty
+            npm i @angular/material@15.0.0
+            
+            nohup ng serve 2>&1 >> /var/log/ng.log &
+            
 
-          - name: Checkout Selenium/Cucumber
-            uses: actions/checkout@v3
-            with:
-              repository: JudeaDumont/SeleniumWithCucucumber
-              path: ./SeleniumWithCucucumber
+        - name: Checkout Selenium/Cucumber
+          uses: actions/checkout@v3
+          with:
+            repository: JudeaDumont/SeleniumWithCucucumber
+            path: ./SeleniumWithCucucumber
 
-          - name: Build Selenium/Cucumber with Maven
-            run: |
-              apt-get -q update
-              apt-get -q install --yes maven
-              apt-get -q install --yes xvfb
-              
-              apt-get -q install -y libappindicator1 fonts-liberation
-              wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-              dpkg -i google-chrome*.deb || true
-              apt-get -q install --yes -f
-              echo creamy
-              ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
-              google-chrome --version
-              
-              google-chrome --headless --no-sandbox
-              Xvfb :0 -ac -screen 0 1024x768x24 &
-              
-              
-              cd SeleniumWithCucucumber
-              echo SeleniumCucumber
-              mvn clean verify -Dtestng.dtd.http=true
-              #          Google Chrome 108.0.5359.94
-            #108.0.5359.71
+        - name: Build Selenium/Cucumber with Maven
+          run: |
+            apt-get -q update
+            apt-get -q install --yes maven
+            apt-get -q install --yes xvfb
+            
+            apt-get -q install -y libappindicator1 fonts-liberation
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            dpkg -i google-chrome*.deb || true
+            apt-get -q install --yes -f
+            echo creamy
+            ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
+            google-chrome --version
+            
+            google-chrome --headless --no-sandbox
+            Xvfb :0 -ac -screen 0 1024x768x24 &
+            
+            
+            cd SeleniumWithCucucumber
+            echo SeleniumCucumber
+            mvn clean verify -Dtestng.dtd.http=true
+            #          Google Chrome 108.0.5359.94
+          #108.0.5359.71
 
-          - uses: deblockt/cucumber-report-annotations-action@v1.7
-            with:
-              access-token: ${{ secrets.GITHUB_TOKEN }}
-              path: "**/cucumber.json"
+        - uses: deblockt/cucumber-report-annotations-action@v1.7
+          with:
+            access-token: ${{ secrets.GITHUB_TOKEN }}
+            path: "**/cucumber.json"
 
-          - name: Deploy Selenium/Cucumber report page to GitHub Page
-            uses: peaceiris/actions-gh-pages@v3
-            with:
-              github_token: ${{ secrets.GITHUB_TOKEN }}
-              publish_dir: ./target/cucumber-report-html/cucumber-html-reports
+        - name: Deploy Selenium/Cucumber report page to GitHub Page
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./target/cucumber-report-html/cucumber-html-reports
 
-          - name: Cache Maven packages
-            uses: actions/cache@v3
-            with:
-              path: ~/.m2
-              key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-              restore-keys: ${{ runner.os }}-m2
+        - name: Cache Maven packages
+          uses: actions/cache@v3
+          with:
+            path: ~/.m2
+            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+            restore-keys: ${{ runner.os }}-m2
