@@ -29,11 +29,20 @@ jobs:
         with:
           java-version: 19
 
+
+      - name: Checkout Selenium/Cucumber
+        uses: actions/checkout@v3
+        with:
+          repository: JudeaDumont/SeleniumWithCucucumber
+          path: ./SeleniumWithCucucumber
+
       - name: Build Selenium/Cucumber with Maven
         run: |
           apt-get -q update
           apt-get -q install --yes maven
           apt-get -q install --yes xvfb
+          echo creamydbus
+          apt-get q install --yes dbus
 
           apt-get -q install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -108,13 +117,6 @@ jobs:
           npm i @angular/material@15.0.0
           
           nohup ng serve 2>&1 >> /var/log/ng.log &
-          
-
-      - name: Checkout Selenium/Cucumber
-        uses: actions/checkout@v3
-        with:
-          repository: JudeaDumont/SeleniumWithCucucumber
-          path: ./SeleniumWithCucucumber
 
       - name: Deploy Selenium/Cucumber report page to GitHub Page
         uses: peaceiris/actions-gh-pages@v3
