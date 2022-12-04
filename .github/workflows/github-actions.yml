@@ -1,10 +1,11 @@
 name: GitHub Actions
 on: [ push ]
+env:
+  CONTAINER_NAME: "stack"
 jobs:
   build-and-test-job:
     runs-on: ubuntu-latest
     container: node:latest
-    options: --hostname stack
     services:
       postgres:
         image: postgres:latest
