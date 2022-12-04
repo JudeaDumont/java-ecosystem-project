@@ -35,6 +35,7 @@ jobs:
       - name: Install PostgreSQL client & Maven
         run: |
           apt-get -q update
+          apt-get -q install --yes maven
           apt-get -q install --yes postgresql-client
 
       - name: Migrate database, build project for flyway
@@ -90,7 +91,6 @@ jobs:
 
         #fix for dbus included (chrome still fails)
         run: |
-          apt-get -q install --yes maven
           apt-get -q install --yes xvfb
           echo creamydbus
           apt-get -q install --yes dbus
