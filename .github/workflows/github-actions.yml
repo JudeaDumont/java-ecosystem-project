@@ -29,6 +29,36 @@ jobs:
         with:
           java-version: 19
 
+      - name: Build Selenium/Cucumber with Maven
+        run: |
+          apt-get -q update
+          apt-get -q install --yes maven
+          apt-get -q install --yes xvfb
+
+          apt-get -q install -y libappindicator1 fonts-liberation
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          dpkg -i google-chrome*.deb || true
+          apt-get -q install --yes -f
+          echo creamy
+          ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
+          google-chrome --version
+
+          google-chrome --headless --no-sandbox
+          Xvfb :0 -ac -screen 0 1024x768x24 &
+
+
+          cd SeleniumWithCucucumber
+          echo SeleniumCucumber
+          mvn clean verify -Dtestng.dtd.http=true
+          #          Google Chrome 108.0.5359.94
+        #108.0.5359.71
+
+      - uses: deblockt/cucumber-report-annotations-action@v1.7
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          path: "**/cucumber.json"
+
+
       - name: Checkout the repository
         uses: actions/checkout@v3
 
@@ -85,35 +115,6 @@ jobs:
         with:
           repository: JudeaDumont/SeleniumWithCucucumber
           path: ./SeleniumWithCucucumber
-
-      - name: Build Selenium/Cucumber with Maven
-        run: |
-          apt-get -q update
-          apt-get -q install --yes maven
-          apt-get -q install --yes xvfb
-          
-          apt-get -q install -y libappindicator1 fonts-liberation
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome*.deb || true
-          apt-get -q install --yes -f
-          echo creamy
-          ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
-          google-chrome --version
-          
-          google-chrome --headless --no-sandbox
-          Xvfb :0 -ac -screen 0 1024x768x24 &
-          
-          
-          cd SeleniumWithCucucumber
-          echo SeleniumCucumber
-          mvn clean verify -Dtestng.dtd.http=true
-          #          Google Chrome 108.0.5359.94
-        #108.0.5359.71
-
-      - uses: deblockt/cucumber-report-annotations-action@v1.7
-        with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          path: "**/cucumber.json"
 
       - name: Deploy Selenium/Cucumber report page to GitHub Page
         uses: peaceiris/actions-gh-pages@v3
