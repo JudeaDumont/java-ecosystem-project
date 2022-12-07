@@ -59,7 +59,7 @@ jobs:
 
       - name: Run tests with Maven
         run: |
-          cd webapi
+          cd java-ecosystem-project/webapi
           mvn -q -B test
         env:
           USER_NAME: ${{ secrets.USER_NAME }}
