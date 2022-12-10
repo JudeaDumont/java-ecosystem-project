@@ -39,7 +39,7 @@ public class CandidateController {
     @GetMapping
     public ResponseEntity<Response>
     getAll() {
-        System.out.println(candidateService.getAll().toString());
+        System.out.println("candidateService.getAll(): "+candidateService.getAll().toString());
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
