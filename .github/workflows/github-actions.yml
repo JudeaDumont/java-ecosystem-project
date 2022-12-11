@@ -61,7 +61,6 @@ jobs:
         with:
           repository: JudeaDumont/angular8-frontend
           path: ./angular
-
       - name: Install and Run Angular
         run: |
           cd angular
