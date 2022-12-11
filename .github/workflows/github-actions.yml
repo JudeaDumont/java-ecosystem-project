@@ -66,6 +66,8 @@ jobs:
         run: |
           cd angular
           yes | npm install -g @angular/cli
+          yes | npm install @angular/material@15.0.0
+          ng update @angular/cli @angular/core @angular/material --allow-dirty
 
       - name: Checkout Selenium/Cucumber
         uses: actions/checkout@v3
