@@ -47,14 +47,13 @@ jobs:
       - name: Migrate database, build project for flyway
         run: |
           cd java-ecosystem-project
-          pwd
           mvn -q flyway:baseline -s .github/workflows/maven-settings.xml --file webapi/pom.xml
           mvn -q flyway:migrate -s .github/workflows/maven-settings.xml --file webapi/pom.xml
 
         env:
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
-          POSTGRES_PASSWORD: root
+#          POSTGRES_PASSWORD: root
           PGPASSWORD: root
 
       - name: Run tests with Maven
