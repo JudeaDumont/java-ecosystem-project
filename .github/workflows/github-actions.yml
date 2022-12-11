@@ -62,12 +62,12 @@ jobs:
           repository: JudeaDumont/angular8-frontend
           path: ./angular
 
-      - name: Install and Run Angular
+      - name: Install Angular
         run: |
           cd angular
-          yes | npm install -g @angular/cli
-          yes | npm install @angular/material@15.0.0
-          ng update @angular/cli @angular/core @angular/material --allow-dirty
+          yes | npm install -g @angular/cli 1> /dev/null
+          yes | npm install @angular/material@15.0.0 1> /dev/null
+          ng update @angular/cli @angular/core @angular/material --allow-dirty 1> /dev/null
 
       - name: Checkout Selenium/Cucumber
         uses: actions/checkout@v3
@@ -75,35 +75,23 @@ jobs:
           repository: JudeaDumont/SeleniumWithCucucumber
           path: ./SeleniumWithCucucumber
 
-      - name: Build Selenium/Cucumber with Maven
-
-        #fix for dbus included
+      - name: Install Chrome
         run: |
-          apt-get -q install --yes xvfb
-          apt-get -q install --yes dbus
-          mkdir /run/dbus -p
-          dbus-daemon --system
-
-          apt-get -q install -y libappindicator1 fonts-liberation
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome*.deb || true
-          apt-get -q install --yes -f
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 1> /dev/null
+          dpkg -i google-chrome*.deb || true 1> /dev/null
+          apt-get -q install --yes -f 1> /dev/null
           ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
-          google-chrome --version
 
-          google-chrome --headless --no-sandbox
-          Xvfb :0 -ac -screen 0 1024x768x24 &
-
+      #Remember that these "runs" are organized into processes, when they end, so do their children
+      - name: Run Spring Boot, Angular, and Selenium
+        run: |
           cd java-ecosystem-project/webapi
           export JASYPT_ENCRYPTOR_PASSWORD=secretkey
           mvn spring-boot:run &
           cd ../../angular
           ng serve &
-          cd ..
-
-          cd SeleniumWithCucucumber
+          cd ../SeleniumWithCucucumber
           mvn -q clean verify -Dtestng.dtd.http=true
-
       - uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
