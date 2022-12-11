@@ -14,6 +14,8 @@ public class TestYamlParser {
     @Test
     @Order(1)
     void test_yamlparser(){
-        Map<String, String> postgreDataSource = YamlParser.getPostgreDataSource();
+
+        Map<String, String> postgreDataSource =
+                YamlParser.getPostgreDataSource();
     }
 }
