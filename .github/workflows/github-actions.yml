@@ -1,7 +1,5 @@
 name: GitHub Actions
 on: [ push ]
-env:
-  CONTAINER_NAME: "stack"
 jobs:
   build-and-test-job:
     runs-on: ubuntu-latest
@@ -11,14 +9,10 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_DB: sampledb
-          POSTGRES_PASSWORD: root
           POSTGRES_PORT: 5432
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: root
           POSTGRES_HOST: postgres
-        ports:
-          - 5432:5432
-          - 4200:4200
-          - 7777:7777
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -37,30 +31,28 @@ jobs:
           repository: JudeaDumont/java-ecosystem-project
           path: ./java-ecosystem-project
 
-
-      - name: Install PostgreSQL client & Maven
+      - name: Update apt-get
         run: |
-          apt-get -q update
-          apt-get -q install --yes maven
-          apt-get -q install --yes postgresql-client
+          apt-get -q update 1> /dev/null
+
+      - name: Install PostgreSQL client
+        run: |
+          apt-get -q install --yes postgresql-client 1> /dev/null
+
+      - name: Install Maven
+        run: |
+          apt-get -q install --yes maven 1> /dev/null
 
       - name: Migrate database, build project for flyway
         run: |
           cd java-ecosystem-project
-          mvn -q flyway:baseline -s .github/workflows/maven-settings.xml --file webapi/pom.xml
-          mvn -q flyway:migrate -s .github/workflows/maven-settings.xml --file webapi/pom.xml
+          mvn -q flyway:baseline -s .github/workflows/maven-settings.xml --file webapi/pom.xml 1> /dev/null
+          mvn -q flyway:migrate -s .github/workflows/maven-settings.xml --file webapi/pom.xml 1> /dev/null
 
       - name: Run tests with Maven
         run: |
           cd java-ecosystem-project/webapi
           mvn -q -B test
-        env:
-          USER_NAME: ${{ secrets.USER_NAME }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          JASYPT_ENCRYPTOR_PASSWORD: "secretkey"
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: 5432
-          PGPASSWORD: root
 
       - name: Checkout Angular
         uses: actions/checkout@v3
@@ -71,8 +63,6 @@ jobs:
       - name: Install and Run Angular
         run: |
           cd angular
-          pwd
-          apt-get -q install --yes npm
           yes | npm install -g @angular/cli
           yes | npm install -g @angular/core
           npm install --save-dev @angular-devkit/build-angular@15.0.0
@@ -96,14 +86,14 @@ jobs:
 
           apt-get -q install -y libappindicator1 fonts-liberation
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome*.deb || true 
+          dpkg -i google-chrome*.deb || true
           apt-get -q install --yes -f
           ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
           google-chrome --version
 
           google-chrome --headless --no-sandbox
           Xvfb :0 -ac -screen 0 1024x768x24 &
-          
+
           cd java-ecosystem-project/webapi
           export JASYPT_ENCRYPTOR_PASSWORD=secretkey
           mvn spring-boot:run &
