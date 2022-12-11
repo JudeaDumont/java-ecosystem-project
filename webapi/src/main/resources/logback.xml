@@ -6,10 +6,10 @@
             </Pattern>
         </encoder>
     </appender>
-    <logger name="org.hibernate" level="info" additivity="false">
+    <logger name="org.hibernate" level="error" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
-    <root level="info">
+    <root level="error">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
