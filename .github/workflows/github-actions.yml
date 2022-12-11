@@ -83,9 +83,8 @@ jobs:
           yes | npm install -g @angular/cli
           yes | npm install -g @angular/core
           npm install --save-dev @angular-devkit/build-angular@15.0.0
-          ng update @angular/cli @angular/core --allow-dirty
-          npm i @angular/material@15.0.0
-          
+          yes | npm install @angular/material@15.0.0
+          ng update @angular/cli @angular/core @angular/material --allow-dirty
 
       - name: Checkout Selenium/Cucumber
         uses: actions/checkout@v3
@@ -111,8 +110,11 @@ jobs:
 
           google-chrome --headless --no-sandbox
           Xvfb :0 -ac -screen 0 1024x768x24 &
-
-          cd angular
+          
+          cd java-ecosystem-project/webapi
+          export JASYPT_ENCRYPTOR_PASSWORD=secretkey
+          mvn spring-boot:run &
+          cd ../../angular
           ng serve &
           cd ..
 
