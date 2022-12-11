@@ -65,8 +65,7 @@ jobs:
       - name: Install and Run Angular
         run: |
           cd angular
-          yes | npm install -g @angular/core
-          yes | npm install @angular/material@15.0.0
+          yes | npm install -g @angular/cli
 
       - name: Checkout Selenium/Cucumber
         uses: actions/checkout@v3
