@@ -97,3 +97,5 @@ public class WebapiApplication {
 //todo: encrypt the credentials in the pom file (its annoying because you have to use maven settings that are external to the project)
 
 //todo: add an enum to the schema, use flyway, integrate all the way up into UI
+
+//todo: refactor all 3 repos, starting with minimizing github actions workflow
