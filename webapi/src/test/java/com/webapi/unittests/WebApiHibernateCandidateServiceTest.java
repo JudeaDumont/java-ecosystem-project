@@ -44,7 +44,12 @@ class WebApiHibernateCandidateServiceTest {
         helper.createCandidateWithNameSaveCandidateReturnCandidate(candidateName);
 
         List<Candidate> candidatesByName = helper.getCandidatesByName(candidateName, 2);
-        assert (candidatesByName.size() == candidatesSize + 2);
+        if(!(candidatesByName.size() == candidatesSize + 2)){
+            throw new RuntimeException(
+                    "candidatesByName.size() == candidatesSize + 2" +
+                    candidatesByName.size() + "==" + candidatesSize + 2
+            );
+        }
 
         helper.deleteCandidates(candidatesByName);
 
