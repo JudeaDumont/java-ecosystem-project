@@ -47,7 +47,7 @@ class WebApiHibernateCandidateServiceTest {
         if(!(candidatesByName.size() == candidatesSize + 2)){
             throw new RuntimeException(
                     "candidatesByName.size() == candidatesSize + 2\n" +
-                    candidatesByName.size() + "==" + candidatesSize + 2 + "\n" +
+                    candidatesByName.size() + "==" + (candidatesSize + 2) + "\n" +
                             candidateService.getAll().toString()
             );
         }
