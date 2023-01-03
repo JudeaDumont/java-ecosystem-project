@@ -87,7 +87,7 @@ jobs:
       - name: Run Spring Boot, Angular, and Selenium
         run: |
           cd java-ecosystem-project/webapi
-          export JASYPT_ENCRYPTOR_PASSWORD=secretkey
+          export JASYPT_ENCRYPTOR_PASSWORD=${{secrets.ACTIONS_JASYPT_ENCRYPTOR_PASSWORD}}
           mvn spring-boot:run &
           cd ../../angular
           ng serve &
