@@ -54,7 +54,7 @@ jobs:
           cd java-ecosystem-project/webapi
           mvn -q -B test
         env:
-          JASYPT_ENCRYPTOR_PASSWORD: "secretkey" #required for yamlparser test
+          JASYPT_ENCRYPTOR_PASSWORD: "${{secrets.ACTIONS_JASYPT_ENCRYPTOR_PASSWORD}}" #required for yamlparser test
 
       - name: Checkout Angular
         uses: actions/checkout@v3
