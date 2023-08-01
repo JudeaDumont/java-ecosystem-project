@@ -38,6 +38,6 @@
 
 
 
-#TroubleShooting:
+# TroubleShooting:
 - You might see an error "java.lang.IllegalArgumentException: Password cannot be set empty"
 - this means you are missing the environment variable: JASYPT_ENCRYPTOR_PASSWORD=secretkey
