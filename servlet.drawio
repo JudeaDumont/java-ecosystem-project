@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" modified="2023-08-19T22:24:33.962Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="KS7A3GDtah2h38JDMM0o" version="21.6.8" type="device">
+  <diagram name="Page-1" id="_cfZKp6BQzoesOYOy4sH">
+    <mxGraphModel dx="1114" dy="578" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xH9oL2Jk-nGT-XIv2Po8-2" target="xH9oL2Jk-nGT-XIv2Po8-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-2" value="Servlet A" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="490" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-3" value="- public response HandleRequests(requests);&lt;br&gt;- private processedRequests processRequests(requests);&lt;br&gt;- public collectUserInputFromHTML(html);&lt;br&gt;- private records queryDatabase(query);&lt;br&gt;- createDynamicWebPages(records);&lt;br&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xH9oL2Jk-nGT-XIv2Po8-2">
+          <mxGeometry y="15" width="330" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="xH9oL2Jk-nGT-XIv2Po8-8" target="xH9oL2Jk-nGT-XIv2Po8-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-8" value="Web Server" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-20" value="public ReceiveRequest();" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xH9oL2Jk-nGT-XIv2Po8-8">
+          <mxGeometry x="20" y="28" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xH9oL2Jk-nGT-XIv2Po8-16" target="xH9oL2Jk-nGT-XIv2Po8-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-16" value="Request" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="85" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-29" value="public requestForApplicationA" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xH9oL2Jk-nGT-XIv2Po8-16">
+          <mxGeometry x="10" y="25" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.733;entryY=-0.01;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="xH9oL2Jk-nGT-XIv2Po8-19" target="xH9oL2Jk-nGT-XIv2Po8-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-19" value="Servlet Container" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="35" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-25" value="private passToTargetServlet();" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xH9oL2Jk-nGT-XIv2Po8-19">
+          <mxGeometry y="55" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-22" value="public ReceiveRequest();" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xH9oL2Jk-nGT-XIv2Po8-19">
+          <mxGeometry y="25" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-6" value="Application A" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="260" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="xH9oL2Jk-nGT-XIv2Po8-18" value="public ReceiveRequest();" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xH9oL2Jk-nGT-XIv2Po8-6">
+          <mxGeometry x="-10" y="32" width="160" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
