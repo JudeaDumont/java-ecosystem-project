@@ -36,8 +36,22 @@
 - Make sure that the maven settings used are the ones found in .github/workflows/maven-settings.xml
 - Change maven settings in IntelliJ to use .github/workflows/maven-settings.xml
 
-
-
 # TroubleShooting:
 - You might see an error "java.lang.IllegalArgumentException: Password cannot be set empty"
 - this means you are missing the environment variable: JASYPT_ENCRYPTOR_PASSWORD=secretkey
+
+## Backend
+JudeaDumont/java-ecosystem-project
+https://github.com/JudeaDumont/java-ecosystem-project.git
+
+## Frontend
+JudeaDumont/angular8-frontend
+https://github.com/JudeaDumont/angular8-frontend.git
+
+## Front End Automated Test Suite
+JudeaDumont/SeleniumWithCucucumber
+https://github.com/JudeaDumont/SeleniumWithCucucumber.git
+
+## Pipeline
+Github-actions
+.github\workflows\github-actions.yml
