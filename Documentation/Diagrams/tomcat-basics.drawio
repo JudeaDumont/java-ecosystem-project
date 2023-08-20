@@ -1,0 +1,105 @@
+<mxfile host="app.diagrams.net" modified="2023-08-20T23:40:59.878Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="Z9LYfJ4y0Yq4CPOGkbLt" version="21.6.8" type="device">
+  <diagram name="Page-1" id="KPUeOPgxkjZhlquwX5HU">
+    <mxGraphModel dx="1114" dy="578" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-1" value="Tomcat Environment" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="200" width="270" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-2" value="- environmentVariables : EnvironmentVariables" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xo-cnX8_uqCRi43f7nL_-1">
+          <mxGeometry y="30" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-4" value="Tomcat Environment Variables" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="280" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-5" value="- $CATALINA_HOME : ServerInstall&lt;br&gt;- $CATALINA_BASE: ServerInstall&lt;br&gt;- $JAVA_HOME: AvailableJDK" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xo-cnX8_uqCRi43f7nL_-4">
+          <mxGeometry x="45" y="15" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-6" value="WebApplication" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="315" width="280" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-7" value="- DeployDirectory: $CATALINA_HOME\webapps&lt;br&gt;-&amp;nbsp;DocumentRoot: TopLevelApplicationResources&lt;br&gt;- ContextPath: WebApplicationName&lt;br&gt;- ContextPath: ServerAddress&lt;br&gt;- ContextPath: ServerLocation&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xo-cnX8_uqCRi43f7nL_-6">
+          <mxGeometry y="35" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-8" value="ApplicationResource" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-9" value="- ApplicationResource: JSP&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- ApplicationResource: HTML&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- ApplicationResource: Java Classes&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- ApplicationResource: Images" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="xo-cnX8_uqCRi43f7nL_-8">
+          <mxGeometry x="25" y="30" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shape=link;" edge="1" parent="1" source="xo-cnX8_uqCRi43f7nL_-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="65" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-19" value="WAR = packages a web application directory hierarchy in ZIP format." style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-21" value="WAR is short for web archive" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-22" value="WARs can be created via command line or IDE (eclipse, IntelliJ)" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-23" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="570" y="370" width="420" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-12" value="Context Path" style="whiteSpace=wrap;html=1;" vertex="1" parent="xo-cnX8_uqCRi43f7nL_-23">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-13" value="=&amp;nbsp;$CATALINA_HOME\webapps\myapp" style="whiteSpace=wrap;html=1;" vertex="1" parent="xo-cnX8_uqCRi43f7nL_-23">
+          <mxGeometry x="140" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shape=link;" edge="1" parent="xo-cnX8_uqCRi43f7nL_-23" source="xo-cnX8_uqCRi43f7nL_-12" target="xo-cnX8_uqCRi43f7nL_-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-14" value="Server URL" style="whiteSpace=wrap;html=1;" vertex="1" parent="xo-cnX8_uqCRi43f7nL_-23">
+          <mxGeometry y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="xo-cnX8_uqCRi43f7nL_-23" source="xo-cnX8_uqCRi43f7nL_-13" target="xo-cnX8_uqCRi43f7nL_-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="190" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="300" y="160" />
+              <mxPoint x="60" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-15" value="&amp;nbsp;= http://localhost/myapp" style="whiteSpace=wrap;html=1;" vertex="1" parent="xo-cnX8_uqCRi43f7nL_-23">
+          <mxGeometry x="140" y="80" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shape=link;" edge="1" parent="xo-cnX8_uqCRi43f7nL_-23" source="xo-cnX8_uqCRi43f7nL_-14" target="xo-cnX8_uqCRi43f7nL_-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xo-cnX8_uqCRi43f7nL_-24" target="xo-cnX8_uqCRi43f7nL_-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-24" value="Create WAR" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="70" y="390" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xo-cnX8_uqCRi43f7nL_-25" target="xo-cnX8_uqCRi43f7nL_-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-25" value="Deploy WAR" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="180" y="390" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xo-cnX8_uqCRi43f7nL_-26" target="xo-cnX8_uqCRi43f7nL_-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-26" value="Tomcat Unpacks" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="290" y="390" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xo-cnX8_uqCRi43f7nL_-27" target="xo-cnX8_uqCRi43f7nL_-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-27" value="Tomcat Stores Project Files" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="390" y="390" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xo-cnX8_uqCRi43f7nL_-28" value="Directory = Project Name" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="490" y="390" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

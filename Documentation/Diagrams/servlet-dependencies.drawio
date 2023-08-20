@@ -1,0 +1,16 @@
+<mxfile host="app.diagrams.net" modified="2023-08-20T21:30:11.406Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="_uii1aV3eskAvg6wcXYI" version="21.6.8" type="device">
+  <diagram name="Page-1" id="-J_q1E7fFkBOxClXDUJk">
+    <mxGraphModel dx="1114" dy="578" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DVRJB58Sl3RdQUBSwlcu-1" value="Servlets" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="240" width="240" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="DVRJB58Sl3RdQUBSwlcu-2" value="&lt;div&gt;&amp;lt;dependency&amp;gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;lt;groupId&amp;gt;jakarta.servlet&amp;lt;/groupId&amp;gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;lt;artifactId&amp;gt;jakarta.servlet-api&amp;lt;/artifactId&amp;gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;lt;version&amp;gt;6.0.0&amp;lt;/version&amp;gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;&lt;/div&gt;&lt;div&gt;&amp;lt;/dependency&amp;gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="DVRJB58Sl3RdQUBSwlcu-1">
+          <mxGeometry x="-10" y="25" width="250" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

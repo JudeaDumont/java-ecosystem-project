@@ -55,3 +55,11 @@ https://github.com/JudeaDumont/SeleniumWithCucucumber.git
 ## Pipeline
 Github-actions
 .github\workflows\github-actions.yml
+
+## Recommended IDE
+IntelliJ
+Diagrams.net plugin
+
+## Diagrams
+Use https://app.diagrams.net/
+Diagrams are under Documentation/Diagrams
