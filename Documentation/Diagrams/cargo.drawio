@@ -1,0 +1,136 @@
+<mxfile host="app.diagrams.net" modified="2023-08-23T07:15:50.633Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="WbJea7SH4XZVEY_a0B-V" version="21.6.8" type="device">
+  <diagram name="Page-1" id="gRgvmHv6VV_OpwVzqk-C">
+    <mxGraphModel dx="1114" dy="578" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-33" value="&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Very simple web application&lt;br&gt;No servlets" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="270" width="750" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-2" value="Cargo" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="140" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-3" value="VersatileLibrary" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="GW3U82Pvq7yzhxqfqQWW-2">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-4" value="Manipulate various containers in a standard way" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="GW3U82Pvq7yzhxqfqQWW-2">
+          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-7" value="Maven&#39;s Cargo Plugin" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="40" width="140" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-8" value="Deploy WAR to Tomcat" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="GW3U82Pvq7yzhxqfqQWW-7">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-9" value="Item 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="GW3U82Pvq7yzhxqfqQWW-7">
+          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-10" value="Item 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="GW3U82Pvq7yzhxqfqQWW-7">
+          <mxGeometry y="90" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-11" target="GW3U82Pvq7yzhxqfqQWW-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-11" value="Deploy a version 7 instance" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="85" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-9" target="GW3U82Pvq7yzhxqfqQWW-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-13" target="GW3U82Pvq7yzhxqfqQWW-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-13" value="New java web application from command line" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="85" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-17" target="GW3U82Pvq7yzhxqfqQWW-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-17" value="mvn archetype:generate -DgroupId=com.baeldung -DartifactId=cargo-deploy &lt;br/&gt;  -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=&lt;span style=&quot;box-sizing: border-box; color: rgb(120, 169, 96); font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="245" y="200" width="360" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-19" target="GW3U82Pvq7yzhxqfqQWW-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-19" value="Complete java application created in the cargo-deploy directory" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-20" target="GW3U82Pvq7yzhxqfqQWW-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-20" value="if" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-22" target="GW3U82Pvq7yzhxqfqQWW-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-22" value="Build" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="245" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-23" target="GW3U82Pvq7yzhxqfqQWW-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-23" value="Deploy" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="425" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-24" target="GW3U82Pvq7yzhxqfqQWW-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-24" value="Load into browser" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-29" value="Prints &quot;Hello world&quot;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="480" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-31" target="GW3U82Pvq7yzhxqfqQWW-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-31" value="Cargo requires this file" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="480" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-34" target="GW3U82Pvq7yzhxqfqQWW-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-34" value="Very simple web.xml file" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="335" y="510" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-36" target="GW3U82Pvq7yzhxqfqQWW-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-36" value="go to web-inf folder of newly created project" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="600" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-38" value="&amp;lt;?xml version= encoding=?&amp;gt;&lt;span style=&quot;box-sizing: border-box; color: rgb(78, 147, 89);&quot; class=&quot;hljs-string&quot;&gt;&quot;1.0&quot;&lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; color: rgb(31, 113, 153); font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-meta&quot;&gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;web-app&lt;/span&gt; &lt;span style=&quot;box-sizing: border-box;&quot; class=&quot;hljs-attr&quot;&gt;xmlns:xsi&lt;/span&gt;=&lt;span style=&quot;box-sizing: border-box; color: rgb(78, 147, 89);&quot; class=&quot;hljs-string&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt; &lt;br/&gt;  &lt;span style=&quot;box-sizing: border-box;&quot; class=&quot;hljs-attr&quot;&gt;xmlns&lt;/span&gt;=&lt;span style=&quot;box-sizing: border-box; color: rgb(78, 147, 89);&quot; class=&quot;hljs-string&quot;&gt;&quot;http://java.sun.com/xml/ns/javaee&quot;&lt;/span&gt; &lt;br/&gt;    &lt;span style=&quot;box-sizing: border-box;&quot; class=&quot;hljs-attr&quot;&gt;xsi:schemaLocation&lt;/span&gt;=&lt;span style=&quot;box-sizing: border-box; color: rgb(78, 147, 89);&quot; class=&quot;hljs-string&quot;&gt;&quot;http://java.sun.com/xml/ns/javaee &lt;br/&gt;      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;&lt;/span&gt; &lt;br/&gt;        &lt;span style=&quot;box-sizing: border-box;&quot; class=&quot;hljs-attr&quot;&gt;id&lt;/span&gt;=&lt;span style=&quot;box-sizing: border-box; color: rgb(78, 147, 89);&quot; class=&quot;hljs-string&quot;&gt;&quot;WebApp_ID&quot;&lt;/span&gt; &lt;span style=&quot;box-sizing: border-box;&quot; class=&quot;hljs-attr&quot;&gt;version&lt;/span&gt;=&lt;span style=&quot;box-sizing: border-box; color: rgb(78, 147, 89);&quot; class=&quot;hljs-string&quot;&gt;&quot;3.0&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;&lt;br/&gt;&lt;br/&gt;    &lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;display-name&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;cargo-deploy&lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;display-name&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;&lt;br/&gt;    &lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;welcome-file-list&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;&lt;br/&gt;        &lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;welcome-file&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;index.jsp&lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;welcome-file&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;&lt;br/&gt;    &lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;welcome-file-list&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;web-app&lt;/span&gt;&amp;gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="175" y="830" width="440" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-39" target="GW3U82Pvq7yzhxqfqQWW-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-39" value="Create a web.xml file" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="335" y="740" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-42" target="GW3U82Pvq7yzhxqfqQWW-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-42" value="Maven(recognize cargo&#39;s commands without typing the fully qualified name)" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-44" target="GW3U82Pvq7yzhxqfqQWW-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-44" value="Add cargo maven plugin group in maven settings.xml" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="GW3U82Pvq7yzhxqfqQWW-46" target="GW3U82Pvq7yzhxqfqQWW-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-46" value="In &amp;lt;settings&amp;gt;&amp;lt;/settings&amp;gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GW3U82Pvq7yzhxqfqQWW-47" value="&amp;lt;&amp;gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;&lt;br/&gt;    &lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;pluginGroup&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;org.codehaus.cargo&lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;pluginGroup&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start; background-color: rgb(250, 250, 250);&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: &amp;quot;Source Code Pro&amp;quot;, Consolas, &amp;quot;Bitstream Vera Sans Mono&amp;quot;, &amp;quot;Courier New&amp;quot;, Courier, monospace; font-size: 14px; text-align: start;&quot; class=&quot;hljs-tag&quot;&gt;&amp;lt;/&lt;span style=&quot;box-sizing: border-box; font-weight: 600; color: rgb(99, 177, 117);&quot; class=&quot;hljs-name&quot;&gt;pluginGroups&lt;/span&gt;&amp;gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="225" y="1390" width="380" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
