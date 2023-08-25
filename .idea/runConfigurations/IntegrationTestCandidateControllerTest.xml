@@ -1,0 +1,21 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="IntegrationTestCandidateControllerTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="webapi" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.webapi.integrationtests.tests.Candidate.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="PACKAGE_NAME" value="com.webapi.integrationtests.tests.Candidate" />
+    <option name="MAIN_CLASS_NAME" value="com.webapi.integrationtests.tests.Candidate.IntegrationTestCandidateControllerTest" />
+    <option name="METHOD_NAME" value="test_Save_Save_GetAll_GetByName_GetByName_GetAll_Delete_Delete_GetAll" />
+    <option name="TEST_OBJECT" value="class" />
+    <envs>
+      <env name="JASYPT_ENCRYPTOR_PASSWORD" value="secretkey" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
