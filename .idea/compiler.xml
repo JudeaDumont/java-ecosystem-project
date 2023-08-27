@@ -12,7 +12,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="database-driver" target="15" />
-      <module name="webapi" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

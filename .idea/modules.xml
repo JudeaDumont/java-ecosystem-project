@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/java-ecosystem-project.iml" filepath="$PROJECT_DIR$/java-ecosystem-project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/webapi/webapi.iml" filepath="$PROJECT_DIR$/webapi/webapi.iml" />
     </modules>
   </component>
 </project>

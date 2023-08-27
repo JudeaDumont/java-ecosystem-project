@@ -26,7 +26,8 @@
 - Should all be green as long as this is a proper clean install etc.
 
 ## Add JAVA_HOME environment variable to the location of your jdk
-- Might look like: C:\Users\chef\.jdks\corretto-19.0.1
+- Might look like: C:\Users\chef\.jdks\corretto-19.0.1 if you used intelliJ to download it
+ -  file > project structure > modules > webapi > module sdk
 - Restart cmdline or the whole of intelliJ to pick up new env var
 
 ## Setup maven encryption
@@ -59,6 +60,7 @@ Github-actions
 ## Recommended IDE
 IntelliJ
 Diagrams.net plugin
+Lombok plugin
 
 ## Diagrams
 Use https://app.diagrams.net/
