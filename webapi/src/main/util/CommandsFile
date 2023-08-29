@@ -1,10 +1,11 @@
 
 // Create a Jasypt Encryption Key
 // Replace input="oracle" with the actual value you want.
-cd C:\Users\dum75377\.m2\repository\org\jasypt\jasypt\1.9.3
+cd "C:\Users\my name is chef\.m2\repository\org\jasypt\jasypt\1.9.3"
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="oracle" password=secretkey algorithm=PBEWithMD5AndDES
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="postgres" password=secretkey algorithm=PBEWithMD5AndDES
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="root" password=secretkey algorithm=PBEWithMD5AndDES
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="http://localhost:" password=secretkey algorithm=PBEWithMD5AndDES
 
 //USE THE FOLLOWING AND SETUP YOUR HOSTS FILE
 cd C:\Users\dum75377\.m2\repository\org\jasypt\jasypt\1.9.3

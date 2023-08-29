@@ -17,12 +17,12 @@ public class FibonacciService {
         return fibonacci(num1, num2, iterations, new ArrayList<>());
     }
 
-    private static List<Long> fibonacci(Long num1, Long num2, Long iterations, List<Long> list){
-        list.add(num1+num2);
-        if(iterations > 0){
-            return fibonacci(num2, num1+num2, iterations-1, list);
-        }
-        else{
+    private static List<Long> fibonacci(Long num1, Long num2, Long iterations, List<Long> list) {
+        list.add(num1 + num2);
+        iterations -= 1;
+        if (iterations > 0) {
+            return fibonacci(num2, num1 + num2, iterations, list);
+        } else {
             return list;
         }
     }

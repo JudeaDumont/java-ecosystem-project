@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import java.util.Map;
 import java.util.Properties;
 
-import static testutil.YamlParser.getPostgreDataSource;
+import static testutil.AppYamlManager.getPostgresDataSource;
 
 public class PostgresDataSource {
     private static final String DRIVER = "org.postgresql.Driver";
@@ -16,7 +16,7 @@ public class PostgresDataSource {
     }
 
     public static DataSource getDataSource() {
-        Map<String, String> postgreDataSource = getPostgreDataSource();
+        Map<String, String> postgreDataSource = getPostgresDataSource();
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         dataSource.setDriverClassName(PostgresDataSource.DRIVER);

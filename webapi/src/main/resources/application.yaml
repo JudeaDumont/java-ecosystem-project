@@ -1,4 +1,6 @@
 app:
+  testing:
+    base-url: ENC(+P0MZlwAJrJ6UWqN8Vqq1WfRRWgV4RfPrJE3VLmUmFk=)
   datasource:
     jdbc-url: ENC(6wEXVtpzWbFVOUS4zGMDu6kSWc/13Mwyn7jjYePTy4lEXXrqcpAOt7Cu+IaJut3vQUGhrDrr6PM=)
     username: ENC(1Kq0vluoQ1Vp3Fn9C5FCntojLhDnTtxd)

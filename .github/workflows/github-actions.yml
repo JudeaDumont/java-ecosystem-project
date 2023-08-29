@@ -31,10 +31,6 @@ jobs:
           repository: JudeaDumont/java-ecosystem-project
           path: ./java-ecosystem-project
 
-      - name: Update apt-get
-        run: |
-          apt-get -q update 1> /dev/null
-
       - name: Install PostgreSQL client
         run: |
           apt-get -q install --yes postgresql-client 1> /dev/null
@@ -42,6 +38,10 @@ jobs:
       - name: Install Maven
         run: |
           apt-get -q install --yes maven 1> /dev/null
+
+      - name: Update apt-get
+        run: |
+          apt-get -q update 1> /dev/null
 
       - name: Migrate database, build project for flyway
         run: |

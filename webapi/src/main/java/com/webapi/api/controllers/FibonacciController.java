@@ -25,5 +25,4 @@ public class FibonacciController {
             throws DuplicatePrimaryKeyException {
         return fibonacciService.get(num1, num2, iterations);
     }
-
 }

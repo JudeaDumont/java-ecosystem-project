@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.webapi.integrationtests.IntegrationTestHttpClient;
 import com.webapi.model.candidate.Candidate;
+import testutil.AppYamlManager;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;
@@ -13,11 +14,10 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class CandidateTestHelperFunctions {
-
-    private final int port;
+    private final String candidateAPIPath;
 
     public CandidateTestHelperFunctions(int port) {
-        this.port = port;
+        this.candidateAPIPath = AppYamlManager.getTestingUrl() + port + "/api/v1/candidate/";
     }
 
     //todo: notice that this code suffers from wetness as well
@@ -26,12 +26,11 @@ public class CandidateTestHelperFunctions {
 
 
     //todo: pull this from the application.yaml
-    private final String springHost = "http://localhost:";
 
     private List<Candidate> getCandidatesByName(String candidateName) throws IOException, InterruptedException {
         Gson gson = new Gson();
         HttpResponse<String> getNameHttpResponse = IntegrationTestHttpClient.
-                get(springHost + port + "/api/v1/candidate/getByName/" + candidateName);
+                get(candidateAPIPath + "getByName/" + candidateName);
 
         return gson.fromJson(
                 getNameHttpResponse.body(),
@@ -52,18 +51,18 @@ public class CandidateTestHelperFunctions {
 
     private String postCandidate(Candidate newCandidate1) throws IOException, InterruptedException {
         return IntegrationTestHttpClient.
-                post(springHost + port + "/api/v1/candidate", getJson(Candidate.class, newCandidate1)).body();
+                post(candidateAPIPath, getJson(Candidate.class, newCandidate1)).body();
     }
 
     private String deleteCandidate(Candidate candidate) throws IOException, InterruptedException {
         return IntegrationTestHttpClient.
-                delete(springHost + port + "/api/v1/candidate/" + candidate.getId().toString()).body();
+                delete(candidateAPIPath + candidate.getId().toString()).body();
     }
 
     private List<Candidate> getAllCandidates() throws IOException, InterruptedException {
         Gson gson = new Gson();
         HttpResponse<String> allCandidates = IntegrationTestHttpClient.
-                get(springHost + port + "/api/v1/candidate");
+                get(candidateAPIPath);
 
         assert (allCandidates.statusCode() == 200);
         //if you try and fromJson the body into a Response object it throws up because timestamp type visibility,
@@ -79,14 +78,14 @@ public class CandidateTestHelperFunctions {
 
     private String postCandidateReturnID(Candidate newCandidate1) throws IOException, InterruptedException {
         return IntegrationTestHttpClient.
-                post(springHost + port + "/api/v1/candidate/saveReturnID",
+                post(candidateAPIPath + "saveReturnID",
                         getJson(Candidate.class, newCandidate1)).body();
     }
 
     public String updateCandidateReturn1(Candidate candidateFromID) throws IOException, InterruptedException {
         Gson gson = new Gson();
         String putResponse = IntegrationTestHttpClient.
-                put(springHost + port + "/api/v1/candidate",
+                put(candidateAPIPath,
                         gson.toJson(candidateFromID)).body();
         assert (Objects.equals(putResponse, "1"));
         return putResponse;
@@ -95,7 +94,7 @@ public class CandidateTestHelperFunctions {
     public String updateCandidateReturn0(Candidate candidateFromID) throws IOException, InterruptedException {
         Gson gson = new Gson();
         String putResponse = IntegrationTestHttpClient.
-                put(springHost + port + "/api/v1/candidate",
+                put(candidateAPIPath,
                         gson.toJson(candidateFromID)).body();
         assert (Objects.equals(putResponse, "0"));
         return putResponse;
@@ -103,21 +102,21 @@ public class CandidateTestHelperFunctions {
 
     public List<Candidate> getCandidatesByNameReturn0(String candidateName) throws IOException, InterruptedException {
         List<Candidate> candidatesMatchingName = getCandidatesByName(candidateName);
-        assert (candidatesMatchingName.size() == 0);
+        assert (candidatesMatchingName.isEmpty());
         return candidatesMatchingName;
     }
 
     private String updateCandidate(Candidate candidateFromID) throws IOException, InterruptedException {
         Gson gson = new Gson();
         return IntegrationTestHttpClient.
-                put(springHost + port + "/api/v1/candidate",
+                put(candidateAPIPath,
                         gson.toJson(candidateFromID)).body();
     }
 
     public Candidate getCandidateByIDReturnCandidate(Long candidateID) throws IOException, InterruptedException {
         Gson gson = new Gson();
         HttpResponse<String> getByIdHttpResponse = IntegrationTestHttpClient.
-                get(springHost + port + "/api/v1/candidate/" + candidateID);
+                get(candidateAPIPath + candidateID);
         assert (getByIdHttpResponse.body() != null);
         return gson.fromJson(
                 getByIdHttpResponse.body(), Candidate.class);
@@ -141,7 +140,7 @@ public class CandidateTestHelperFunctions {
 
     public void getCandidatesReturn0(Candidate candidate) throws IOException, InterruptedException {
         List<Candidate> deleteCheck = getCandidatesByName(candidate.getName());
-        assert (deleteCheck.size() == 0);
+        assert (deleteCheck.isEmpty());
     }
 
     public String deleteCandidateReturn1(Candidate candidate) throws IOException, InterruptedException {
