@@ -46,3 +46,6 @@ class IntegrationTestFibonacciControllerTest {
         assert (longs.get(3) == 8);
     }
 }
+
+//todo: create a front end entity that uses the fibonacci endpoint,
+//todo: create a selenium test that tests the front ed entity that uses the fibonacci endpoint
