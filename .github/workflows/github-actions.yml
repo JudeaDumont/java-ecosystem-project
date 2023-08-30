@@ -25,6 +25,10 @@ jobs:
         with:
           java-version: 20
 
+      - name: Update apt-get
+        run: |
+          apt-get -q update 1> /dev/null
+
       - name: Checkout the repository
         uses: actions/checkout@v3
         with:
