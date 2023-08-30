@@ -25,6 +25,10 @@ jobs:
         with:
           java-version: 17
 
+      - name: Update apt-get
+        run: |
+          apt-get -q update 1> /dev/null
+
       - name: Checkout the repository
         uses: actions/checkout@v3
         with:
@@ -38,10 +42,6 @@ jobs:
       - name: Install Maven
         run: |
           apt-get -q install --yes maven 1> /dev/null
-
-      - name: Update apt-get
-        run: |
-          apt-get -q update 1> /dev/null
 
       - name: Migrate database, build project for flyway
         run: |
