@@ -46,6 +46,12 @@
   JASYPT_ENCRYPTOR_PASSWORD=secretkey
   - Maven surefire plugin, run configuration, the server itself, tests, etc
 
+## TroubleShooting Dependencies
+- Googling the name of the artifact ID and looking at version information in mvn repo
+  can help you identify versioning mismatching and versions to try
+- https://start.spring.io/ is an invaluable tool for both learning what is out there, 
+  and validating version compatibility
+
 ## Backend
 JudeaDumont/java-ecosystem-project
 https://github.com/JudeaDumont/java-ecosystem-project.git
