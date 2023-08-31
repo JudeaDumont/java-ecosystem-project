@@ -15,6 +15,11 @@ import java.util.Arrays;
 public class WebapiApplication {
 
     //todo: create/migrate to a separate "troubleshooting.md" file
+    //todo: move to jersey servlet
+    //todo: use mocking tests!
+    //todo: setup kafka pub/sub
+    //todo: look up what other techs FB wants, and build those in
+    //todo: build out whole fullstack testing + infra in github actions for whol stack.
 
     public static void main(String[] args) {
         SpringApplication.run(WebapiApplication.class, args);
