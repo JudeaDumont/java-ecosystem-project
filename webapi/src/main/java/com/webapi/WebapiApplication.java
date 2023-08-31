@@ -19,7 +19,13 @@ public class WebapiApplication {
     //todo: use mocking tests!
     //todo: setup kafka pub/sub
     //todo: look up what other techs FB wants, and build those in
-    //todo: build out whole fullstack testing + infra in github actions for whol stack.
+    //todo: build out whole fullstack testing + infra in github actions for whole stack.
+    //todo: do all the common datastructures, then trees, then red black trees, then the SBBST you wrote forever ago
+    //todo: and fix it ;)
+    //todo: start integrating other technologies into the mix for containers, K8s, and add a react frontend
+    //todo: integrate full system tests for the whole of terraform, K8s cluster, and every layer below
+    //todo: start paying for intelliJ suite, k8s hosting, and other awesome devtools
+
 
     public static void main(String[] args) {
         SpringApplication.run(WebapiApplication.class, args);
