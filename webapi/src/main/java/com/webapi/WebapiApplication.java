@@ -14,6 +14,8 @@ import java.util.Arrays;
 @EnableEncryptableProperties
 public class WebapiApplication {
 
+    //todo: create/migrate to a separate "troubleshooting.md" file
+
     public static void main(String[] args) {
         SpringApplication.run(WebapiApplication.class, args);
     }
