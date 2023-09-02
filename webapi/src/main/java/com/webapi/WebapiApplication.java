@@ -14,8 +14,7 @@ import java.util.Arrays;
 @EnableEncryptableProperties
 public class WebapiApplication {
 
-    //todo: create/migrate to a separate "troubleshooting.md" file
-    //todo: move to jersey servlet
+    //todo: move to jersey servlet, see: MovingToJerseyServlets.md
     //todo: use mocking tests!
     //todo: setup kafka pub/sub
     //todo: look up what other techs FB wants, and build those in
