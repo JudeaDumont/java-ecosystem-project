@@ -14,6 +14,9 @@ import java.util.Arrays;
 @EnableEncryptableProperties
 public class WebapiApplication {
 
+    //todo: nail down the container versions used in github actions,
+    // none of them should be using the latest tag
+
     //todo: move to jersey servlet, see: MovingToJerseyServlets.md
     //todo: use mocking tests!
     //todo: setup kafka pub/sub
