@@ -2,20 +2,20 @@
 - I have setup the jersey servlet in there with apache tomcat
 - I have also setup github actions that is now building the jersey servlet using jdk20
 
-- Next I will need to install a VM for ubuntu so I have another avenue of developing github actions with my software.
+- I installed a VM for ubuntu so I have another avenue of developing github actions with my software.
 
-- next I will need to setup github actions for the "jersey servlet" repo, with apache tomcat as an apt-get install
+- I setup github actions for the "jersey servlet" repo, with apache tomcat as an apt-get install
 
-- Then I will need to deploy the simple-service project, 
+- I deployed the simple-service project using tomcat, and smart-tomcat plugin, 
 
-- Then I will need to figure out how to tell tomcat to host on a different port, 
-- I am pretty sure this has to do with connectors
-- 
+- I told tomcat to host on a different port,
 
-- then I will need to find a way to run the unit tests for it, both locally and in github actions
+- installed and hosted postgres on a github actions container, 
+- not sure if I can o multi-container deployments onto github actions, 
+- but could not find an implemetnation for it so.
 
-- then I will need to introduce other components of the system, either on the same container
+- I found a way to run the unit tests for it, both locally and in github actions
 
-- but maybe splitting them up into multiple containers for github actions to test is a good future
+- Next I will need to make sure flyway and hibernate are working with the postgres installation, 
+- then I can really start moving over the java componenets.
 
-- if github actions supports multiple container testing scenarios, I will need to use that
