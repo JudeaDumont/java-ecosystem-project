@@ -12,10 +12,10 @@
 
 - installed and hosted postgres on a github actions container, 
 - not sure if I can o multi-container deployments onto github actions, 
-- but could not find an implemetnation for it so.
+- but could not find an implementation for it so.
 
 - I found a way to run the unit tests for it, both locally and in github actions
 
 - Next I will need to make sure flyway and hibernate are working with the postgres installation, 
-- then I can really start moving over the java componenets.
+- then I can really start moving over the java components.
 
