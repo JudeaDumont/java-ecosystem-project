@@ -22,5 +22,5 @@
 - noticed that the servlet repo is in a private repo, so I need to make that public, and also accept; that
 - might be the sole reason why fb says no, was because they are not going to be able to see the project
 - I sold myself with
-- would not have been able to figure that out unless I had attempted to pull it ona  different laptop
+- would not have been able to figure that out unless I had attempted to pull it on a different laptop
 
